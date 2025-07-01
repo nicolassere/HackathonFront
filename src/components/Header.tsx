@@ -22,14 +22,8 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           {/* Enhanced Logo */}
           <div className="flex items-center space-x-3">
-            <div className="relative w-10 h-10 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 rounded-xl flex items-center justify-center overflow-hidden group">
-              <Atom className="w-6 h-6 text-white transition-transform duration-500 group-hover:rotate-180" />
-              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </div>
-            <div className="hidden sm:block">
-              <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Quantum LATAM 2025
-              </h1>
+            <div className="hidden sm:flex items-center space-x-2">
+              <img src="img/HackathonLogoHeader.png" alt="Hackathon Logo" className="h-8 w-auto" />
               <p className="text-sm text-slate-600">Universidad de Montevideo</p>
             </div>
           </div>
