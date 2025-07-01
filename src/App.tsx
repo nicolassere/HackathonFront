@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import EventInfo from './components/EventInfo';
+import Requirements from './components/Requirements';
 import Registration from './components/Registration';
 import Partners from './components/Partners';
 import Footer from './components/Footer';
@@ -13,6 +14,7 @@ function App() {
       <main>
         <Hero />
         <EventInfo />
+        <Requirements />
         <Registration />
         <Partners />
       </main>

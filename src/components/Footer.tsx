@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, MapPin, Globe, Calendar } from 'lucide-react';
+import { Mail, MapPin, Globe, Calendar, Instagram, Linkedin } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
@@ -31,6 +31,11 @@ const Footer: React.FC = () => {
               <li>
                 <a href="#event-info" className="hover:text-blue-400 transition-colors">
                   Event Information
+                </a>
+              </li>
+              <li>
+                <a href="#requirements" className="hover:text-blue-400 transition-colors">
+                  Requirements
                 </a>
               </li>
               <li>
@@ -103,10 +108,10 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Contact & Social */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Contact</h4>
-            <div className="space-y-3">
+            <h4 className="text-lg font-semibold mb-4">Contact & Follow Us</h4>
+            <div className="space-y-3 mb-6">
               <a 
                 href="mailto:qhl@um.edu.uy"
                 className="flex items-center space-x-2 text-slate-300 hover:text-blue-400 transition-colors"
@@ -123,7 +128,27 @@ const Footer: React.FC = () => {
                 <Globe className="w-4 h-4" />
                 <span>Universidad de Montevideo</span>
               </a>
-            </div>
+            {/* Redes Sociales como enlaces de texto con íconos */}
+             
+                <a
+                  href="https://www.instagram.com/universidadmontevideo/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 text-slate-300 hover:text-blue-400 transition-colors"
+                >
+                  <Instagram className="w-4 h-4" />
+                  <span>@universidadmontevideo</span>
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/facultad-de-ingenier%C3%ADa-a7935758/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 text-slate-300 hover:text-blue-400 transition-colors"
+                >
+                  <Linkedin className="w-4 h-4" />
+                  <span>Facultad de Ingeniería</span>
+                </a>
+              </div>
           </div>
         </div>
 

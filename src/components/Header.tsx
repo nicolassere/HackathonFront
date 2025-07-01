@@ -44,6 +44,10 @@ const Header = () => {
               Evento
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
             </a>
+            <a href="#requirements" className="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
+              Requisitos
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+            </a>
             <a href="#registration" className="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
               Registro
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
@@ -79,6 +83,9 @@ const Header = () => {
               </a>
               <a href="#event-info" className="text-slate-700 hover:text-blue-600 transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
                 Evento
+              </a>
+              <a href="#requirements" className="text-slate-700 hover:text-blue-600 transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
+                Requisitos
               </a>
               <a href="#registration" className="text-slate-700 hover:text-blue-600 transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
                 Registro
