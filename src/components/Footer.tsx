@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, MapPin, Globe, Calendar } from 'lucide-react';
+import { Mail, MapPin, Globe, Calendar, Instagram, Linkedin } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
@@ -108,10 +108,10 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Contact & Social */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Contact</h4>
-            <div className="space-y-3">
+            <h4 className="text-lg font-semibold mb-4">Contact & Follow Us</h4>
+            <div className="space-y-3 mb-6">
               <a 
                 href="mailto:qhl@um.edu.uy"
                 className="flex items-center space-x-2 text-slate-300 hover:text-blue-400 transition-colors"
@@ -128,6 +128,31 @@ const Footer: React.FC = () => {
                 <Globe className="w-4 h-4" />
                 <span>Universidad de Montevideo</span>
               </a>
+            </div>
+            
+            {/* Social Media Links */}
+            <div>
+              <h5 className="text-sm font-semibold text-slate-400 mb-3 uppercase tracking-wide">Follow Us</h5>
+              <div className="flex space-x-4">
+                <a
+                  href="https://www.instagram.com/universidadmontevideo/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group bg-slate-800 hover:bg-gradient-to-br hover:from-pink-500 hover:to-purple-600 p-3 rounded-xl transition-all duration-300 transform hover:scale-110"
+                  aria-label="Follow us on Instagram"
+                >
+                  <Instagram className="w-5 h-5 text-slate-300 group-hover:text-white transition-colors" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/facultad-de-ingenier%C3%ADa-a7935758/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group bg-slate-800 hover:bg-blue-600 p-3 rounded-xl transition-all duration-300 transform hover:scale-110"
+                  aria-label="Follow us on LinkedIn"
+                >
+                  <Linkedin className="w-5 h-5 text-slate-300 group-hover:text-white transition-colors" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
