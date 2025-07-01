@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Globe, Clock, Target, Award, BookOpen, Users, UserPlus, ExternalLink, Mail, MapPin, Calendar, ChevronDown, Atom, Zap, Cpu, Brain } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import { useLanguage } from "../contexts/LanguageContext";
+
 
 // Enhanced Header Component with smooth animations
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
@@ -36,31 +40,48 @@ const Header = () => {
           {/* Enhanced Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <a href="#hero" className="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
-              Inicio
+              {t('nav.home')}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
             </a>
             <a href="#event-info" className="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
-              Evento
+              {t('nav.event')}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
             </a>
             <a href="#requirements" className="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
-              Requisitos
+              {t('nav.requirements')}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
             </a>
             <a href="#registration" className="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
-              Registro
+              {t('nav.registration')}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
             </a>
             <a href="#partners" className="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
-              Partners
+              {t('nav.partners')}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
             </a>
-            <div className="flex items-center space-x-2 bg-slate-100 rounded-lg px-3 py-1">
-              <Globe className="w-4 h-4 text-slate-500" />
-              <select className="text-sm bg-transparent border-none text-slate-700 font-medium cursor-pointer">
-                <option value="es">ES</option>
-                <option value="en">EN</option>
-              </select>
+            <div className="flex items-center space-x-2">
+              <button
+                  onClick={() => setLanguage('es')}
+                  className={`flex items-center space-x-1 px-3 py-1.5 rounded-lg transition-all ${
+                      language === 'es'
+                          ? 'bg-blue-100 text-blue-700'
+                          : 'hover:bg-slate-100 text-slate-600'
+                  }`}
+              >
+                <span className="text-lg">🇪🇸</span>
+                <span className="text-sm font-medium">ES</span>
+              </button>
+              <button
+                  onClick={() => setLanguage('en')}
+                  className={`flex items-center space-x-1 px-3 py-1.5 rounded-lg transition-all ${
+                      language === 'en'
+                          ? 'bg-blue-100 text-blue-700'
+                          : 'hover:bg-slate-100 text-slate-600'
+                  }`}
+              >
+                <span className="text-lg">🇬🇧</span>
+                <span className="text-sm font-medium">EN</span>
+              </button>
             </div>
           </nav>
 
@@ -78,19 +99,19 @@ const Header = () => {
           <div className="md:hidden py-4 border-t border-slate-200 animate-in slide-in-from-top duration-300">
             <nav className="flex flex-col space-y-4">
               <a href="#hero" className="text-slate-700 hover:text-blue-600 transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
-                Inicio
+                {t('nav.home')}
               </a>
               <a href="#event-info" className="text-slate-700 hover:text-blue-600 transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
-                Evento
+                {t('nav.event')}
               </a>
               <a href="#requirements" className="text-slate-700 hover:text-blue-600 transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
-                Requisitos
+                {t('nav.requirements')}
               </a>
               <a href="#registration" className="text-slate-700 hover:text-blue-600 transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
-                Registro
+                {t('nav.registration')}
               </a>
               <a href="#partners" className="text-slate-700 hover:text-blue-600 transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
-                Partners
+                {t('nav.partners')}
               </a>
             </nav>
           </div>

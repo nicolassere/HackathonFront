@@ -1,6 +1,8 @@
 import React from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Partners: React.FC = () => {
+  const { t } = useLanguage();
   const partners = [
     {
       name: "Open Quantum Institute",
@@ -43,18 +45,17 @@ const Partners: React.FC = () => {
           {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-slate-900 mb-4">
-              Our Collaborators
+              {t('partners.title')}
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              This hackathon is made possible through collaboration with leading organizations
-              in quantum computing, climate research, and technology education.
+              {t('partners.subtitle')}
             </p>
           </div>
 
           {/* Strategic Partners Section */}
           <div className="mb-20">
             <div className="text-center mb-12">
-              <h3 className="text-3xl font-bold text-slate-900 mb-4">Strategic Partners</h3>
+              <h3 className="text-3xl font-bold text-slate-900 mb-4">{t('partners.strategic')}</h3>
               <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"></div>
             </div>
 
@@ -90,7 +91,7 @@ const Partners: React.FC = () => {
           {/* Academic Supporters Section */}
           <div className="mb-16">
             <div className="text-center mb-12">
-              <h3 className="text-3xl font-bold text-slate-900 mb-4">Academic Supporters</h3>
+              <h3 className="text-3xl font-bold text-slate-900 mb-4">{t('partners.academic')}</h3>
               <div className="w-24 h-1 bg-gradient-to-r from-green-600 to-blue-600 mx-auto rounded-full"></div>
             </div>
 
