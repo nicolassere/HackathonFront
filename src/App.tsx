@@ -5,6 +5,7 @@ import Requirements from './components/Requirements';
 import Registration from './components/Registration';
 import Partners from './components/Partners';
 import Footer from './components/Footer';
+import BlochSphere from './components/BlochSphere';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Requirements />
         <Registration />
         <Partners />
+        <BlochSphere />
       </main>
       <Footer />
     </div>
