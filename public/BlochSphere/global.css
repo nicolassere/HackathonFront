@@ -1,0 +1,1511 @@
+/* Estilos generales para todos los elementos */
+* {
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    font-variation-settings: 'FILL' 1;
+}
+
+::-webkit-scrollbar {
+    width: 1rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    display: none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 1rem;
+    border-radius: 1rem;
+    background: #626161; 
+    -webkit-box-shadow: inset 0 0 0.5rem rgba(0,0,0,0.5); 
+}
+
+
+
+/* Estilos para el body y el html */
+body, html {
+    height: 100%;
+    margin: 0;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    font-size: 2.3vmin;
+    background: white;
+    touch-action: none;
+}
+
+.grab {
+    cursor: grab;
+}
+
+.grab:active  {
+    cursor: grabbing; 
+}
+
+
+/* Desactivar la selección de texto en elementos con la clase "noselect" */
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.nopointer {
+    pointer-events: none;
+}
+
+/* Estilos para contenedores flexibles */
+#cont {
+    font-size: 2rem; /* Tamaño de fuente */
+    flex-direction: column; /* Dirección de los elementos flexibles */
+    align-items: center; /* Alinear elementos al centro */
+    justify-content: center; /* Justificar contenido al centro */
+    gap: 0.8rem; /* Espacio entre elementos */
+    display: flex; /* Usar Flexbox */
+    height: 100%; /* Altura completa */
+    width: 100%; /* Ancho completo */
+}
+
+/* Estilo para el título principal */
+.titulo-principal {
+    font-size: 4rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #FFFFFF;
+}
+
+#titulo {
+    color: black;
+}
+
+/* Estilos para el input de código de juego y botones */
+#cod-juego, .boton, #nom-usuario, #mensaje, #pw, #re-pw, #pw-nueva {
+    padding: 0.5rem; /* Relleno */
+    font-size: 3rem; /* Tamaño de fuente */
+    width: 40rem; /* Ancho */
+    border-radius: 2rem; /* Bordes redondeados */
+    border: none; /* Sin borde */
+    text-align: center; /* Alinear texto al centro */
+    transition: background-color 0.3s ease;
+}
+
+
+
+#nom-usuario, #pw, #re-pw, #pw-nueva{
+    background: #D5E5D5;
+    font-size: 2.3rem;
+}
+
+#registrarse {
+    color: #3442DD;
+}
+
+#cont[accion="ingresar"]{
+    #titulo::after {
+        content: "Ingresar"
+    }
+    #pw-nueva{
+        display: none;
+    }
+    #re-pw {
+        display: none;
+    }
+    #registrarse::after {
+        content: "Registrarse"
+    }
+}
+
+#cont[accion="registrarse"]{
+    #titulo::after {
+        content: "Registrarse"
+    }
+    #pw{
+        display: none;
+    }
+    #registrarse::after {
+        content: "Ingresar"
+    }
+}
+
+#registrarse:after {
+    content: "Registrarse";
+}
+
+
+
+#mensaje{
+    border: solid #777;
+    width: revert;
+    max-width: 40rem;
+    text-align: left;
+}
+
+/* Estilos para botones */
+.boton {
+    color: #FFFFFF; /* Color de texto */
+    background: #FF0000; /* Color de fondo */
+}
+
+.boton:disabled {
+    background-color: #888888 !important;
+    pointer-events: none;
+}
+
+.boton-rojo{
+    color: #FFFFFF; /* Color de texto */
+    background: #FF0000; /* Color de fondo */
+}
+
+.boton-rojo:hover{
+    background-color: #c03d3d; /* Color de fondo en hover */
+}
+
+.boton-unirse{
+    color: #FFFFFF; /* Color de texto */
+    background-color: #1B998B; /* Color de fondo */
+    text-decoration: none;
+}
+
+.boton-unirse:hover{
+    background-color: #167a6d;
+}
+
+.image-container {
+    margin-right: 5rem;
+    margin-top: 2rem;
+}
+.image-container img {
+    width: 9.2rem;
+    height: auto;
+    border-radius: 0.62rem;
+}
+
+.image-container-2 {
+    align-items: center;
+}
+.image-container-2 img {
+    width: 9.2rem;
+    height: auto;
+    border-radius: 0.62rem;
+}
+
+.text-buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    margin-top: -1rem; /* Ajustar según sea necesario */
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 0.5rem; /* Ajustar según sea necesario */
+}
+.content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 65rem;
+}
+
+.info-icon {
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    color: #fff;
+    text-align: center;
+}
+.info-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1.22rem;
+    background-color: #333;
+    color: #fff;
+    z-index: 9999;
+}
+
+/* Estilos para la selección de jugadores */
+.seleccion-jugador {
+    display: flex; /* Usar Flexbox */
+    flex-direction: row; /* Dirección de los elementos flexibles */
+    gap: 1rem; /* Espacio entre elementos */
+    padding: 0.5rem; /* Relleno */
+}
+
+/* Estilos para los operadores */
+.operadores {
+    display: flex; /* Usar Flexbox */
+    flex-direction: row; /* Dirección de los elementos flexibles */
+    gap: 1rem; /* Espacio entre elementos */
+    padding: 0.5rem; /* Relleno */
+}
+
+/* Estilo para cada operador */
+.operador {
+    width: 5rem; /* Ancho */
+    margin-left: 2.5rem;
+    background-color: #1B998B;
+    --color-hover: #167a6d;
+    color: black;
+    /* -webkit-text-stroke-width: 0.1rem; */
+    /* -webkit-text-stroke-color: var(--color-hover); */
+    /* border: 0.35rem solid var(--color-hover); */
+}
+
+/* Estilo para cada operador */
+.operador:hover {
+    background-color: var(--color-hover) !important; /* Color de fondo en hover */
+}
+
+/* Estilo para los botones de voto */
+.voto {
+    width: 13rem; /* Ancho */
+    margin: 2.5rem;
+}
+
+/* Estilo para el botón de medir */
+#medir {
+    width: 13rem; /* Ancho */
+    background-color: #1B998B;
+    margin: 2.5rem;
+}
+
+/* Estilos para los botones de selección de jugador (2 o 3) */
+#j2, #j3 {
+    --color-seleccionado: #1B998B; /* Color seleccionado */
+    --hover-seleccionado: #167a6d; /* Color de hover seleccionado */
+    --texto-seleccionado: #ffffff; /* Color de texto seleccionado */
+    --color-normal: #eeeeee; /* Color normal */
+    --texto-normal: #000000; /* Color de texto normal */
+    --hover-normal: #f6fafd; /* Color de hover normal */
+    --color-hover: var(--hover-normal); /* Color de hover actual */
+    color: var(--texto-normal); /* Color de texto */
+    background-color: var(--color-normal); /* Color de fondo */
+}
+
+/* Estilo para el hover de selección del jugador 2 */
+#j2:hover {
+    background-color: var(--color-hover) !important;
+}
+
+/* Estilo para el hover de selección del jugador 3 */
+#j3:hover {
+    background-color: var(--color-hover) !important;
+}
+
+/* Estilos para el input tipo checkbox */
+input.checkbox {
+    width: 1.5rem; /* Ancho */
+    height: 1.5rem; /* Altura */
+}
+
+/* Estilo comunes a botones de seleccionar jugador */
+.switch {
+    width: 19rem; /* Ancho */
+}
+
+/* Estilos para elementos con clase copiar y cerrar-dialogo en hover y focus */
+.copiar:hover,
+.copiar:focus,
+.cerrar-dialogo:hover,
+.cerrar-dialogo:focus {
+    color: black; /* Color de texto */
+    text-decoration: none; /* Sin subrayado */
+    cursor: pointer; /* Cambiar el cursor */
+}
+
+/* Estilo para ocultar el elemento de medición y votación por defecto */
+#medicion {
+    display: none;
+}
+#votacion {
+    display: none;
+}
+
+/* Estilo para ocultar el elemento de estado por defecto */
+#estado {
+    display: none;
+}
+
+/* Estilos para el toast (notificación) */
+#toast {
+    visibility: hidden; /* Ocultar por defecto */
+    min-width: 15rem; /* Ancho mínimo */
+    margin-left: -7.7rem; /* Margen para centrar */
+    background-color: #333; /* Color de fondo */
+    color: #fff; /* Color de texto */
+    text-align: center; /* Alinear texto al centro */
+    border-radius: .12rem; /* Bordes redondeados */
+    padding: 1rem; /* Relleno */
+    position: fixed; /* Posición fija */
+    z-index: 1; /* Z-index */
+    left: 50%; /* Centrar horizontalmente */
+    bottom: 1.85rem; /* Distancia desde el fondo */
+}
+
+/* Estilos para mostrar el toast */
+#toast.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animaciones para el fadein del toast */
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+/* Animaciones para el fadeout del toast */
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+#loader-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+/* Estilos para el loader (animación de carga) */
+#loader {
+    border: 1rem solid #f3f3f3; /* Borde gris claro */
+    border-top: 1rem solid #3498db; /* Borde superior azul */
+    border-radius: 50%; /* Bordes redondeados */
+    width: 10rem; /* Ancho */
+    height: 10rem; /* Altura */
+    animation: spin 1s linear infinite; /* Animación de rotación infinita */
+}
+
+/* Animación para el spin del loader */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Estilo para la esfera */
+#esfera {
+    border-radius: 50%;
+    height: 20rem;
+    width: 20rem;
+    background: radial-gradient(circle at 15rem 15rem, rgba(100,100,100,0.7), rgba(255,255,255,0.5));
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    text-align: center;
+    line-height: 20rem;
+    font-size: 4rem;
+}
+/* Estilo para el canvas */
+#coordenadasCanvas {
+    position: absolute;
+    width: 27rem;
+    height: 25rem;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.text-box   {
+    cursor: auto;
+    position: fixed;
+    top: 10rem; /* Posiciona el contenedor en la parte superior */
+    left: 2rem;
+    width: 30%; /* Para que abarque todo el ancho de la página */
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente para que flote sobre otros elementos */
+    padding: 0.5rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Añade una sombra suave para que resalte */
+    z-index: 1000; /* Asegura que el contenedor esté por encima de otros elementos */
+}
+
+
+[layout-esfera = "left"] {
+    /* Estilo para la esfera */
+    #esfera {
+        left: calc(25vw - 13.5rem);
+        margin: revert;
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-left: 3.5rem;
+        margin-right: 3.5rem;
+    }
+    /* Estilo para el canvas */
+    #coordenadasCanvas {
+        left: calc(25vw - 13.5rem);
+        margin: revert;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+    .texto-inicial   {
+        position: fixed;
+        top: 8rem;
+        left: auto;
+        right: 2rem;
+        width: 50%;
+        text-align: center;
+    }
+}
+
+[layout-esfera = "none"] {
+    /* No mostrar esfera */
+    #esfera {
+        display: none;
+    }
+
+    .grab {
+        cursor: initial;
+    }
+    
+    .grab:active  {
+        cursor: initial; 
+    }
+
+    
+    /* No mostrar canvas */
+    #coordenadasCanvas {
+        display: none;
+    }
+    .texto-inicial   {
+        cursor: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        text-align: center;
+        width: 50%;
+        height: fit-content;
+    }
+}
+
+.segundo-texto{
+    display: none;
+    right: 1rem;
+    left: revert;
+    height: 20rem;
+}
+
+/* Estilo para el botón de siguiente y comprobar */
+.boton-final {
+    position: absolute;
+    bottom: 9rem;
+    right: 1rem;
+    background-color: #1B998B;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    height: 3rem;
+    font-size:2rem;
+    cursor: pointer;
+    display: none;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1001; /* Asegura que el botón esté por encima del texto-inicial */
+}
+
+.texto-inicial{
+    display: none;
+}
+
+.boton-final:hover {
+    background-color: #167a6d;
+}
+
+/* Estilo para el botón de reset */
+#reset-boton {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background-color: #1B998B;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#reset-boton:hover {
+    background-color: #167a6d;
+}
+
+/* Estilo para el ícono grande (videocam) */
+#reset-boton .videocam-icon {
+    font-size: 2rem; /* Tamaño del ícono grande */
+}
+
+/* Estilo para el ícono pequeño (refresh) */
+#reset-boton .refresh-icon {
+    position: absolute;
+    bottom: 0.2rem;
+    right: 0.2rem;
+    font-size: 1rem; 
+    padding: 0.1rem;
+}
+
+/* Estilo para el botón de reset */
+#botones-ejes {
+    position: absolute;
+    bottom: 5rem;
+    right: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.boton-eje {
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    border: none;
+    font-size: 1.5rem;
+}
+
+#boton-eje-x, #boton-eje-y, #boton-eje-z {
+    --color-seleccionado: #1B998B; /* Color seleccionado */
+    --hover-seleccionado: #167a6d; /* Color de hover seleccionado */
+    --texto-seleccionado: #ffffff; /* Color de texto seleccionado */
+    --color-normal: #eeeeee; /* Color normal */
+    --texto-normal: #000000; /* Color de texto normal */
+    --hover-normal: #f6fafd; /* Color de hover normal */
+    --color-hover: var(--hover-normal); /* Color de hover actual */
+    color: var(--texto-normal); /* Color de texto */
+    background-color: var(--color-normal); /* Color de fondo */
+}
+
+#boton-eje-z {
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+    color: var(--texto-seleccionado); /* Color de texto */
+    background-color: var(--color-seleccionado); /* Color de fondo */
+    --color-hover: var(--hover-seleccionado); /* Color de hover actual */
+}
+
+#boton-eje-z:hover {
+    background-color: var(--color-hover) !important;
+}
+
+#boton-eje-x:hover {
+    background-color: var(--color-hover) !important;
+}
+
+#boton-eje-y {
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    font-size: 1.5rem;
+}
+
+#boton-eje-y:hover {
+    background-color: var(--color-hover) !important;
+}
+
+[eje-resaltado = "x"] {
+    #boton-eje-x {
+        color: var(--texto-seleccionado);
+        background-color: var(--color-seleccionado);
+        --color-hover: var(--hover-seleccionado);
+    }
+    #boton-eje-y {
+        color: var(--texto-normal);
+        background-color: var(--color-normal);
+        --color-hover: var(--hover-normal);
+    }
+    #boton-eje-z {
+        color: var(--texto-normal);
+        background-color: var(--color-normal);
+        --color-hover: var(--hover-normal);
+    }
+    #operador-medir {
+        --color-base: #3E91EB;
+        --color-hover: #5A6F88;
+    }
+}
+[eje-resaltado = "y"] {
+    #boton-eje-x {
+        color: var(--texto-normal);
+        background-color: var(--color-normal);
+        --color-hover: var(--hover-normal);
+    }
+    #boton-eje-y {
+        color: var(--texto-seleccionado);
+        background-color: var(--color-seleccionado);
+        --color-hover: var(--hover-seleccionado);
+    }
+    #boton-eje-z {
+        color: var(--texto-normal);
+        background-color: var(--color-normal);
+        --color-hover: var(--hover-normal);
+    }
+    #operador-medir {
+        --color-base: #D2EB26;
+        --color-hover: #82895A;
+    }
+}
+[eje-resaltado = "z"] {
+    #boton-eje-x {
+        color: var(--texto-normal);
+        background-color: var(--color-normal);
+        --color-hover: var(--hover-normal);
+    }
+    #boton-eje-y {
+        color: var(--texto-normal);
+        background-color: var(--color-normal);
+        --color-hover: var(--hover-normal);
+    }
+    #boton-eje-z {
+        color: var(--texto-seleccionado);
+        background-color: var(--color-seleccionado);
+        --color-hover: var(--hover-seleccionado);
+    }
+    #operador-medir {
+        --color-base: #EB3426;
+        --color-hover: #7B403C;
+    }
+}
+
+.eye-icon {
+    color: #555555;
+}
+
+.buttons-container-solo {
+    cursor: auto;
+    position: fixed;
+    top: 0; /* Posiciona el contenedor en la parte superior */
+    left: 0;
+    width: 100%; /* Para que abarque todo el ancho de la página */
+    display: flex;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente para que flote sobre otros elementos */
+    padding: 0.5rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Añade una sombra suave para que resalte */
+    z-index: 1000; /* Asegura que el contenedor esté por encima de otros elementos */
+}
+
+#operador-x{
+    background-color: var(--color-base);
+    --color-base: #3E91EB;
+    --color-hover: #5A6F88;
+}
+
+#operador-y{
+    background-color: var(--color-base);
+    --color-base: #D2EB26;
+    --color-hover: #82895A;
+}
+
+#operador-z{
+    background-color: var(--color-base);
+    --color-base: #EB3426;
+    --color-hover: #7B403C;
+}
+
+#operador-h{
+    background-color: var(--color-base);
+    --color-base: #73F279;
+    --color-hover: #4A9B4E;
+}
+
+#operador-s{
+    background-color: var(--color-base);
+    --color-base: #F59993;
+    --color-hover: #9D635E;
+}
+
+#operador-t{
+    background-color: var(--color-base);
+    --color-base: #ff76ba;
+    --color-hover: #9D635E;
+}
+
+#operador-medir{
+    background-color: var(--color-base);
+    --color-base: #EB3426;
+    --color-hover: #7B403C;
+}
+
+#icono-deshacer, #icono-reset, #icono-medir {
+    font-size: 2.5rem;
+}
+
+
+#linea-eventos {
+    cursor: auto;
+    position: fixed;
+    top: 10rem; /* Posiciona el contenedor en la parte superior */
+    right: 2rem;
+    min-width: 30%; /* Para que abarque todo el ancho de la página */
+    border-radius: 1rem;
+    display: flex;
+    justify-content: space-evenly;
+    background: linear-gradient(180deg, 
+    rgba(0,0,0,0) calc(50% - 1px), 
+    #3E91EB calc(50%), 
+    rgba(0,0,0,0) calc(50% + 1px)
+);
+    z-index: 1000; /* Asegura que el contenedor esté por encima de otros elementos */
+}
+
+.dot {
+    height: 1rem;
+    width: 1rem;
+    margin: 0.2rem;
+    background-color: #3E91EB;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+.dot-actual {
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.cliqueable {
+cursor: pointer;
+display: flex;
+align-items: center;
+}
+
+
+@keyframes sacudir {
+10%, 90% {
+    transform: translate3d(-0.5rem, 0, 0);
+}
+
+20%, 80% {
+    transform: translate3d(1rem, 0, 0);
+}
+
+30%, 50%, 70% {
+    transform: translate3d(-2rem, 0, 0);
+}
+
+40%, 60% {
+    transform: translate3d(2rem, 0, 0);
+}
+}
+
+.sacudido {
+    animation: sacudir 0.82s cubic-bezier(.36,.07,.19,.97) infinite;
+}
+
+#contenido-adicional-tarea{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.tabla-rellenar-operaciones{
+    display: flex;
+    gap: 0.1rem;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.boton-en-pregunta {
+    border: black 0.2rem;
+    border-style: solid;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-base);
+    overflow: hidden;
+    --color-base: #FFFFFF;
+}
+
+
+.boton-en-pregunta[relleno='X'] {
+    --color-base: #3E91EB;
+}
+
+.boton-en-pregunta[relleno='Y'] {
+    --color-base: #D2EB26;
+}
+
+.boton-en-pregunta[relleno='Z'] {
+    --color-base: #EB3426;
+}
+
+.boton-en-pregunta[relleno='H'] {
+    --color-base: #73F279;
+}
+
+.boton-en-pregunta[relleno='S'] {
+    --color-base: #F59993;
+}
+
+.boton-en-pregunta[relleno='T'] {
+    --color-base: #FF76BA;
+}
+
+.boton-en-pregunta[relleno^='|']:not([rellenando='true']) { /*Comienza con | y no rellenando*/
+    border-style: none;
+    --color-base: #CCCCCC;
+    color: #666666;
+}
+
+.boton-en-pregunta[rellenando='true'] {
+    --color-base: #FFFFFF;
+    --opciones: 3;
+    width: calc(3rem * var(--opciones));
+}
+
+
+.boton-en-pregunta:hover:not([rellenando='true']) {
+    background: color-mix(in hsl, var(--color-base), #000000);
+}
+
+.boton-histogramas {
+    width: 9rem;
+    height: 9rem;
+    margin-top: 1rem;
+}
+
+.boton-histogramas[rellenando='true'] {
+    width: 90%;
+}
+
+#toggleBit {
+    width: 6rem;
+}
+
+#bit {
+    background: white;
+}
+
+.casilla-bit{
+    border: black;
+    height: 2.5rem;
+    width: 2rem;
+    border-style: solid;
+}
+
+.grid-casillas-bit{
+    display: none;
+    position: relative;
+    grid-template-columns: auto auto;
+    column-gap: 0.5rem;
+}
+
+.separador{
+    background: #000000;
+    height: 100%;
+    width: 0.5rem;
+}
+
+.opcion-relleno {
+    width: 100%;
+    height:100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.opcion-relleno:hover {
+    background: color-mix(in hsl, var(--color-base), #555555);
+}
+
+.nivel{
+    position: absolute;
+    z-index: 1000;
+}
+
+#nivel-1{
+    top: 10%; left: 10%;
+}
+
+#nivel-2{
+    top: 40%; left: 30%;
+}
+
+#nivel-3{
+    top: 70%; left: 50%;
+}
+
+#nivel-4{
+    top: 50%; left: 80%;
+}
+
+#nivel-5{
+    top: 20%; left: 60%;
+}
+
+.linea-entre-niveles {
+    position: absolute;
+    border-radius: 1rem;
+}
+
+#linea-1-2{
+    height: 30%;
+    width: 20%;
+    top: calc(2.25rem + 10%);
+    left: calc(5rem + 10%);
+    border-top-style: dashed;
+    border-right-style: dashed;
+}
+
+#linea-2-3{
+    height: 30%;
+    width: 20%;
+    top: calc(2.25rem + 40%);
+    left: calc(5rem + 30%);
+    border-bottom-style: dashed;
+    border-left-style: dashed;
+}
+
+#linea-3-4{
+    height: 20%;
+    width: 30%;
+    top: calc(2.25rem + 50%);
+    left: calc(5rem + 50%);
+    border-bottom-style: dashed;
+    border-right-style: dashed;
+}
+
+#linea-4-5{
+    height: 30%;
+    width: 20%;
+    top: calc(2.25rem + 20%);
+    left: calc(5rem + 60%);
+    border-top-style: dashed;
+    border-right-style: dashed;
+}
+
+#expandir-notificaciones-boton, #silenciar-notificaciones-boton, #enviar-desafio-boton {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    background: #3442DD;
+}
+
+#enviar-mensaje-boton, #bajar-boton {
+    width: 4rem;
+    background: #3442DD;
+    padding: 0%;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#bajar-boton {
+    background: #77777755;
+    --color-hover: #777777 ;
+    position: absolute;
+    bottom: 5.5rem;
+    right: 0.25rem;
+}
+
+#temporizador {
+    width: 100%;
+    color: #EB3426;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.chatbox[scrolleando="false"]{
+    #bajar-boton {
+        display: none
+    }
+}
+
+
+#expandir-notificaciones-boton {
+    --color-hover: #1c2694;
+}
+
+#enviar-desafio-boton{
+    right: 11rem;
+    width: 3rem;
+    padding: 0;
+    font-size: 2.5rem;
+}
+
+
+
+#silenciar-notificaciones-boton {
+    right: 7rem;
+    width: 3rem;
+}
+
+#bandeja-notificaciones{
+    position: absolute;
+    top: 5rem;
+    right: 1rem;
+    display: none;
+    z-index: 1000;
+    width:40%;
+    height: 40%;
+    overflow-y: scroll ;
+}
+
+.notificacion {
+    display: block;
+    background: #3442DD;
+    border-radius: 1rem;
+}
+
+
+#icono-silenciar, #icono-contraer, #icono-expandir{
+    font-size: 1.5rem;
+}
+
+
+#seccion-notificaciones[estado="expandidas"]{
+    #icono-expandir{
+        display: none;
+    }
+
+    #icono-contraer{
+        display: block;
+    }
+
+    #silenciar-notificaciones-boton {
+        background: #EB3426;
+    }
+
+    #silenciar-notificaciones-boton:hover {
+        --color-hover: #8c2018;
+    }
+
+    #icono-silenciar{
+        display: block;
+    }
+
+    #icono-activar{
+        display: none;
+    }
+
+    #bandeja-notificaciones{
+        display: flex;
+        flex-direction: column;
+    }
+    
+}
+
+#seccion-notificaciones[estado="contraidas"]{
+    #icono-expandir{
+        display: block;
+    }
+
+    #icono-contraer{
+        display: none;
+    }
+
+    #silenciar-notificaciones-boton {
+        background: #EB3426;
+    }
+
+    #silenciar-notificaciones-boton:hover {
+        --color-hover: #8c2018;
+    }
+
+    #icono-silenciar{
+        display: block;
+    }
+
+    #icono-activar{
+        display: none;
+    }
+    
+    
+}
+
+#seccion-notificaciones[estado="silenciadas"]{
+    
+    #expandir-notificaciones-boton {
+        display: none;
+    }
+
+    #icono-expandir{
+        display: block;
+    }
+
+    #icono-contraer{
+        display: none;
+    }
+
+    #silenciar-notificaciones-boton {
+        background: #109324;
+        right: 1rem;
+    }
+
+    #silenciar-notificaciones-boton:hover {
+        --color-hover: #0b5b17;
+    }
+
+    #icono-silenciar{
+        display: none;
+    }
+
+    #icono-activar{
+        display: block;
+    }
+    
+}
+
+.escribiendo::before{
+    content: "...";
+    animation: escribiendo infinite ease-out 2s
+}
+
+@keyframes escribiendo {
+    0%, 25% {
+        content:""
+    }
+    25%, 50% {
+        content:"."
+    }
+    50%, 75% {
+        content:".."
+    }
+    75%, 100% {
+        content:"..."
+    }
+}
+
+@keyframes achicar {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(50%);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+
+.achicar {
+    animation: achicar 0.5s ease-in forwards;
+}
+
+.agrandar {
+    animation: achicar 0.5s ease-out reverse backwards;
+}
+
+.ocultar{
+    display: none;
+}
+
+#esfera.\30, #esfera.\31 {
+    background: #EB3426;
+}
+
+#esfera.\30::after {
+    content: "|0〉";
+}
+
+#esfera.\31::after {
+    content: "|1〉";
+}
+
+#esfera.\+, #esfera.\- {
+    background: #3E91EB;
+}
+
+
+#esfera.\+::after {
+    content: "|+〉";
+}
+
+#esfera.\-::after {
+    content: "|-〉";
+}
+
+#esfera.\+i, #esfera.-i {
+    background: #D2EB26;
+}
+
+#esfera.\+i::after {
+    content: "|+i〉";
+}
+
+#esfera.-i::after {
+    content: "|-i〉";
+}
+
+#contenido-chat{
+    height: 50vh;
+    overflow-y:scroll;
+    padding: 0.1rem;
+}
+
+#icono-enviar{
+    font-size: 2rem;
+    color: #fff
+}
+
+.barra-mensaje{
+    display:flex;
+}
+
+.chatbox{
+    border: solid #777;
+    border-radius: 1rem;
+    position: relative;
+}
+
+
+
+.barra-mensaje[enviando="true"]{
+    #icono-enviar{
+        display: none;
+    }
+    #loader{
+        width: 2rem;
+        height: 2rem;
+        border: 0.5rem solid #0000;
+        border-top: 0.5rem solid white;
+    }
+}
+
+
+.barra-mensaje[enviando="false"]{
+    #loader{
+        display: none;
+    }
+}
+
+.correcto{
+    color: #0b5b17;
+}
+
+.correcto::after{
+    content: "✓";
+}
+
+.incorrecto{
+    color: #EB3426;
+}
+
+.incorrecto::after{
+    content: "✗";
+}
+
+#username{
+    font-size: 2rem;
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+}
+
+#pts{
+    font-size: 2rem;
+    position: absolute;
+    top: 3rem;
+    left: 0.5rem;
+}
+
+#icono-enviar::after {
+    content: "send";
+}
+
+#icono-enviar[enviando="true"]::after {
+    content: "cancel_schedule_send";
+}
+
+
+
+#desconectado {
+    display: none;
+    font-size: 2rem;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    color: #800;
+    background: #f77;
+}
+
+#desconectado[estado="true"] {
+    display: block;
+}
+
+#popup {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    bottom: 1rem;
+    right: 1rem;
+    padding: 2rem;
+    z-index: 10000; /* Asegura que el popup esté por encima de otros elementos */
+    display: none; /* Ocultar por defecto */
+    font-variation-settings: 'FILL' 0;
+}
+
+#popup h2 {
+    width: 100%;
+    text-align: center;
+    font-size: 4rem;
+}
+
+#popup-close {
+    align-self: flex-end;
+    color: #c03d3d;
+    font-size: 2.5rem;
+}
+
+#popup-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 4rem;
+    gap: 2rem;
+    border: #000;
+    border-style: solid;
+}
+
+#enviar-satisfaccion {
+    width: initial;
+    margin: 0;
+}
+
+#satis1 {
+    --color-base: #000;
+    --color-hover: #F66;
+    --hover-seleccionado: #D33;
+    color: var(--color-base);
+    font-size: 5rem;
+}
+
+#satis1:hover {
+    color: var(--color-hover);
+}
+
+#satis2 {
+    --color-base: #000;
+    --color-hover: #FA7;
+    --hover-seleccionado: #D84;
+    color: var(--color-base);
+    font-size: 5rem;
+}
+
+#satis2:hover {
+    color: var(--color-hover);
+}
+
+#satis3 {
+    --color-base: #000;
+    --color-hover: #FE8;
+    --hover-seleccionado: #DC4;
+    color: var(--color-base);
+    font-size: 5rem;
+}
+
+#satis3:hover {
+    color: var(--color-hover);
+}
+
+#satis4 {
+    --color-base: #000;
+    --color-hover: #BD8;
+    --hover-seleccionado: #6C0;
+    color: var(--color-base);
+    font-size: 5rem;
+}
+
+#satis4:hover {
+    color: var(--color-hover);
+}
+
+#satis5 {
+    --color-base: #000;
+    --color-hover: #6B7;
+    --hover-seleccionado: #0C9;
+    color: var(--color-base);
+    font-size: 5rem;
+}
+
+#satis5:hover {
+    color: var(--color-hover);
+}
+
+.seleccionado {
+    color: var(--color-hover) !important;
+    font-variation-settings: 'FILL' 1;    
+}
+
+.seleccionado:hover {
+    color: var(--hover-seleccionado) !important;
+}
+
+.histograma {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-around;
+}
+
+.minihistograma {
+    font-size: 1rem;
+}
+
+.barra-grafico {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+}
+
+.barra {
+    width:2rem;
+}
+
+.porcentaje {
+    height: 100%;
+}
+
+.minibarra {
+    width: 1.5rem;
+}
