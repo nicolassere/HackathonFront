@@ -122,35 +122,6 @@ const Partners: React.FC = () => {
               ))}
             </div>
           </div>
-
-          {/* Universidad de Montevideo Highlight */}
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 lg:p-12 text-center text-white">
-            <div className="max-w-4xl mx-auto">
-              <h3 className="text-3xl font-bold mb-4">Hosted by Universidad de Montevideo</h3>
-              <p className="text-xl text-blue-100 mb-6">
-                UM is committed to advancing quantum computing education and research in Latin America,
-                fostering innovation at the intersection of technology and environmental sustainability.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-                <a
-                    href="https://www.um.edu.uy/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-white/20 hover:bg-white/30 text-white border border-white/30 px-6 py-3 rounded-lg font-semibold transition-all duration-300"
-                >
-                  Visit UM Website
-                </a>
-                <a
-                    href="https://www.linkedin.com/in/facultad-de-ingenier%C3%ADa-a7935758/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-white/20 hover:bg-white/30 text-white border border-white/30 px-6 py-3 rounded-lg font-semibold transition-all duration-300"
-                >
-                  Follow on LinkedIn
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
   );
