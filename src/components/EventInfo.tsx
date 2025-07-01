@@ -44,7 +44,7 @@ const EventInfo = () => {
   }, []);
 
   return (
-    <section id="event-info" className="py-24 bg-white relative overflow-hidden">
+    <section id="event-info" className="pt-24 pb-24 bg-white relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-100/50 to-purple-100/50 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-purple-100/50 to-pink-100/50 rounded-full blur-3xl"></div>

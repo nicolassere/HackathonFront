@@ -22,10 +22,15 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           {/* Enhanced Logo */}
           <div className="flex items-center space-x-3">
-            <div className="hidden sm:flex items-center space-x-2">
-              <img src="img/HackathonLogoHeader.png" alt="Hackathon Logo" className="h-8 w-auto" />
-              <p className="text-sm text-slate-600">Universidad de Montevideo</p>
-            </div>
+           <a
+          href="https://um.edu.uy"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden sm:flex items-center space-x-2"
+        >
+          <img src="img/HackathonLogoHeader.png" alt="Hackathon Logo" className="h-8 w-auto" />
+          <p className="text-sm text-slate-600">Universidad de Montevideo</p>
+        </a>
           </div>
 
           {/* Enhanced Desktop Navigation */}
