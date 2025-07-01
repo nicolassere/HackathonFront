@@ -113,6 +113,25 @@ const translations = {
         'footer.contactFollow': 'Contacto y síguenos',
         'footer.followUs': 'Síguenos',
         'footer.langSwitch': 'Versión en Español',
+
+        // HackathonInfo
+        'hackathon.title.part1': 'Una hackathon presencial,',
+        'hackathon.title.part2': 'colaborativa y desafiante',
+        'hackathon.description1': 'La hackathon se realizará de forma presencial en Montevideo, Uruguay, del',
+        'hackathon.dates': '1 al 3 de octubre',
+        'hackathon.description2': 'de 2025.',
+        'hackathon.mandatory': 'La participación es obligatoria durante los tres días. Los equipos estarán integrados por 8 hackers y 2 mentores, organizados por el comité dentro del grupo de personas seleccionadas y anunciados con anticipación para facilitar la coordinación previa.',
+        'hackathon.language': 'El evento será principalmente en español, aunque algunas actividades serán en inglés o portugués, y el',
+        'hackathon.pitch': 'pitch final se presentará en inglés',
+        'hackathon.details': 'Detalles del Evento',
+        'hackathon.detail.dates': '1-3 de Octubre, 2025',
+        'hackathon.detail.location': 'Montevideo, Uruguay',
+        'hackathon.detail.teams': '8 hackers + 2 mentores por equipo',
+        'hackathon.benefit1': 'Hospedaje incluido para participantes',
+        'hackathon.benefit2': 'Comidas cubiertas parcialmente',
+        'hackathon.benefit3': 'Apoyo económico para transporte*',
+        'hackathon.benefit3.note': '*sujeto a la disponibilidad de fondos',
+        'hackathon.register': '¡Inscríbete Ahora!',
     },
     en: {
         // Header
@@ -218,6 +237,25 @@ const translations = {
         'footer.contactFollow': 'Contact & Follow Us',
         'footer.followUs': 'Follow Us',
         'footer.langSwitch': 'English Version',
+
+        // HackathonInfo
+        'hackathon.title.part1': 'An in-person,',
+        'hackathon.title.part2': 'collaborative and challenging hackathon',
+        'hackathon.description1': 'The hackathon will take place in person in Montevideo, Uruguay, from',
+        'hackathon.dates': 'October 1-3',
+        'hackathon.description2': ', 2025.',
+        'hackathon.mandatory': 'Participation is mandatory for all three days. Teams will consist of 8 hackers and 2 mentors, organized by the committee from the selected group and announced in advance to facilitate prior coordination.',
+        'hackathon.language': 'The event will be mainly in Spanish, although some activities will be in English or Portuguese, and the',
+        'hackathon.pitch': 'final pitch will be presented in English',
+        'hackathon.details': 'Event Details',
+        'hackathon.detail.dates': 'October 1-3, 2025',
+        'hackathon.detail.location': 'Montevideo, Uruguay',
+        'hackathon.detail.teams': '8 hackers + 2 mentors per team',
+        'hackathon.benefit1': 'Accommodation included for participants',
+        'hackathon.benefit2': 'Meals partially covered',
+        'hackathon.benefit3': 'Financial support for transportation*',
+        'hackathon.benefit3.note': '*subject to funding availability',
+        'hackathon.register': 'Register Now!',
     }
 };
 
