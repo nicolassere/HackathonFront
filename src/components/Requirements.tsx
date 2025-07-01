@@ -1,65 +1,67 @@
 import React, { useState } from 'react';
 import { Users, UserPlus, CheckCircle, Code, Brain, Globe, Clock, Award, BookOpen, Lightbulb, Target, Zap, GraduationCap, Calendar, Cloud } from 'lucide-react';
+import { useLanguage } from "../contexts/LanguageContext";
 
 const Requirements: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'hackers' | 'mentors'>('hackers');
+  const { t } = useLanguage();
 
   const hackerRequirements = {
-    description: "Hackers propose, design, and develop innovative solutions aligned with the 2030 SDGs. They apply quantum and classical technologies in creative and practical ways to address real challenges in Latin America with a collaborative spirit.",
+    description: t('req.hackers.description'),
     specific: [
       {
         icon: <GraduationCap className="w-5 h-5" />,
-        title: "University Enrollment",
-        description: "Currently enrolled in a university degree in technology, science, engineering, or sustainable development."
+        title: t('req.hackers.specific.universityEnrollment.title'),
+        description: t('req.hackers.specific.universityEnrollment.description')
       },
       {
         icon: <Award className="w-5 h-5" />,
-        title: "Academic Progress",
-        description: "At least 50% of the degree completed by the time of application."
+        title: t('req.hackers.specific.academicProgress.title'),
+        description: t('req.hackers.specific.academicProgress.description')
       },
       {
         icon: <Code className="w-5 h-5" />,
-        title: "Programming Knowledge",
-        description: "Basic knowledge of Python (or completion of an introductory QWorld course if not)."
+        title: t('req.hackers.specific.programmingKnowledge.title'),
+        description: t('req.hackers.specific.programmingKnowledge.description')
       }
     ],
     mandatory: {
-      title: "Mandatory Certification",
-      subtitle: "QWorld Quantum Computing Course (Virtual, August 4-13, 2025)",
+      title: t('req.hackers.mandatory.title'),
+      subtitle: t('req.hackers.mandatory.subtitle'),
       requirements: [
-        "Complete all course activities",
-        "Score at least 50% on each assessment", 
-        "Achieve a final grade above 70%"
+        'req.hackers.mandatory.requirements.0',
+        'req.hackers.mandatory.requirements.1',
+        'req.hackers.mandatory.requirements.2'
       ]
     }
   };
 
   const mentorRequirements = {
-    description: "Mentors guide and lead the project development process. Their role is essential in providing technical direction and supporting the use of quantum technologies, artificial intelligence, and other practical tools to create solutions aligned with the 2030 Sustainable Development Goals (SDGs).",
+    description: t('req.mentors.description'),
     specific: [
       {
         icon: <Brain className="w-5 h-5" />,
-        title: "Quantum Computing Expertise",
-        description: "Solid knowledge in quantum computing principles, algorithms, and applications."
+        title: t('req.mentors.specific.quantumExpertise.title'),
+        description: t('req.mentors.specific.quantumExpertise.description')
       },
       {
         icon: <Cloud className="w-5 h-5" />,
-        title: "Platform Experience",
-        description: "Experience using cloud-based quantum computing platforms (IBM Quantum, AWS Braket, etc.)."
+        title: t('req.mentors.specific.platformExperience.title'),
+        description: t('req.mentors.specific.platformExperience.description')
       },
       {
         icon: <BookOpen className="w-5 h-5" />,
-        title: "Academic Background",
-        description: "Currently pursuing postgraduate studies in related fields or possessing relevant professional experience."
+        title: t('req.mentors.specific.academicBackground.title'),
+        description: t('req.mentors.specific.academicBackground.description')
       }
     ],
     mandatory: {
-      title: "Mandatory Certification", 
-      subtitle: "QWorld Quantum Computing Course (Virtual, August 4-13, 2025)",
+      title: t('req.mentors.mandatory.title'),
+      subtitle: t('req.mentors.mandatory.subtitle'),
       requirements: [
-        "Complete all course activities",
-        "Score at least 50% on each assessment",
-        "Achieve a final grade above 70%"
+        'req.mentors.mandatory.requirements.0',
+        'req.mentors.mandatory.requirements.1',
+        'req.mentors.mandatory.requirements.2'
       ]
     }
   };
@@ -88,14 +90,13 @@ const Requirements: React.FC = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-            Requirements &
+            {t('nav.requirements')} &nbsp;
             <span className="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Qualifications
+              {t('req.qualifications')}
             </span>
           </h2>
           <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
-            Whether you're joining as a hacker or mentor, here's what you need to know to make the most
-            of this quantum computing hackathon experience.
+            {t('req.overview')}
           </p>
         </div>
 
@@ -105,17 +106,17 @@ const Requirements: React.FC = () => {
             <div className="text-center mb-6">
               <div className="inline-flex items-center space-x-3 bg-[#075184] text-white px-6 py-3 rounded-2xl mb-4">
                 <Calendar className="w-6 h-6" />
-                <h3 className="text-2xl font-bold">Both Roles</h3>
+                <h3 className="text-2xl font-bold">{t('req.bothRoles')}</h3>
               </div>
-              <h4 className="text-xl font-bold text-slate-900 mb-2">{hackerRequirements.mandatory.title}</h4>
-              <p className="text-slate-900 font-semibold">{hackerRequirements.mandatory.subtitle}</p>
+              <h4 className="text-xl font-bold text-slate-900 mb-2">{t('req.hackers.mandatory.title')}</h4>
+              <p className="text-slate-900 font-semibold">{t('req.hackers.mandatory.subtitle')}</p>
             </div>
             <div className="max-w-2xl mx-auto">
               <ul className="space-y-3">
                 {hackerRequirements.mandatory.requirements.map((req, index) => (
                   <li key={index} className="flex items-center space-x-3 text-slate-900">
                     <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                    <span>{req}</span>
+                    <span>{t(req)}</span>
                   </li>
                 ))}
               </ul>
@@ -128,7 +129,7 @@ const Requirements: React.FC = () => {
                 rel="noopener noreferrer"
                 className="inline-block bg-gradient-to-r from-[#075184] to-[#04365e] text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105"
               >
-                Start Preparation Course
+                {t('footer.course')}
               </a>
             </div>
           </div>
@@ -146,7 +147,7 @@ const Requirements: React.FC = () => {
               }`}
             >
               <Users className="w-5 h-5" />
-              <span>For Hackers</span>
+              <span>{t('req.tab.hackers')}</span>
             </button>
             <button
               onClick={() => setActiveTab('mentors')}
@@ -157,7 +158,7 @@ const Requirements: React.FC = () => {
               }`}
             >
               <UserPlus className="w-5 h-5" />
-              <span>For Mentors</span>
+              <span>{t('req.tab.mentors')}</span>
             </button>
           </div>
         </div>
@@ -172,10 +173,10 @@ const Requirements: React.FC = () => {
                   <div className="w-12 h-12 bg-[#467e4a] rounded-xl flex items-center justify-center">
                     <Users className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-900">Hackers</h3>
+                  <h3 className="text-2xl font-bold text-slate-900">{t('req.tab.hackers')}</h3>
                 </div>
                 <p className="text-slate-900 text-lg leading-relaxed">
-                  {hackerRequirements.description}
+                  {t('req.hackers.description')}
                 </p>
               </div>
 
@@ -184,7 +185,7 @@ const Requirements: React.FC = () => {
                 <div className="flex items-center justify-center mb-8">
                   <div className="flex items-center space-x-3 bg-[#467e4a] text-white px-6 py-3 rounded-2xl">
                     <CheckCircle className="w-6 h-6" />
-                    <h3 className="text-2xl font-bold">Requirements for Hackers</h3>
+                    <h3 className="text-2xl font-bold">{t('req.hackers.requirements.title')}</h3>
                   </div>
                 </div>
                 <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-6">
@@ -205,7 +206,7 @@ const Requirements: React.FC = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center bg-gradient-to-r from-[#5a8f5e] to-[#3a673b] text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105"
                 >
-                  Register as Hacker
+                  {t('req.register.hacker')}
                 </a>
               </div>
             </div>
@@ -219,10 +220,10 @@ const Requirements: React.FC = () => {
                   <div className="w-12 h-12 bg-[#fd9d24] rounded-xl flex items-center justify-center">
                     <UserPlus className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-900">Mentors</h3>
+                  <h3 className="text-2xl font-bold text-slate-900">{t('req.tab.mentors')}</h3>
                 </div>
                 <p className="text-slate-900 text-lg leading-relaxed">
-                  {mentorRequirements.description}
+                  {t('req.mentors.description')}
                 </p>
               </div>
 
@@ -231,7 +232,7 @@ const Requirements: React.FC = () => {
                 <div className="flex items-center justify-center mb-8">
                   <div className="flex items-center space-x-3 bg-[#fd9d24] text-white px-6 py-3 rounded-2xl">
                     <CheckCircle className="w-6 h-6" />
-                    <h3 className="text-2xl font-bold">Requirements for Mentors</h3>
+                    <h3 className="text-2xl font-bold">{t('req.mentors.requirements.title')}</h3>
                   </div>
                 </div>
                 <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-6">
@@ -252,7 +253,7 @@ const Requirements: React.FC = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center bg-gradient-to-r from-[#fd9d24] to-[#cc7d1e] text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105"
                 >
-                  Register as Mentor
+                  {t('req.register.mentor')}
                 </a>
               </div>
             </div>

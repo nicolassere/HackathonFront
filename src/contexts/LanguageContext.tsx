@@ -51,10 +51,45 @@ const translations = {
         'req.mentors.title': 'Mentors',
         'req.hackers.desc': 'Los hackers son el corazón del evento. Ya seas estudiante o profesional, si te apasiona la computación cuántica y la sostenibilidad, ¡este es tu lugar!',
         'req.mentors.desc': 'Los mentores guían a los equipos con su experiencia en computación cuántica, ayudándolos a superar desafíos técnicos.',
-        'req.hackers.requirements.title': 'Requirements for Hackers',
-        'req.mentors.requirements.title': 'Requirements for Mentors',
+        'req.hackers.requirements.title': 'Requisitos para hackers',
+        'req.mentors.requirements.title': 'Requisitos para mentores',
         'req.register.hacker': 'Regístrate como hacker',
         'req.register.mentor': 'Regístrate como mentor',
+
+        // Requirements - Hackers
+        'req.hackers.description': 'Los hackers proponen, diseñan y desarrollan soluciones innovadoras alineadas con los ODS 2030. Aplican tecnologías cuánticas y clásicas de manera creativa para abordar desafíos reales en Latinoamérica con espíritu colaborativo.',
+        'req.hackers.specific.universityEnrollment.title': 'Matrícula universitaria',
+        'req.hackers.specific.universityEnrollment.description': 'Actualmente matriculado en una carrera universitaria de tecnología, ciencia, ingeniería o desarrollo sostenible.',
+        'req.hackers.specific.academicProgress.title': 'Progreso académico',
+        'req.hackers.specific.academicProgress.description': 'Al menos 50% de la carrera completada al momento de la inscripción.',
+        'req.hackers.specific.programmingKnowledge.title': 'Conocimientos de programación',
+        'req.hackers.specific.programmingKnowledge.description': 'Conocimientos básicos de Python (o haber completado un curso introductorio de QWorld si no).',
+        'req.hackers.mandatory.title': 'Certificación obligatoria',
+        'req.hackers.mandatory.subtitle': 'Curso de computación cuántica de QWorld (Virtual, 4-13 de agosto de 2025)',
+
+        // Added new keys for requirements
+        'req.qualifications': 'Calificaciones',
+        'req.overview': 'Ya sea que participes como hacker o mentor, esto es lo que necesitas saber para aprovechar al máximo esta experiencia de hackathon de computación cuántica.',
+        'req.bothRoles': 'Ambos roles',
+
+        'req.hackers.mandatory.requirements.0': 'Completar todas las actividades del curso',
+        'req.hackers.mandatory.requirements.1': 'Obtener al menos 50% en cada evaluación',
+        'req.hackers.mandatory.requirements.2': 'Alcanzar una calificación final por encima del 70%',
+
+        'req.mentors.mandatory.requirements.0': 'Completar todas las actividades del curso',
+        'req.mentors.mandatory.requirements.1': 'Obtener al menos 50% en cada evaluación',
+        'req.mentors.mandatory.requirements.2': 'Alcanzar una calificación final por encima del 70%',
+
+        // Requirements - Mentors
+        'req.mentors.description': 'Los mentores guían y lideran el proceso de desarrollo de proyectos, proporcionando dirección técnica y apoyo en el uso de tecnologías cuánticas, inteligencia artificial y otras herramientas prácticas para soluciones alineadas con los ODS 2030.',
+        'req.mentors.specific.quantumExpertise.title': 'Experiencia en computación cuántica',
+        'req.mentors.specific.quantumExpertise.description': 'Conocimiento sólido en principios, algoritmos y aplicaciones de la computación cuántica.',
+        'req.mentors.specific.platformExperience.title': 'Experiencia en plataformas',
+        'req.mentors.specific.platformExperience.description': 'Experiencia con plataformas cuánticas en la nube (IBM Quantum, AWS Braket, etc.).',
+        'req.mentors.specific.academicBackground.title': 'Formación académica',
+        'req.mentors.specific.academicBackground.description': 'Estudios de posgrado en campos relacionados o experiencia profesional relevante.',
+        'req.mentors.mandatory.title': 'Certificación obligatoria',
+        'req.mentors.mandatory.subtitle': 'Curso de computación cuántica de QWorld (Virtual, 4-13 de agosto de 2025)',
 
         // Partners
         'partners.title': 'Nuestros colaboradores',
@@ -64,8 +99,8 @@ const translations = {
 
         // Footer
         'footer.title': 'Hackathon LATAM 2025',
-        'footer.description': 'The premier quantum computing hackathon focused on climate solutions in Latin America.',
-        'footer.date': 'October 1-3, 2025',
+        'footer.description': 'El hackathon de computación cuántica centrado en soluciones climáticas para Latinoamérica.',
+        'footer.date': '1-3 de octubre de 2025',
         'footer.location': 'Universidad de Montevideo',
         'footer.quicklinks': 'Enlaces rápidos',
         'footer.eventinfo': 'Información del evento',
@@ -73,7 +108,11 @@ const translations = {
         'footer.registration': 'Registro',
         'footer.course': 'Curso de preparación',
         'footer.resources': 'Recursos',
-        'footer.rights': '© {year} Hackathon LATAM. Todos los derechos reservados.'
+        'footer.rights': '© 2025 Universidad de Montevideo. Todos los derechos reservados.',
+        'footer.partners': 'Colaboradores',
+        'footer.contactFollow': 'Contacto y síguenos',
+        'footer.followUs': 'Síguenos',
+        'footer.langSwitch': 'Versión en Español',
     },
     en: {
         // Header
@@ -122,6 +161,41 @@ const translations = {
         'req.register.hacker': 'Register as Hacker',
         'req.register.mentor': 'Register as Mentor',
 
+        // Requirements - Hackers
+        'req.hackers.description': 'Hackers propose, design, and develop innovative solutions aligned with the 2030 SDGs. They apply quantum and classical technologies in creative and practical ways to address real challenges in Latin America with a collaborative spirit.',
+        'req.hackers.specific.universityEnrollment.title': 'University Enrollment',
+        'req.hackers.specific.universityEnrollment.description': 'Currently enrolled in a university degree in technology, science, engineering, or sustainable development.',
+        'req.hackers.specific.academicProgress.title': 'Academic Progress',
+        'req.hackers.specific.academicProgress.description': 'At least 50% of the degree completed by the time of application.',
+        'req.hackers.specific.programmingKnowledge.title': 'Programming Knowledge',
+        'req.hackers.specific.programmingKnowledge.description': 'Basic knowledge of Python (or completion of an introductory QWorld course if not).',
+        'req.hackers.mandatory.title': 'Mandatory Certification',
+        'req.hackers.mandatory.subtitle': 'QWorld Quantum Computing Course (Virtual, August 4-13, 2025)',
+
+        // Added new keys for requirements
+        'req.qualifications': 'Qualifications',
+        'req.overview': "Whether you're joining as a hacker or mentor, here's what you need to know to make the most of this quantum computing hackathon experience.",
+        'req.bothRoles': 'Both Roles',
+
+        'req.hackers.mandatory.requirements.0': 'Complete all course activities',
+        'req.hackers.mandatory.requirements.1': 'Score at least 50% on each assessment',
+        'req.hackers.mandatory.requirements.2': 'Achieve a final grade above 70%',
+
+        'req.mentors.mandatory.requirements.0': 'Complete all course activities',
+        'req.mentors.mandatory.requirements.1': 'Score at least 50% on each assessment',
+        'req.mentors.mandatory.requirements.2': 'Achieve a final grade above 70%',
+
+        // Requirements - Mentors
+        'req.mentors.description': 'Mentors guide and lead the project development process. Their role is essential in providing technical direction and supporting the use of quantum technologies, artificial intelligence and other practical tools to create solutions aligned with the 2030 SDGs.',
+        'req.mentors.specific.quantumExpertise.title': 'Quantum Computing Expertise',
+        'req.mentors.specific.quantumExpertise.description': 'Solid knowledge in quantum computing principles, algorithms, and applications.',
+        'req.mentors.specific.platformExperience.title': 'Platform Experience',
+        'req.mentors.specific.platformExperience.description': 'Experience using cloud-based quantum computing platforms (IBM Quantum, AWS Braket, etc.).',
+        'req.mentors.specific.academicBackground.title': 'Academic Background',
+        'req.mentors.specific.academicBackground.description': 'Currently pursuing postgraduate studies in related fields or possessing relevant professional experience.',
+        'req.mentors.mandatory.title': 'Mandatory Certification',
+        'req.mentors.mandatory.subtitle': 'QWorld Quantum Computing Course (Virtual, August 4-13, 2025)',
+
         // Partners
         'partners.title': 'Our Collaborators',
         'partners.subtitle': 'This hackathon is made possible through collaboration with leading organizations in quantum computing, climate research, and technology education.',
@@ -132,14 +206,18 @@ const translations = {
         'footer.title': 'Hackathon LATAM 2025',
         'footer.description': 'The premier quantum computing hackathon focused on climate solutions in Latin America.',
         'footer.date': 'October 1-3, 2025',
-        'footer.location': 'Universidad de Montevideo',
+        'footer.location': 'University of Montevideo',
         'footer.quicklinks': 'Quick Links',
         'footer.eventinfo': 'Event Information',
         'footer.requirements': 'Requirements',
         'footer.registration': 'Registration',
         'footer.course': 'Preparation Course',
         'footer.resources': 'Resources',
-        'footer.rights': '© {year} Hackathon LATAM. All rights reserved.'
+        'footer.rights': '© 2025 University of Montevideo. All rights reserved.',
+        'footer.partners': 'Partners',
+        'footer.contactFollow': 'Contact & Follow Us',
+        'footer.followUs': 'Follow Us',
+        'footer.langSwitch': 'English Version',
     }
 };
 
