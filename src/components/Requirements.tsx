@@ -65,12 +65,12 @@ const Requirements: React.FC = () => {
   };
 
   const RequirementCard = ({ requirement }: { requirement: any }) => (
-    <div className="p-6 rounded-2xl bg-white border border-slate-200 hover:border-blue-300 transition-all duration-300 hover:shadow-lg">
+    <div className="p-6 rounded-2xl bg-white border border-slate-200 hover:border-blue-300 transition-all duration-300 hover:shadow-lg h-full">
       <div className="flex items-start space-x-4">
         <div className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center ${
           activeTab === 'hackers' 
-            ? 'bg-gradient-to-br from-green-500 to-teal-500 text-white' 
-            : 'bg-gradient-to-br from-orange-500 to-red-500 text-white'
+            ? 'bg-[#467e4a] text-white' 
+            : 'bg-[#fd9d24] text-white'
         }`}>
           {requirement.icon}
         </div>
@@ -88,13 +88,13 @@ const Requirements: React.FC = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-            Requirements & 
+            Requirements &
             <span className="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Qualifications
             </span>
           </h2>
           <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
-            Whether you're joining as a hacker or mentor, here's what you need to know to make the most 
+            Whether you're joining as a hacker or mentor, here's what you need to know to make the most
             of this quantum computing hackathon experience.
           </p>
         </div>
@@ -106,8 +106,8 @@ const Requirements: React.FC = () => {
               onClick={() => setActiveTab('hackers')}
               className={`flex items-center space-x-3 px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
                 activeTab === 'hackers'
-                  ? 'bg-gradient-to-r from-green-600 to-teal-600 text-white shadow-lg'
-                  : 'text-slate-600 hover:text-green-600 hover:bg-green-50'
+                  ? 'bg-[#467e4a] text-white shadow-lg'
+                  : 'text-slate-600 hover:text-green-400 hover:bg-green-50'
               }`}
             >
               <Users className="w-5 h-5" />
@@ -117,8 +117,8 @@ const Requirements: React.FC = () => {
               onClick={() => setActiveTab('mentors')}
               className={`flex items-center space-x-3 px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
                 activeTab === 'mentors'
-                  ? 'bg-gradient-to-r from-orange-600 to-red-600 text-white shadow-lg'
-                  : 'text-slate-600 hover:text-orange-600 hover:bg-orange-50'
+                  ? 'bg-[#fd9d24] text-white shadow-lg'
+                  : 'text-slate-600 hover:text-orange-400 hover:bg-orange-50'
               }`}
             >
               <UserPlus className="w-5 h-5" />
@@ -132,14 +132,14 @@ const Requirements: React.FC = () => {
           {activeTab === 'hackers' && (
             <div className="space-y-12">
               {/* Role Description */}
-              <div className="bg-gradient-to-r from-green-50 to-teal-50 rounded-3xl p-8 border border-green-200">
+              <div className="bg-white rounded-3xl p-8 border border-slate-200">
                 <div className="flex items-center space-x-3 mb-6">
-                  <div className="w-12 h-12 bg-gradient-to-r from-green-600 to-teal-600 rounded-xl flex items-center justify-center">
+                  <div className="w-12 h-12 bg-[#467e4a] rounded-xl flex items-center justify-center">
                     <Users className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-green-800">Hackers</h3>
+                  <h3 className="text-2xl font-bold text-slate-900">Hackers</h3>
                 </div>
-                <p className="text-green-700 text-lg leading-relaxed">
+                <p className="text-slate-900 text-lg leading-relaxed">
                   {hackerRequirements.description}
                 </p>
               </div>
@@ -147,15 +147,15 @@ const Requirements: React.FC = () => {
               {/* Specific Requirements */}
               <div>
                 <div className="flex items-center justify-center mb-8">
-                  <div className="flex items-center space-x-3 bg-gradient-to-r from-green-600 to-teal-600 text-white px-6 py-3 rounded-2xl">
+                  <div className="flex items-center space-x-3 bg-[#467e4a] text-white px-6 py-3 rounded-2xl">
                     <CheckCircle className="w-6 h-6" />
                     <h3 className="text-2xl font-bold">Requirements for Hackers</h3>
                   </div>
                 </div>
                 <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-6">
                   {hackerRequirements.specific.map((req, index) => (
-                    <div key={index} className="relative">
-                      <div className="absolute -top-3 -left-3 w-8 h-8 bg-gradient-to-r from-green-600 to-teal-600 text-white rounded-full flex items-center justify-center font-bold text-sm">
+                    <div key={index} className="relative h-full">
+                      <div className="absolute -top-3 -left-3 w-8 h-8 bg-[#467e4a] text-white rounded-full flex items-center justify-center font-bold text-sm">
                         {index + 1}
                       </div>
                       <RequirementCard requirement={req} />
@@ -165,24 +165,37 @@ const Requirements: React.FC = () => {
               </div>
 
               {/* Mandatory Certification */}
-              <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-3xl p-8 border border-blue-200">
-                <div className="text-center mb-6">
-                  <div className="inline-flex items-center space-x-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-3 rounded-2xl mb-4">
-                    <Calendar className="w-6 h-6" />
-                    <h3 className="text-2xl font-bold">Both Roles</h3>
+              <div className="bg-[#eaf8fd] rounded-3xl p-8">
+                <div className="bg-white rounded-3xl p-8 border border-slate-200">
+                  <div className="text-center mb-6">
+                    <div className="inline-flex items-center space-x-3 bg-[#075184] text-white px-6 py-3 rounded-2xl mb-4">
+                      <Calendar className="w-6 h-6" />
+                      <h3 className="text-2xl font-bold">Both Roles</h3>
+                    </div>
+                    <h4 className="text-xl font-bold text-slate-900 mb-2">{hackerRequirements.mandatory.title}</h4>
+                    <p className="text-slate-900 font-semibold">{hackerRequirements.mandatory.subtitle}</p>
                   </div>
-                  <h4 className="text-xl font-bold text-blue-800 mb-2">{hackerRequirements.mandatory.title}</h4>
-                  <p className="text-blue-700 font-semibold">{hackerRequirements.mandatory.subtitle}</p>
-                </div>
-                <div className="max-w-2xl mx-auto">
-                  <ul className="space-y-3">
-                    {hackerRequirements.mandatory.requirements.map((req, index) => (
-                      <li key={index} className="flex items-center space-x-3 text-blue-700">
-                        <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                        <span>{req}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="max-w-2xl mx-auto">
+                    <ul className="space-y-3">
+                      {hackerRequirements.mandatory.requirements.map((req, index) => (
+                        <li key={index} className="flex items-center space-x-3 text-slate-900">
+                          <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                          <span>{req}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <br />
+                  </div>
+                  <div className="mt-6 text-center">
+                    <a
+                      href="https://qworld.net/oqi-hackathon-course/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-[#075184] hover:bg-opacity-90 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105"
+                    >
+                      Start Preparation Course
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -191,14 +204,14 @@ const Requirements: React.FC = () => {
           {activeTab === 'mentors' && (
             <div className="space-y-12">
               {/* Role Description */}
-              <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-3xl p-8 border border-orange-200">
+              <div className="bg-white rounded-3xl p-8 border border-slate-200">
                 <div className="flex items-center space-x-3 mb-6">
-                  <div className="w-12 h-12 bg-gradient-to-r from-orange-600 to-red-600 rounded-xl flex items-center justify-center">
+                  <div className="w-12 h-12 bg-[#fd9d24] rounded-xl flex items-center justify-center">
                     <UserPlus className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-orange-800">Mentors</h3>
+                  <h3 className="text-2xl font-bold text-slate-900">Mentors</h3>
                 </div>
-                <p className="text-orange-700 text-lg leading-relaxed">
+                <p className="text-slate-900 text-lg leading-relaxed">
                   {mentorRequirements.description}
                 </p>
               </div>
@@ -206,15 +219,15 @@ const Requirements: React.FC = () => {
               {/* Specific Requirements */}
               <div>
                 <div className="flex items-center justify-center mb-8">
-                  <div className="flex items-center space-x-3 bg-gradient-to-r from-orange-600 to-red-600 text-white px-6 py-3 rounded-2xl">
+                  <div className="flex items-center space-x-3 bg-[#fd9d24] text-white px-6 py-3 rounded-2xl">
                     <CheckCircle className="w-6 h-6" />
                     <h3 className="text-2xl font-bold">Requirements for Mentors</h3>
                   </div>
                 </div>
                 <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-6">
                   {mentorRequirements.specific.map((req, index) => (
-                    <div key={index} className="relative">
-                      <div className="absolute -top-3 -left-3 w-8 h-8 bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-full flex items-center justify-center font-bold text-sm">
+                    <div key={index} className="relative h-full">
+                      <div className="absolute -top-3 -left-3 w-8 h-8 bg-[#fd9d24] text-white rounded-full flex items-center justify-center font-bold text-sm">
                         {index + 1}
                       </div>
                       <RequirementCard requirement={req} />
@@ -224,53 +237,41 @@ const Requirements: React.FC = () => {
               </div>
 
               {/* Mandatory Certification */}
-              <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-3xl p-8 border border-blue-200">
-                <div className="text-center mb-6">
-                  <div className="inline-flex items-center space-x-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-3 rounded-2xl mb-4">
-                    <Calendar className="w-6 h-6" />
-                    <h3 className="text-2xl font-bold">Both Roles</h3>
+              <div className="bg-[#eaf8fd] rounded-3xl p-8">
+                <div className="bg-white rounded-3xl p-8 border border-slate-200">
+                  <div className="text-center mb-6">
+                    <div className="inline-flex items-center space-x-3 bg-[#075184] text-white px-6 py-3 rounded-2xl mb-4">
+                      <Calendar className="w-6 h-6" />
+                      <h3 className="text-2xl font-bold">Both Roles</h3>
+                    </div>
+                    <h4 className="text-xl font-bold text-slate-900 mb-2">{mentorRequirements.mandatory.title}</h4>
+                    <p className="text-slate-900 font-semibold">{mentorRequirements.mandatory.subtitle}</p>
                   </div>
-                  <h4 className="text-xl font-bold text-blue-800 mb-2">{mentorRequirements.mandatory.title}</h4>
-                  <p className="text-blue-700 font-semibold">{mentorRequirements.mandatory.subtitle}</p>
-                </div>
-                <div className="max-w-2xl mx-auto">
-                  <ul className="space-y-3">
-                    {mentorRequirements.mandatory.requirements.map((req, index) => (
-                      <li key={index} className="flex items-center space-x-3 text-blue-700">
-                        <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                        <span>{req}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="max-w-2xl mx-auto">
+                    <ul className="space-y-3">
+                      {mentorRequirements.mandatory.requirements.map((req, index) => (
+                        <li key={index} className="flex items-center space-x-3 text-slate-900">
+                          <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                          <span>{req}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <br />
+                  </div>
+                  <div className="mt-6 text-center">
+                    <a
+                      href="https://qworld.net/oqi-hackathon-course/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-[#075184] hover:bg-opacity-90 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105"
+                    >
+                      Start Preparation Course
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           )}
-        </div>
-
-        {/* Preparation Resources */}
-        <div className="mt-16 bg-gradient-to-r from-slate-900 via-blue-900 to-purple-900 rounded-3xl p-8 lg:p-12 text-center">
-          <h3 className="text-3xl font-bold text-white mb-4">Not Sure If You Qualify?</h3>
-          <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-            Don't worry! We provide comprehensive preparation resources to help you get ready. 
-            The most important thing is your enthusiasm to learn and contribute to climate solutions.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-            <a
-              href="https://qworld.net/oqi-hackathon-course/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105"
-            >
-              Start Preparation Course
-            </a>
-            <a
-              href="mailto:qhl@um.edu.uy"
-              className="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300"
-            >
-              Ask Questions
-            </a>
-          </div>
         </div>
       </div>
     </section>
