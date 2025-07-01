@@ -85,9 +85,7 @@ const irAEvento = (nEvento) => {
 const siguiente = async () => {
 }
 
-const cambiarEjeResaltado = (eje, directo) => {
-    if (!directo && idAnimacionEjes) return;
-    if (!directo) ejeCambiado();
+const cambiarEjeResaltado = (eje, _directo) => {
     ejeResaltado = eje;
     console.log(ejeResaltado)
     document.documentElement.setAttribute('eje-resaltado', ["z", "x", "y"][eje]);
@@ -397,38 +395,6 @@ const dibujarPuntero = (ctx, largoEje) => {
     ctx.drawImage(puntero_agarrando, centerX + largoEje * punteroX, centerY - largoEje * punteroY, largoEje/4, largoEje/4);
 }
 
-const refrescarHistograma = () => {
-    const base = ejeResaltado;
-    if (guion[eventoActual].segundo_texto) return;//se usa el recuadro para otra cosa   
-    if (guion[eventoActual].histograma !== true || (guion[eventoActual].esResultadoEmpirico && !mediciones[2*base] && !mediciones[2*base+1])) {
-        document.getElementById("segundo-texto").style.display = "none";
-        return;
-    }
-    if (!estadoCambiado) return;
-    estadoCambiado = false;
-    let prob;
-    if (guion[eventoActual].esResultadoEmpirico!==true) prob = (tf.sum(tf.pow(tf.abs(productoComplejo(estados.at(-1), cambioDeBase[base])), 2))).arraySync();
-    else prob = mediciones[2*base] / (mediciones[2*base] + mediciones[2*base+1]); //probabilidad observada del primer estado de la base
-    prob = (prob * 100).toFixed(0); //redondeo
-    const histograma = document.getElementById("segundo-texto");
-    histograma.style.display = "flex";
-    histograma.innerHTML = `
-    <p>${(guion[eventoActual].esResultadoEmpirico!==true)?"Probabilidad":"Resultados"}</p>
-    <div class="histograma">
-        <div class="barra-grafico">
-            <span class="porcentaje">${prob}%</span>
-            <div class = "barra" style="height: ${8 * Math.min(1, prob / (100-prob))}rem; background: #167a6d"></div>
-            <span> ${["|0〉", "|+〉",  "|+i〉"][base]}</span>
-        </div>
-        <div class="barra-grafico">
-            <span class="porcentaje">${100-prob}%</span>
-            <div class = "barra" style="height: ${8 * Math.min(1, (100-prob) / prob)}rem; background:rgb(40, 219, 195)"></div>
-            <span> ${["|1〉", "|-〉",  "|-i〉"][base]}</span>
-        </div>
-    </div>
-    `;
-}
-
 const refrescarGrafico = (manual = false) =>{
     if (congelado && !manual) return; //no refrescar si está congelado
     const largoEje = 240;
@@ -449,8 +415,6 @@ const refrescarGrafico = (manual = false) =>{
 
     
     dibujarEstado(ctx, orientacion, largoEje, -anguloFinal);
-    if (idAnimacionPuntero) dibujarPuntero(ctx, largoEje);
-    refrescarHistograma();
 }
 
 const calcularCuaternionOrientacion = () => {
