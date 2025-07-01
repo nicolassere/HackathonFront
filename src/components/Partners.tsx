@@ -1,6 +1,8 @@
 import React from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Partners: React.FC = () => {
+  const { t } = useLanguage();
   const partners = [
     {
       name: "Open Quantum Institute",
@@ -43,18 +45,17 @@ const Partners: React.FC = () => {
           {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-slate-900 mb-4">
-              Our Collaborators
+              {t('partners.title')}
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              This hackathon is made possible through collaboration with leading organizations
-              in quantum computing, climate research, and technology education.
+              {t('partners.subtitle')}
             </p>
           </div>
 
           {/* Strategic Partners Section */}
           <div className="mb-20">
             <div className="text-center mb-12">
-              <h3 className="text-3xl font-bold text-slate-900 mb-4">Strategic Partners</h3>
+              <h3 className="text-3xl font-bold text-slate-900 mb-4">{t('partners.strategic')}</h3>
               <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"></div>
             </div>
 
@@ -90,7 +91,7 @@ const Partners: React.FC = () => {
           {/* Academic Supporters Section */}
           <div className="mb-16">
             <div className="text-center mb-12">
-              <h3 className="text-3xl font-bold text-slate-900 mb-4">Academic Supporters</h3>
+              <h3 className="text-3xl font-bold text-slate-900 mb-4">{t('partners.academic')}</h3>
               <div className="w-24 h-1 bg-gradient-to-r from-green-600 to-blue-600 mx-auto rounded-full"></div>
             </div>
 
@@ -120,35 +121,6 @@ const Partners: React.FC = () => {
                     />
                   </a>
               ))}
-            </div>
-          </div>
-
-          {/* Universidad de Montevideo Highlight */}
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 lg:p-12 text-center text-white">
-            <div className="max-w-4xl mx-auto">
-              <h3 className="text-3xl font-bold mb-4">Hosted by Universidad de Montevideo</h3>
-              <p className="text-xl text-blue-100 mb-6">
-                UM is committed to advancing quantum computing education and research in Latin America,
-                fostering innovation at the intersection of technology and environmental sustainability.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-                <a
-                    href="https://www.um.edu.uy/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-white/20 hover:bg-white/30 text-white border border-white/30 px-6 py-3 rounded-lg font-semibold transition-all duration-300"
-                >
-                  Visit UM Website
-                </a>
-                <a
-                    href="https://www.linkedin.com/in/facultad-de-ingenier%C3%ADa-a7935758/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-white/20 hover:bg-white/30 text-white border border-white/30 px-6 py-3 rounded-lg font-semibold transition-all duration-300"
-                >
-                  Follow on LinkedIn
-                </a>
-              </div>
             </div>
           </div>
         </div>

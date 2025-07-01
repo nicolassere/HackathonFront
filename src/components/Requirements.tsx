@@ -1,114 +1,78 @@
 import React, { useState } from 'react';
-import { Users, UserPlus, CheckCircle, Code, Brain, Globe, Clock, Award, BookOpen, Lightbulb, Target, Zap } from 'lucide-react';
+import { Users, UserPlus, CheckCircle, Code, Brain, Globe, Clock, Award, BookOpen, Lightbulb, Target, Zap, GraduationCap, Calendar, Cloud } from 'lucide-react';
+import { useLanguage } from "../contexts/LanguageContext";
 
 const Requirements: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'hackers' | 'mentors'>('hackers');
+  const { t } = useLanguage();
 
   const hackerRequirements = {
-    essential: [
+    description: t('req.hackers.description'),
+    specific: [
       {
-        icon: <Code className="w-5 h-5" />,
-        title: "Programming Experience",
-        description: "Basic proficiency in Python, JavaScript, or similar programming languages"
-      },
-      {
-        icon: <Brain className="w-5 h-5" />,
-        title: "Mathematical Foundation",
-        description: "Understanding of linear algebra, complex numbers, and basic probability"
-      },
-      {
-        icon: <BookOpen className="w-5 h-5" />,
-        title: "Quantum Computing Basics",
-        description: "Familiarity with quantum concepts (qubits, superposition, entanglement) - our prep course covers this!"
-      },
-      {
-        icon: <Globe className="w-5 h-5" />,
-        title: "Climate Awareness",
-        description: "Interest in environmental challenges and sustainable technology solutions"
-      }
-    ],
-    preferred: [
-      {
-        icon: <Zap className="w-5 h-5" />,
-        title: "Quantum Frameworks",
-        description: "Experience with Qiskit, Cirq, PennyLane, or other quantum computing libraries"
-      },
-      {
-        icon: <Target className="w-5 h-5" />,
-        title: "Machine Learning",
-        description: "Knowledge of ML algorithms and their applications to optimization problems"
+        icon: <GraduationCap className="w-5 h-5" />,
+        title: t('req.hackers.specific.universityEnrollment.title'),
+        description: t('req.hackers.specific.universityEnrollment.description')
       },
       {
         icon: <Award className="w-5 h-5" />,
-        title: "Hackathon Experience",
-        description: "Previous participation in hackathons or collaborative coding events"
+        title: t('req.hackers.specific.academicProgress.title'),
+        description: t('req.hackers.specific.academicProgress.description')
       },
       {
-        icon: <Lightbulb className="w-5 h-5" />,
-        title: "Research Background",
-        description: "Academic or industry experience in physics, computer science, or environmental science"
+        icon: <Code className="w-5 h-5" />,
+        title: t('req.hackers.specific.programmingKnowledge.title'),
+        description: t('req.hackers.specific.programmingKnowledge.description')
       }
-    ]
+    ],
+    mandatory: {
+      title: t('req.hackers.mandatory.title'),
+      subtitle: t('req.hackers.mandatory.subtitle'),
+      requirements: [
+        'req.hackers.mandatory.requirements.0',
+        'req.hackers.mandatory.requirements.1',
+        'req.hackers.mandatory.requirements.2'
+      ]
+    }
   };
 
   const mentorRequirements = {
-    essential: [
+    description: t('req.mentors.description'),
+    specific: [
       {
         icon: <Brain className="w-5 h-5" />,
-        title: "Quantum Expertise",
-        description: "Advanced knowledge in quantum computing, quantum algorithms, or quantum hardware"
+        title: t('req.mentors.specific.quantumExpertise.title'),
+        description: t('req.mentors.specific.quantumExpertise.description')
       },
       {
-        icon: <Users className="w-5 h-5" />,
-        title: "Mentoring Experience",
-        description: "Previous experience guiding students, junior developers, or research teams"
-      },
-      {
-        icon: <Code className="w-5 h-5" />,
-        title: "Technical Leadership",
-        description: "Ability to provide technical guidance and code review in quantum computing projects"
-      },
-      {
-        icon: <Clock className="w-5 h-5" />,
-        title: "Time Commitment",
-        description: "Available for 8-12 hours during the hackathon weekend (flexible schedule)"
-      }
-    ],
-    preferred: [
-      {
-        icon: <Globe className="w-5 h-5" />,
-        title: "Climate Tech Experience",
-        description: "Background in environmental science, sustainability, or climate-related technology"
-      },
-      {
-        icon: <Award className="w-5 h-5" />,
-        title: "Industry Experience",
-        description: "Professional experience at quantum computing companies or research institutions"
+        icon: <Cloud className="w-5 h-5" />,
+        title: t('req.mentors.specific.platformExperience.title'),
+        description: t('req.mentors.specific.platformExperience.description')
       },
       {
         icon: <BookOpen className="w-5 h-5" />,
-        title: "Academic Background",
-        description: "PhD or advanced degree in physics, computer science, mathematics, or related field"
-      },
-      {
-        icon: <Lightbulb className="w-5 h-5" />,
-        title: "Innovation Track Record",
-        description: "Published research, patents, or successful projects in quantum computing or climate tech"
+        title: t('req.mentors.specific.academicBackground.title'),
+        description: t('req.mentors.specific.academicBackground.description')
       }
-    ]
+    ],
+    mandatory: {
+      title: t('req.mentors.mandatory.title'),
+      subtitle: t('req.mentors.mandatory.subtitle'),
+      requirements: [
+        'req.mentors.mandatory.requirements.0',
+        'req.mentors.mandatory.requirements.1',
+        'req.mentors.mandatory.requirements.2'
+      ]
+    }
   };
 
-  const RequirementCard = ({ requirement, type }: { requirement: any, type: 'essential' | 'preferred' }) => (
-    <div className={`p-6 rounded-2xl border transition-all duration-300 hover:shadow-lg ${
-      type === 'essential' 
-        ? 'bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200 hover:border-blue-300' 
-        : 'bg-gradient-to-br from-purple-50 to-pink-50 border-purple-200 hover:border-purple-300'
-    }`}>
+  const RequirementCard = ({ requirement }: { requirement: any }) => (
+    <div className="p-6 rounded-2xl bg-white border border-slate-200 hover:border-blue-300 transition-all duration-300 hover:shadow-lg h-full">
       <div className="flex items-start space-x-4">
         <div className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center ${
-          type === 'essential' 
-            ? 'bg-gradient-to-br from-blue-500 to-indigo-500 text-white' 
-            : 'bg-gradient-to-br from-purple-500 to-pink-500 text-white'
+          activeTab === 'hackers' 
+            ? 'bg-[#467e4a] text-white' 
+            : 'bg-[#fd9d24] text-white'
         }`}>
           {requirement.icon}
         </div>
@@ -126,41 +90,75 @@ const Requirements: React.FC = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-            Requirements & 
+            {t('nav.requirements')} &nbsp;
             <span className="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Qualifications
+              {t('req.qualifications')}
             </span>
           </h2>
           <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
-            Whether you're joining as a hacker or mentor, here's what you need to know to make the most 
-            of this quantum computing hackathon experience.
+            {t('req.overview')}
           </p>
         </div>
 
-        {/* Tab Navigation */}
+        {/* Mandatory Certification */}
+        <div className="bg-[#eaf8fd] rounded-3xl p-8">
+          <div className="bg-white rounded-3xl p-8 border border-slate-200">
+            <div className="text-center mb-6">
+              <div className="inline-flex items-center space-x-3 bg-[#075184] text-white px-6 py-3 rounded-2xl mb-4">
+                <Calendar className="w-6 h-6" />
+                <h3 className="text-2xl font-bold">{t('req.bothRoles')}</h3>
+              </div>
+              <h4 className="text-xl font-bold text-slate-900 mb-2">{t('req.hackers.mandatory.title')}</h4>
+              <p className="text-slate-900 font-semibold">{t('req.hackers.mandatory.subtitle')}</p>
+            </div>
+            <div className="max-w-2xl mx-auto">
+              <ul className="space-y-3">
+                {hackerRequirements.mandatory.requirements.map((req, index) => (
+                  <li key={index} className="flex items-center space-x-3 text-slate-900">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                    <span>{t(req)}</span>
+                  </li>
+                ))}
+              </ul>
+              <br />
+            </div>
+            <div className="mt-6 text-center">
+              <a
+                href="https://qworld.net/oqi-hackathon-course/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-gradient-to-r from-[#075184] to-[#04365e] text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105"
+              >
+                {t('footer.course')}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Horizontal Tab Navigation */}
         <div className="flex justify-center mb-12">
-          <div className="bg-white rounded-2xl p-2 shadow-lg border border-slate-200">
+          <div className="bg-white rounded-2xl p-2 shadow-lg border border-slate-200 flex">
             <button
               onClick={() => setActiveTab('hackers')}
               className={`flex items-center space-x-3 px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
                 activeTab === 'hackers'
-                  ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg'
-                  : 'text-slate-600 hover:text-blue-600 hover:bg-blue-50'
+                  ? 'bg-gradient-to-r from-[#5a8f5e] to-[#3a673b] text-white shadow-lg'
+                  : 'text-slate-600 hover:text-green-400 hover:bg-green-50'
               }`}
             >
               <Users className="w-5 h-5" />
-              <span>For Hackers</span>
+              <span>{t('req.tab.hackers')}</span>
             </button>
             <button
               onClick={() => setActiveTab('mentors')}
               className={`flex items-center space-x-3 px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
                 activeTab === 'mentors'
-                  ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg'
-                  : 'text-slate-600 hover:text-purple-600 hover:bg-purple-50'
+                  ? 'bg-gradient-to-r from-[#fd9d24] to-[#cc7d1e] text-white shadow-lg'
+                  : 'text-slate-600 hover:text-orange-400 hover:bg-orange-50'
               }`}
             >
               <UserPlus className="w-5 h-5" />
-              <span>For Mentors</span>
+              <span>{t('req.tab.mentors')}</span>
             </button>
           </div>
         </div>
@@ -169,96 +167,97 @@ const Requirements: React.FC = () => {
         <div className="space-y-16">
           {activeTab === 'hackers' && (
             <div className="space-y-12">
-              {/* Essential Requirements */}
+              {/* Role Description */}
+              <div className="bg-white rounded-3xl p-8 border border-slate-200">
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="w-12 h-12 bg-[#467e4a] rounded-xl flex items-center justify-center">
+                    <Users className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900">{t('req.tab.hackers')}</h3>
+                </div>
+                <p className="text-slate-900 text-lg leading-relaxed">
+                  {t('req.hackers.description')}
+                </p>
+              </div>
+
+              {/* Specific Requirements */}
               <div>
                 <div className="flex items-center justify-center mb-8">
-                  <div className="flex items-center space-x-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-2xl">
+                  <div className="flex items-center space-x-3 bg-[#467e4a] text-white px-6 py-3 rounded-2xl">
                     <CheckCircle className="w-6 h-6" />
-                    <h3 className="text-2xl font-bold">Essential Requirements</h3>
+                    <h3 className="text-2xl font-bold">{t('req.hackers.requirements.title')}</h3>
                   </div>
                 </div>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {hackerRequirements.essential.map((req, index) => (
-                    <RequirementCard key={index} requirement={req} type="essential" />
+                <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-6">
+                  {hackerRequirements.specific.map((req, index) => (
+                    <div key={index} className="relative h-full">
+                      <div className="absolute -top-3 -left-3 w-8 h-8 bg-[#467e4a] text-white rounded-full flex items-center justify-center font-bold text-sm">
+                        {index + 1}
+                      </div>
+                      <RequirementCard requirement={req} />
+                    </div>
                   ))}
                 </div>
               </div>
-
-              {/* Preferred Qualifications */}
-              <div>
-                <div className="flex items-center justify-center mb-8">
-                  <div className="flex items-center space-x-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-2xl">
-                    <Award className="w-6 h-6" />
-                    <h3 className="text-2xl font-bold">Preferred Qualifications</h3>
-                  </div>
-                </div>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {hackerRequirements.preferred.map((req, index) => (
-                    <RequirementCard key={index} requirement={req} type="preferred" />
-                  ))}
-                </div>
+              <div className="mt-8 text-center">
+                <a
+                  href="https://forms.gle/8NAtRCLmFr4eq6xy8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center bg-gradient-to-r from-[#5a8f5e] to-[#3a673b] text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105"
+                >
+                  {t('req.register.hacker')}
+                </a>
               </div>
             </div>
           )}
 
           {activeTab === 'mentors' && (
             <div className="space-y-12">
-              {/* Essential Requirements */}
+              {/* Role Description */}
+              <div className="bg-white rounded-3xl p-8 border border-slate-200">
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="w-12 h-12 bg-[#fd9d24] rounded-xl flex items-center justify-center">
+                    <UserPlus className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900">{t('req.tab.mentors')}</h3>
+                </div>
+                <p className="text-slate-900 text-lg leading-relaxed">
+                  {t('req.mentors.description')}
+                </p>
+              </div>
+
+              {/* Specific Requirements */}
               <div>
                 <div className="flex items-center justify-center mb-8">
-                  <div className="flex items-center space-x-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-2xl">
+                  <div className="flex items-center space-x-3 bg-[#fd9d24] text-white px-6 py-3 rounded-2xl">
                     <CheckCircle className="w-6 h-6" />
-                    <h3 className="text-2xl font-bold">Essential Requirements</h3>
+                    <h3 className="text-2xl font-bold">{t('req.mentors.requirements.title')}</h3>
                   </div>
                 </div>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {mentorRequirements.essential.map((req, index) => (
-                    <RequirementCard key={index} requirement={req} type="essential" />
+                <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-6">
+                  {mentorRequirements.specific.map((req, index) => (
+                    <div key={index} className="relative h-full">
+                      <div className="absolute -top-3 -left-3 w-8 h-8 bg-[#fd9d24] text-white rounded-full flex items-center justify-center font-bold text-sm">
+                        {index + 1}
+                      </div>
+                      <RequirementCard requirement={req} />
+                    </div>
                   ))}
                 </div>
               </div>
-
-              {/* Preferred Qualifications */}
-              <div>
-                <div className="flex items-center justify-center mb-8">
-                  <div className="flex items-center space-x-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-2xl">
-                    <Award className="w-6 h-6" />
-                    <h3 className="text-2xl font-bold">Preferred Qualifications</h3>
-                  </div>
-                </div>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {mentorRequirements.preferred.map((req, index) => (
-                    <RequirementCard key={index} requirement={req} type="preferred" />
-                  ))}
-                </div>
+              <div className="mt-8 text-center">
+                <a
+                  href="https://forms.gle/8NAtRCLmFr4eq6xy8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center bg-gradient-to-r from-[#fd9d24] to-[#cc7d1e] text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105"
+                >
+                  {t('req.register.mentor')}
+                </a>
               </div>
             </div>
           )}
-        </div>
-
-        {/* Preparation Resources */}
-        <div className="mt-16 bg-gradient-to-r from-slate-900 via-blue-900 to-purple-900 rounded-3xl p-8 lg:p-12 text-center">
-          <h3 className="text-3xl font-bold text-white mb-4">Not Sure If You Qualify?</h3>
-          <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-            Don't worry! We provide comprehensive preparation resources to help you get ready. 
-            The most important thing is your enthusiasm to learn and contribute to climate solutions.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-            <a
-              href="https://qworld.net/oqi-hackathon-course/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105"
-            >
-              Start Preparation Course
-            </a>
-            <a
-              href="mailto:qhl@um.edu.uy"
-              className="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300"
-            >
-              Ask Questions
-            </a>
-          </div>
         </div>
       </div>
     </section>

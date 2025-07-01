@@ -1,61 +1,63 @@
 import React from 'react';
 import { Mail, MapPin, Globe, Calendar, Instagram, Linkedin } from 'lucide-react';
+import { useLanguage } from "../contexts/LanguageContext";
 
 const Footer: React.FC = () => {
+  const { t } = useLanguage();
   return (
     <footer className="bg-slate-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Event Info */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Hackathon LATAM 2025</h3>
+            <h3 className="text-xl font-bold mb-4">{t('footer.title')}</h3>
             <p className="text-slate-300 mb-4">
-              The premier quantum computing hackathon focused on climate solutions in Latin America.
+              {t('footer.description')}
             </p>
             <div className="space-y-2 text-sm text-slate-400">
               <div className="flex items-center space-x-2">
                 <Calendar className="w-4 h-4" />
-                <span>October 1-3, 2025</span>
+                <span>{t('footer.date')}</span>
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin className="w-4 h-4" />
-                <span>Universidad de Montevideo</span>
+                <span>{t('footer.location')}</span>
               </div>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+            <h4 className="text-lg font-semibold mb-4">{t('footer.quicklinks')}</h4>
             <ul className="space-y-2 text-slate-300">
               <li>
                 <a href="#event-info" className="hover:text-blue-400 transition-colors">
-                  Event Information
+                  {t('footer.eventinfo')}
                 </a>
               </li>
               <li>
                 <a href="#requirements" className="hover:text-blue-400 transition-colors">
-                  Requirements
+                  {t('footer.requirements')}
                 </a>
               </li>
               <li>
                 <a href="#registration" className="hover:text-blue-400 transition-colors">
-                  Registration
+                  {t('footer.registration')}
                 </a>
               </li>
               <li>
                 <a href="#partners" className="hover:text-blue-400 transition-colors">
-                  Partners
+                  {t('footer.partners')}
                 </a>
               </li>
               <li>
-                <a 
+                <a
                   href="https://qworld.net/oqi-hackathon-course/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-blue-400 transition-colors"
                 >
-                  Preparation Course
+                  {t('footer.course')}
                 </a>
               </li>
             </ul>
@@ -63,10 +65,10 @@ const Footer: React.FC = () => {
 
           {/* Resources */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Resources</h4>
+            <h4 className="text-lg font-semibold mb-4">{t('footer.resources')}</h4>
             <ul className="space-y-2 text-slate-300">
               <li>
-                <a 
+                <a
                   href="https://quantum2025.org/es/"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -76,7 +78,7 @@ const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a 
+                <a
                   href="https://open-quantum-institute.cern/"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -86,7 +88,7 @@ const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a 
+                <a
                   href="https://www.ripaisc.net/"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -96,7 +98,7 @@ const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a 
+                <a
                   href="https://clei.org/"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -110,29 +112,29 @@ const Footer: React.FC = () => {
 
           {/* Contact & Social */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Contact & Follow Us</h4>
+            <h4 className="text-lg font-semibold mb-4">{t('footer.contactFollow')}</h4>
             <div className="space-y-3 mb-6">
-              <a 
+              <a
                 href="mailto:qhl@um.edu.uy"
                 className="flex items-center space-x-2 text-slate-300 hover:text-blue-400 transition-colors"
               >
                 <Mail className="w-4 h-4" />
                 <span>qhl@um.edu.uy</span>
               </a>
-              <a 
+              <a
                 href="https://www.um.edu.uy/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 text-slate-300 hover:text-blue-400 transition-colors"
               >
                 <Globe className="w-4 h-4" />
-                <span>Universidad de Montevideo</span>
+                <span>{t('footer.location')}</span>
               </a>
             </div>
-            
+
             {/* Social Media Links */}
             <div>
-              <h5 className="text-sm font-semibold text-slate-400 mb-3 uppercase tracking-wide">Follow Us</h5>
+              <h5 className="text-sm font-semibold text-slate-400 mb-3 uppercase tracking-wide">{t('footer.followUs')}</h5>
               <div className="flex space-x-4">
                 <a
                   href="https://www.instagram.com/universidadmontevideo/"
@@ -160,10 +162,10 @@ const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="border-t border-slate-700 mt-12 pt-8 text-center text-slate-400">
           <p>
-            © 2025 Universidad de Montevideo. All rights reserved. | 
+            {t('footer.rights')} |{" "}
             <span className="ml-1">
               <a href="/quantum_hackathon/EN" className="hover:text-blue-400 transition-colors">
-                English Version
+                {t('footer.langSwitch')}
               </a>
             </span>
           </p>
