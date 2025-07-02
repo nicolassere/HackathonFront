@@ -2,6 +2,7 @@ import React from 'react';
 import { Calendar, MapPin, Users, Plane, Utensils, Bed } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import CountdownTimer from './CountDownTimer';
+import InteractiveTimeline from './InteractiveTimeline';
 
 const HackathonInfo = () => {
     const { t } = useLanguage();
@@ -102,7 +103,11 @@ const HackathonInfo = () => {
                         </div>
                     ))}
                 </div>
-            </div>
+                {/* Interactive Timeline - FULL WIDTH */}
+                <div className="w-full mb-16">
+                    <InteractiveTimeline />
+                </div>
+            </div> 
         </section>
     );
 };
