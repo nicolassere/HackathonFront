@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-type Language = 'es' | 'en';
+type Language = 'es' | 'en' | 'pt';
 
 interface LanguageContextType {
     language: Language;
@@ -309,8 +309,156 @@ const translations = {
         'timeline.hackathon.title': 'Hackathon',
         'timeline.hackathon.description': 'Quantum Climate Hackathon',
         'timeline.hackathon.details': 'The main event will begin on October 1st at 9:00 AM. For 48 hours, teams will work on innovative solutions that combine quantum computing with climate change problems.',
-    }
-        
+    },
+    pt: {
+       // Header
+'nav.home': 'Início',
+'nav.event': 'Evento',
+'nav.requirements': 'Requisitos',
+'nav.registration': 'Inscrição',
+'nav.partners': 'Colaboradores',
+
+// Countdown
+'countdown.remaining': 'Tempo restante',
+'countdown.for': 'para',
+'countdown.started': 'Já começou!',
+'countdown.registration': 'o encerramento das inscrições',
+'countdown.course': 'o início do curso preparatório',
+'countdown.hackathon': 'o Quantum Climate Hackathon',
+'events.registration': 'Inscrições',
+'events.course': 'Curso',
+'events.hackathon': 'Hackathon',
+
+// EventInfo
+'event.title.part1': 'Computação Quântica para',
+'event.title.part2': 'Ação Climática',
+'event.subtitle': 'Participe do maior hackathon de computação quântica da América Latina, onde a tecnologia de ponta encontra a ação climática. Colabore com especialistas para desenvolver soluções quânticas inovadoras.',
+
+// Features
+'event.feature1.title': 'Impacto Climático',
+'event.feature1.desc': 'Desenvolva soluções de computação quântica para enfrentar desafios climáticos reais e promover a sustentabilidade ambiental.',
+'event.feature2.title': '72 Horas',
+'event.feature2.desc': 'Três dias intensos de colaboração, inovação e desenvolvimento de algoritmos quânticos revolucionários.',
+'event.feature3.title': 'Reconhecimento Global',
+'event.feature3.desc': 'Compita por prêmios e reconhecimento no maior hackathon quântico da América Latina.',
+'event.feature4.title': 'Trilha de Aprendizado',
+'event.feature4.desc': 'Acesso a cursos de computação quântica e mentoria de especialistas da indústria durante o evento.',
+
+// Timeline
+'event.timeline.title': 'Cronograma do Evento',
+'event.day1.date': '1º de Outubro',
+'event.day1.title': 'Abertura & Formação',
+'event.day1.desc': 'Cerimônia de abertura, formação de equipes e apresentação dos desafios',
+'event.day2.date': '2 de Outubro',
+'event.day2.title': 'Desenvolvimento Intensivo',
+'event.day2.desc': 'Desenvolvimento intensivo, sessões de mentoria e revisões de progresso',
+'event.day3.date': '3 de Outubro',
+'event.day3.title': 'Apresentações & Premiação',
+'event.day3.desc': 'Apresentações finais, avaliação dos jurados e cerimônia de premiação',
+
+// Requirements
+'req.tab.hackers': 'Para hackers',
+'req.tab.mentors': 'Para mentores',
+'req.hackers.title': 'Hackers',
+'req.mentors.title': 'Mentores',
+'req.hackers.desc': 'Os hackers são o coração do evento. Seja estudante ou profissional, se você é apaixonado por computação quântica e sustentabilidade, este é o seu lugar!',
+'req.mentors.desc': 'Os mentores orientam as equipes com sua experiência em computação quântica, ajudando-as a superar desafios técnicos.',
+'req.hackers.requirements.title': 'Requisitos para hackers',
+'req.mentors.requirements.title': 'Requisitos para mentores',
+'req.register.hacker': 'Inscreva-se como hacker',
+'req.register.mentor': 'Inscreva-se como mentor',
+
+// Requirements - Hackers
+'req.hackers.description': 'Os hackers propõem, projetam e desenvolvem soluções inovadoras alinhadas com os ODS 2030. Aplicam tecnologias quânticas e clássicas de forma criativa para enfrentar desafios reais na América Latina com espírito colaborativo.',
+'req.hackers.specific.universityEnrollment.title': 'Matrícula universitária',
+'req.hackers.specific.universityEnrollment.description': 'Atualmente matriculado em um curso universitário de tecnologia, ciência, engenharia ou desenvolvimento sustentável.',
+'req.hackers.specific.academicProgress.title': 'Progresso acadêmico',
+'req.hackers.specific.academicProgress.description': 'Pelo menos 50% do curso concluído no momento da inscrição.',
+'req.hackers.specific.programmingKnowledge.title': 'Conhecimentos de programação',
+'req.hackers.specific.programmingKnowledge.description': 'Conhecimentos básicos de Python (ou ter concluído um curso introdutório da QWorld, caso contrário).',
+'req.hackers.mandatory.title': 'Certificação obrigatória',
+'req.hackers.mandatory.subtitle': 'Curso de computação quântica da QWorld (Virtual, 4 a 13 de agosto de 2025)',
+
+// Added new keys for requirements
+'req.qualifications': 'Qualificações',
+'req.overview': 'Quer participe como hacker ou mentor, aqui está o que você precisa saber para aproveitar ao máximo esta experiência de hackathon de computação quântica.',
+'req.bothRoles': 'Ambos os papéis',
+
+'req.hackers.mandatory.requirements.0': 'Concluir todas as atividades do curso',
+'req.hackers.mandatory.requirements.1': 'Obter pelo menos 50% em cada avaliação',
+'req.hackers.mandatory.requirements.2': 'Alcançar nota final superior a 70%',
+
+'req.mentors.mandatory.requirements.0': 'Concluir todas as atividades do curso',
+'req.mentors.mandatory.requirements.1': 'Obter pelo menos 50% em cada avaliação',
+'req.mentors.mandatory.requirements.2': 'Alcançar nota final superior a 70%',
+
+// Requirements - Mentors
+'req.mentors.description': 'Os mentores guiam e lideram o processo de desenvolvimento de projetos, oferecendo orientação técnica e apoio no uso de tecnologias quânticas, inteligência artificial e outras ferramentas práticas para soluções alinhadas aos ODS 2030.',
+'req.mentors.specific.quantumExpertise.title': 'Experiência em computação quântica',
+'req.mentors.specific.quantumExpertise.description': 'Conhecimento sólido em princípios, algoritmos e aplicações da computação quântica.',
+'req.mentors.specific.platformExperience.title': 'Experiência em plataformas',
+'req.mentors.specific.platformExperience.description': 'Experiência com plataformas quânticas na nuvem (IBM Quantum, AWS Braket, etc.).',
+'req.mentors.specific.academicBackground.title': 'Formação acadêmica',
+'req.mentors.specific.academicBackground.description': 'Estudos de pós-graduação em áreas relacionadas ou experiência profissional relevante.',
+'req.mentors.mandatory.title': 'Certificação obrigatória',
+'req.mentors.mandatory.subtitle': 'Curso de computação quântica da QWorld (Virtual, 4 a 13 de agosto de 2025)',
+
+// Partners
+'partners.title': 'Nossos colaboradores',
+'partners.subtitle': 'Este hackathon é possível graças à colaboração de organizações líderes em computação quântica, pesquisa climática e educação tecnológica.',
+'partners.strategic': 'Patrocinadores',
+'partners.academic': 'Apoiam',
+
+// Footer
+'footer.title': 'Hackathon LATAM 2025',
+'footer.description': 'O hackathon de computação quântica focado em soluções climáticas para a América Latina.',
+'footer.date': '1 a 3 de outubro de 2025',
+'footer.location': 'Universidade de Montevidéu',
+'footer.quicklinks': 'Links rápidos',
+'footer.eventinfo': 'Informações do evento',
+'footer.requirements': 'Requisitos',
+'footer.registration': 'Inscrição',
+'footer.course': 'Curso preparatório',
+'footer.resources': 'Recursos',
+'footer.rights': '© 2025 Universidade de Montevidéu. Todos os direitos reservados.',
+'footer.partners': 'Colaboradores',
+'footer.contactFollow': 'Contato e siga-nos',
+'footer.followUs': 'Siga-nos',
+'footer.langSwitch': 'Versão em Inglês',
+
+// HackathonInfo
+'hackathon.title.part1': 'Um hackathon presencial,',
+'hackathon.title.part2': 'colaborativo e desafiador',
+'hackathon.description1': 'O hackathon será realizado presencialmente em Montevidéu, Uruguai, de',
+'hackathon.dates': '1 a 3 de outubro',
+'hackathon.description2': 'de 2025.',
+'hackathon.mandatory': 'A participação é obrigatória durante os três dias. As equipes serão compostas por 8 hackers e 2 mentores, organizados pelo comitê a partir do grupo de pessoas selecionadas e anunciadas com antecedência para facilitar a coordenação prévia.',
+'hackathon.language': 'O evento será realizado principalmente em espanhol, embora algumas atividades sejam em inglês ou português, e o',
+'hackathon.pitch': 'pitch final será apresentado em inglês',
+'hackathon.details': 'Detalhes do Evento',
+'hackathon.detail.dates': '1 a 3 de Outubro de 2025',
+'hackathon.detail.location': 'Montevidéu, Uruguai',
+'hackathon.detail.teams': '8 hackers + 2 mentores por equipe',
+'hackathon.benefit1': 'Hospedagem incluída para participantes',
+'hackathon.benefit2': 'Refeições parcialmente cobertas',
+'hackathon.benefit3': 'Apoio financeiro para transporte*',
+'hackathon.benefit3.note': '*sujeito à disponibilidade de fundos',
+'hackathon.register': 'Inscreva-se agora!',
+
+// Countdown Timer
+'timeline.registration.title': 'Inscrições',
+'timeline.registration.description': 'Encerramento das inscrições',
+'timeline.registration.details': 'As inscrições para o Quantum Climate Hackathon encerram no dia 15 de julho às 23:59. Certifique-se de concluir sua inscrição antes desse prazo para participar do evento.',
+
+'timeline.course.title': 'Curso Preparatório',
+'timeline.course.description': 'Início do curso preparatório',
+'timeline.course.details': 'O curso preparatório começa no dia 4 de agosto às 9:00 AM. Durante 4 semanas, os participantes receberão treinamento em computação quântica e suas aplicações nas mudanças climáticas.',
+
+'timeline.hackathon.title': 'Hackathon',
+'timeline.hackathon.description': 'Quantum Climate Hackathon',
+'timeline.hackathon.details': 'O evento principal começa em 1º de outubro às 9:00 AM. Durante 48 horas, as equipes trabalharão em soluções inovadoras que combinem computação quântica com problemas das mudanças climáticas.',
+
+    }      
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
