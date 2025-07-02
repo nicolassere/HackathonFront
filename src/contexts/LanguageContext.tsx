@@ -17,6 +17,17 @@ const translations = {
         'nav.registration': 'Registro',
         'nav.partners': 'Colaboradores',
 
+        // Countdown
+        'countdown.remaining': 'Tiempo restante',
+        'countdown.for': 'para',
+        'countdown.started': '¡Ya comenzó!',
+        'countdown.registration': 'el cierre de inscripciones',
+        'countdown.course': 'el inicio del curso preparatorio',
+        'countdown.hackathon': 'el Quantum Climate Hackathon',
+        'events.registration': 'Inscripciones',
+        'events.course': 'Curso',
+        'events.hackathon': 'Hackathon',
+
         // EventInfo
         'event.title.part1': 'Computación Cuántica para',
         'event.title.part2': 'Acción Climática',
@@ -140,6 +151,17 @@ const translations = {
         'nav.requirements': 'Requirements',
         'nav.registration': 'Registration',
         'nav.partners': 'Partners',
+
+        // Countdown
+        'countdown.remaining': 'Time remaining',
+        'countdown.for': 'until',
+        'countdown.started': 'Started!',
+        'countdown.registration': 'registration closes',
+        'countdown.course': 'the preparation course begins',
+        'countdown.hackathon': 'the Quantum Climate Hackathon',
+        'events.registration': 'Registration',
+        'events.course': 'Course',
+        'events.hackathon': 'Hackathon',
 
         // EventInfo
         'event.title.part1': 'Quantum Computing for',
