@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
+
 
 const QuantumYearSection = () => {
+    const { t } = useLanguage();
+
     // Array de fotos de Uruguay
     const uruguayPhotos = [
         {
@@ -14,7 +18,7 @@ const QuantumYearSection = () => {
             caption: 'Campeón del Siglo'
         },
         {
-            src: 'https://upload.wikimedia.org/wikipedia/commons/3/37/R%C3%ADo_Negro_Paso_del_Puerto.jpg',
+            src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-HzBZF32jm2GlG0iIQbLbMYQRAlyrFptSSQ&s',
             alt: 'Rio Negro',
             caption: 'Río Negro'
         },
@@ -25,8 +29,8 @@ const QuantumYearSection = () => {
         },
         {
             src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqAEhICC1_AKgQG2jSmQfK8ciKcgkXnY37GA&s',
-            alt: 'Salto',
-            caption: 'Salto'
+            alt: 'UM',
+            caption: 'UM'
         }
     ];
 
@@ -55,7 +59,7 @@ const QuantumYearSection = () => {
                 {/* UNESCO/Quantum Year Header */}
                 <div className="text-center mb-12">
                     <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4 leading-tight">
-                        2025 - Año Internacional de la Ciencia y Tecnología Cuántica
+                     {t('quantumYear.title')}
                     </h2>
                     <div className="w-24 h-1 bg-gradient-to-r from-amber-400 to-orange-400 mx-auto mb-8"></div>
                 </div>
@@ -71,15 +75,12 @@ const QuantumYearSection = () => {
                                     <span className="text-white text-2xl">🏆</span>
                                 </div>
                                 <h3 className="text-2xl font-bold text-slate-900">
-                                    Quantum Hackathon LATAM 2025
+                                    {t('quantumYear.subtitle')}
                                 </h3>
                             </div>
 
                             <p className="text-lg text-slate-700 leading-relaxed">
-                                <strong className="text-green-600">Quantum Hackathon LATAM 2025</strong> es una iniciativa de la
-                                Universidad de Montevideo, organizada en colaboración con el Open Quantum Institute (CERN),
-                                como parte de las actividades para el Año Internacional de la Ciencia y Tecnología Cuántica,
-                                declarado por UNESCO para 2025.
+                                <strong className="text-green-600">{t('quantumYear.subtitle')}</strong> {t('quantumYear.description')}
                             </p>
                         </div>
 
@@ -131,11 +132,11 @@ const QuantumYearSection = () => {
                         <div className="relative group">
                             <div className="bg-white/90 rounded-3xl p-6 border border-amber-200 shadow-xl">
                                 <h3 className="text-xl font-bold text-slate-900 mb-4 text-center">
-                                    🇺🇾 Hermosos paisajes de Uruguay
+                                    {t('quantumYear.photoTitle')}
                                 </h3>
 
                                 <p className="text-center text-slate-600 mb-4 text-sm">
-                                    Descubre los lugares más emblemáticos de nuestro país anfitrión
+                                    {t('quantumYear.photoDescription')}
                                 </p>
 
                                 {/* Image Carousel */}
@@ -214,7 +215,7 @@ const QuantumYearSection = () => {
                                                     setIsLoading(true);
                                                 }}
                                                 className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100"
-                                                aria-label="Foto anterior"
+                                                aria-label=""
                                             >
                                                 ←
                                             </button>
