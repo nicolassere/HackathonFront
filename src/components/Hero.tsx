@@ -7,6 +7,7 @@ const Hero = () => {
   const bannerByLanguage = {
     en: 'img/Banner_en.png',
     es: 'img/Banner_es.png',
+    pt: 'img/Banner_es.png',
   };
 
   const bannerSrc = bannerByLanguage[language] || 'img/Banner_en.png'; // Fallback

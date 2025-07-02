@@ -137,7 +137,7 @@ const Footer: React.FC = () => {
               <h5 className="text-sm font-semibold text-slate-400 mb-3 uppercase tracking-wide">{t('footer.followUs')}</h5>
               <div className="flex space-x-4">
                 <a
-                  href="https://www.instagram.com/universidadmontevideo/"
+                  href="https://www.instagram.com/universidaddemontevideo/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group bg-slate-800 hover:bg-gradient-to-br hover:from-pink-500 hover:to-purple-600 p-3 rounded-xl transition-all duration-300 transform hover:scale-110"

@@ -28,72 +28,85 @@ const Header = () => {
     <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${
       scrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-white/80 backdrop-blur-sm'
     } border-b border-slate-200/50`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Enhanced Logo */}
-          <div className="flex items-center space-x-3">
-            <button 
+          <div className="flex items-center space-x-4">
+            <button
               onClick={() => scrollToSection('hero')}
               className="hidden sm:flex items-center space-x-2 group transition-all duration-300 hover:scale-105"
             >
-              <img 
-                src="img/HackathonLogoHeader.png" 
-                alt="Hackathon Logo" 
-                className="h-8 w-auto transition-transform duration-300 group-hover:rotate-3" 
+              <img
+                src="img/HackathonLogoHeader.png"
+                alt="Hackathon Logo"
+                className="h-8 w-auto transition-transform duration-300 group-hover:rotate-3"
               />
-              <div className="text-left">
-                <p className="text-sm font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">
+              <div className="text-left space-y-1">
+                <p className="text-sm font-semibold text-slate-800 group-hover:text-[#a2832f] transition-colors whitespace-nowrap">
                   Quantum LATAM 2025
                 </p>
-                <p className="text-xs text-slate-600">Universidad de Montevideo</p>
+                <p className="text-xs text-slate-600 whitespace-nowrap">Universidad de Montevideo</p>
               </div>
             </button>
           </div>
 
           {/* Enhanced Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <a href="#hero" className="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
-              {t('nav.home')}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="#event-info" className="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
-              {t('nav.event')}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="#requirements" className="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
-              {t('nav.requirements')}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="#inscripcion" className="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
-              {t('nav.registration')}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="#partners" className="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
-              {t('nav.partners')}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <div className="flex items-center space-x-2">
+          <nav className="hidden md:flex w-full items-center px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-center flex-1 space-x-4">
+              <a href="#hero" className="px-2 text-center text-slate-700 hover:text-[#a2832f] transition-all duration-300 font-medium relative group">
+                {t('nav.home')}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#a2832f] transition-all duration-300 group-hover:w-full"></span>
+              </a>
+              <a href="#event-info" className="px-2 text-center text-slate-700 hover:text-[#a2832f] transition-all duration-300 font-medium relative group">
+                {t('nav.event')}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#a2832f] transition-all duration-300 group-hover:w-full"></span>
+              </a>
+              <a href="#requirements" className="px-2 text-center text-slate-700 hover:text-[#a2832f] transition-all duration-300 font-medium relative group">
+                {t('nav.requirements')}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#a2832f] transition-all duration-300 group-hover:w-full"></span>
+              </a>
+              <a href="#inscripcion" className="px-2 text-center text-slate-700 hover:text-[#a2832f] transition-all duration-300 font-medium relative group">
+                {t('nav.registration')}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#a2832f] transition-all duration-300 group-hover:w-full"></span>
+              </a>
+              <a href="#partners" className="px-2 text-center text-slate-700 hover:text-[#a2832f] transition-all duration-300 font-medium relative group">
+                {t('nav.partners')}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#a2832f] transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </div>
+            <div className="flex items-center space-x-3">
               <button
                 onClick={() => setLanguage('es')}
-                className={`flex items-center space-x-1 px-3 py-1.5 rounded-lg transition-all ${
+                className={`flex items-center justify-center space-x-1 w-12 h-8 rounded-lg transition-all ${
                   language === 'es'
-                    ? 'bg-blue-100 text-blue-700 shadow-sm'
-                    : 'hover:bg-slate-100 text-slate-600'
+                    ? 'bg-[#f0e6c8] text-[#a2832f] shadow-sm'
+                    : 'text-slate-600 hover:text-[#a2832f]'
                 }`}
               >
-                <span className="text-lg">🇪🇸</span>
+                <img src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/1f1ea-1f1f8.png" alt="ES" className="h-5 w-5"/>
                 <span className="text-sm font-medium">ES</span>
               </button>
               <button
                 onClick={() => setLanguage('en')}
-                className={`flex items-center space-x-1 px-3 py-1.5 rounded-lg transition-all ${
+                className={`flex items-center justify-center space-x-1 w-12 h-8 rounded-lg transition-all ${
                   language === 'en'
-                    ? 'bg-blue-100 text-blue-700 shadow-sm'
-                    : 'hover:bg-slate-100 text-slate-600'
+                    ? 'bg-[#f0e6c8] text-[#a2832f] shadow-sm'
+                    : 'text-slate-600 hover:text-[#a2832f]'
                 }`}
               >
-                <span className="text-lg">🇬🇧</span>
+                <img src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/1f1ec-1f1e7.png" alt="EN" className="h-5 w-5"/>
                 <span className="text-sm font-medium">EN</span>
+              </button>
+                <button
+                  onClick={() => setLanguage('pt')}
+                  className={`flex items-center justify-center space-x-1 w-12 h-8 rounded-lg transition-all ${
+                  language === 'pt'
+                    ? 'bg-[#f0e6c8] text-[#a2832f] shadow-sm'
+                    : 'text-slate-600 hover:text-[#a2832f]'
+                }`}
+              >
+                <img src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/1f1f5-1f1f9.png" alt="PT" className="h-5 w-5"/>
+                <span className="text-sm font-medium">PT</span>
               </button>
             </div>
           </nav>
@@ -112,19 +125,19 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-slate-200 animate-in slide-in-from-top duration-300">
             <nav className="flex flex-col space-y-4">
-              <a href="#hero" className="text-slate-700 hover:text-blue-600 transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
+              <a href="#hero" className="text-slate-700 hover:text-[#a2832f] transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
                 {t('nav.home')}
               </a>
-              <a href="#event-info" className="text-slate-700 hover:text-blue-600 transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
+              <a href="#event-info" className="text-slate-700 hover:text-[#a2832f] transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
                 {t('nav.event')}
               </a>
-              <a href="#requirements" className="text-slate-700 hover:text-blue-600 transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
+              <a href="#requirements" className="text-slate-700 hover:text-[#a2832f] transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
                 {t('nav.requirements')}
               </a>
-              <a href="#inscripcion" className="text-slate-700 hover:text-blue-600 transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
+              <a href="#inscripcion" className="text-slate-700 hover:text-[#a2832f] transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
                 {t('nav.registration')}
               </a>
-              <a href="#partners" className="text-slate-700 hover:text-blue-600 transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
+              <a href="#partners" className="text-slate-700 hover:text-[#a2832f] transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
                 {t('nav.partners')}
               </a>
             </nav>
