@@ -1,7 +1,6 @@
 import React from 'react';
 import { Calendar, MapPin, Users, Plane, Utensils, Bed } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
-import CountdownTimer from './CountDownTimer';
 import InteractiveTimeline from './InteractiveTimeline';
 
 const HackathonInfo = () => {

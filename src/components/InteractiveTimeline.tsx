@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { CountdownTimer } from './CountdownTimer';
 
 // 🖼️ Importá las imágenes correspondientes
 import timelineImage from '../../img/ImagenInicial.png';
@@ -9,6 +8,7 @@ import preselectionImage from '../../img/Imagen27_07.png';
 import courseImage from '../../img/Imagen04_08.png';
 import selectionImage from '../../img/imagen_2damedicion.png';
 import hackathonImage from '../../img/Imagen_0210.png';
+import { CountdownTimer } from './CountDownTimer';
 
 interface ColumnData {
   id: string;
@@ -219,8 +219,7 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
 
   return (
     <div
-      className={`w-full min-h-screen py-16 bg-gradient-to-br from-slate-50 to-gray-100 ${className}`}
-    >
+      className={`w-full min-h-screen py-16 bg-white ${className} max-[930px]:hidden`}    >
       <div className="w-full max-w-none px-4 sm:px-6 lg:px-8">
         {/* Imagen dinámica */}
         <div className="relative mb-8 w-full">
@@ -232,7 +231,7 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
             <img
               src={activeColumn?.image || imageSrc}
               alt={imageAlt}
-              className="w-full h-auto rounded-3xl shadow-2xl transition-all duration-300"
+              className="w-full h-auto rounded-3xl transition-all duration-300"
               style={{
                 minHeight: '400px',
                 maxHeight: '600px',
