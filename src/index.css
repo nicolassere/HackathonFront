@@ -46,6 +46,28 @@
     }
 }
 
+@keyframes expand-height {
+    from {
+        max-height: 0;
+        opacity: 0;
+    }
+    to {
+        max-height: 500px;
+        opacity: 1;
+    }
+}
+
+@keyframes collapse-height {
+    from {
+        max-height: 500px;
+        opacity: 1;
+    }
+    to {
+        max-height: 0;
+        opacity: 0;
+    }
+}
+
 .animate-fade-in-up {
     animation: fade-in-up 0.8s ease-out forwards;
 }
@@ -60,6 +82,10 @@
 
 .slide-in-from-top {
     animation: slide-in-from-top 0.3s ease-out;
+}
+
+.hover\:scale-102:hover {
+    transform: scale(1.02);
 }
 
 .animation-delay-200 {
@@ -147,4 +173,50 @@ body {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
+}
+
+/* Timeline specific animations */
+.timeline-expand {
+    animation: expand-height 0.5s ease-out forwards;
+}
+
+.timeline-collapse {
+    animation: collapse-height 0.5s ease-out forwards;
+}
+
+/* Smooth transitions for timeline elements */
+.timeline-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timeline-card:hover {
+    transform: translateY(-2px);
+}
+
+/* Enhanced button hover effects */
+.btn-hover-lift {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Gradient text animation */
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
 }

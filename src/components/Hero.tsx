@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, Calendar, MapPin, Users } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
-import EventCountdownSelector from './CountdownTimer';
+import TimelineCountdown from './TimelineCountdown';
 
 const Hero = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -55,9 +55,9 @@ const Hero = () => {
             </p>
           </div>
 
-          {/* Countdown Timer */}
-          <div className="max-w-4xl mx-auto">
-            <EventCountdownSelector />
+          {/* Timeline Countdown Component */}
+          <div className="max-w-6xl mx-auto">
+            <TimelineCountdown />
           </div>
 
           {/* Event Details Cards */}
