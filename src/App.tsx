@@ -4,10 +4,12 @@ import Hero from './components/Hero';
 import EventInfo from './components/EventInfo';
 import HackathonInfo from './components/HackathonInfo';
 import Requirements from './components/Requirements';
+import './components/TimelineCountdown.tsx'
 import Registration from './components/Registration';
 import Partners from './components/Partners';
 import Footer from './components/Footer';
 import BlochSphere from './components/BlochSphere';
+import TimelineCountdown from './components/TimelineCountdown.tsx';
 
 function App() {
     return (
@@ -19,6 +21,7 @@ function App() {
                 <HackathonInfo />
                 <Requirements />
                 <Registration />
+                <TimelineCountdown/>
                 <Partners />
                 <BlochSphere />
             </main>
