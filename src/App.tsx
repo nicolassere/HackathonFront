@@ -6,6 +6,7 @@ import HackathonInfo from './components/HackathonInfo';
 import Requirements from './components/Requirements';
 import './components/TimelineCountdown.tsx'
 import Registration from './components/Registration';
+import QuantumYearSection from "./components/QuantumYearSection.tsx";
 import Partners from './components/Partners';
 import Footer from './components/Footer';
 import BlochSphere from './components/BlochSphere';
@@ -17,6 +18,7 @@ function App() {
             <Header />
             <main>
                 <Hero />
+                <QuantumYearSection />
                 <EventInfo />
                 <HackathonInfo />
                 <Requirements />
