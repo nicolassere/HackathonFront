@@ -102,10 +102,6 @@ const HackathonInfo = () => {
                         </div>
                     ))}
                 </div>
-                                <div className="mb-16">
-                    <CountdownTimer 
-                    />
-                </div>
             </div>
         </section>
     );
