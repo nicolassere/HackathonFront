@@ -52,7 +52,6 @@ const Header = () => {
 
           {/* Enhanced Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-<<<<<<< HEAD
             <a href="#hero" className="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
               {t('nav.home')}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
@@ -73,26 +72,6 @@ const Header = () => {
               {t('nav.partners')}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
             </a>
-=======
-            {[
-              { key: 'nav.home', id: 'hero' },
-              { key: 'nav.event', id: 'event-info' },
-              { key: 'nav.requirements', id: 'requirements' },
-              { key: 'nav.registration', id: 'registration' },
-              { key: 'nav.partners', id: 'partners' }
-            ].map((item) => (
-              <button
-                key={item.key}
-                onClick={() => scrollToSection(item.id)}
-                className="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group"
-              >
-                {t(item.key)}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-              </button>
-            ))}
-            
-            {/* Language Switcher */}
->>>>>>> 9fa209bbab27ea7dcacb29e1200f612853bc1c4d
             <div className="flex items-center space-x-2">
               <button
                 onClick={() => setLanguage('es')}
@@ -133,7 +112,6 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-slate-200 animate-in slide-in-from-top duration-300">
             <nav className="flex flex-col space-y-4">
-<<<<<<< HEAD
               <a href="#hero" className="text-slate-700 hover:text-blue-600 transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
                 {t('nav.home')}
               </a>
@@ -149,49 +127,6 @@ const Header = () => {
               <a href="#partners" className="text-slate-700 hover:text-blue-600 transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
                 {t('nav.partners')}
               </a>
-=======
-              {[
-                { key: 'nav.home', id: 'hero' },
-                { key: 'nav.event', id: 'event-info' },
-                { key: 'nav.requirements', id: 'requirements' },
-                { key: 'nav.registration', id: 'registration' },
-                { key: 'nav.partners', id: 'partners' }
-              ].map((item) => (
-                <button
-                  key={item.key}
-                  onClick={() => scrollToSection(item.id)}
-                  className="text-slate-700 hover:text-blue-600 transition-colors font-medium text-left"
-                >
-                  {t(item.key)}
-                </button>
-              ))}
-              
-              {/* Mobile Language Switcher */}
-              <div className="flex items-center space-x-2 pt-4 border-t border-slate-200">
-                <button
-                  onClick={() => setLanguage('es')}
-                  className={`flex items-center space-x-1 px-3 py-1.5 rounded-lg transition-all ${
-                    language === 'es'
-                      ? 'bg-blue-100 text-blue-700'
-                      : 'hover:bg-slate-100 text-slate-600'
-                  }`}
-                >
-                  <span className="text-lg">🇪🇸</span>
-                  <span className="text-sm font-medium">ES</span>
-                </button>
-                <button
-                  onClick={() => setLanguage('en')}
-                  className={`flex items-center space-x-1 px-3 py-1.5 rounded-lg transition-all ${
-                    language === 'en'
-                      ? 'bg-blue-100 text-blue-700'
-                      : 'hover:bg-slate-100 text-slate-600'
-                  }`}
-                >
-                  <span className="text-lg">🇬🇧</span>
-                  <span className="text-sm font-medium">EN</span>
-                </button>
-              </div>
->>>>>>> 9fa209bbab27ea7dcacb29e1200f612853bc1c4d
             </nav>
           </div>
         )}

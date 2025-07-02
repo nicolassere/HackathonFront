@@ -145,22 +145,20 @@ const translations = {
         'hackathon.register': '¡Inscríbete Ahora!',
 
          // Countdown Timer
-         'events.registration': 'Inscripciones',
-'events.course': 'Curso Preparatorio', 
-'events.hackathon': 'Hackathon',
+         
 
-'timeline.registration.title': 'Inscripciones',
-'timeline.registration.description': 'Cierre de inscripciones',
-'timeline.registration.details': 'Las inscripciones para el Quantum Climate Hackathon cerrarán el 15 de julio a las 23:59. Asegúrate de completar tu registro antes de esta fecha para participar en el evento.',
+            'timeline.registration.title': 'Inscripciones',
+            'timeline.registration.description': 'Cierre de inscripciones',
+            'timeline.registration.details': 'Las inscripciones para el Quantum Climate Hackathon cerrarán el 15 de julio a las 23:59. Asegúrate de completar tu registro antes de esta fecha para participar en el evento.',
 
-'timeline.course.title': 'Curso Preparatorio',
-'timeline.course.description': 'Inicio del curso preparatorio',
-'timeline.course.details': 'El curso preparatorio comenzará el 4 de agosto a las 9:00 AM. Durante 4 semanas, los participantes recibirán capacitación en computación cuántica y sus aplicaciones en el cambio climático.',
+            'timeline.course.title': 'Curso Preparatorio',
+            'timeline.course.description': 'Inicio del curso preparatorio',
+            'timeline.course.details': 'El curso preparatorio comenzará el 4 de agosto a las 9:00 AM. Durante 4 semanas, los participantes recibirán capacitación en computación cuántica y sus aplicaciones en el cambio climático.',
 
-'timeline.hackathon.title': 'Hackathon',
-'timeline.hackathon.description': 'Quantum Climate Hackathon',
-'timeline.hackathon.details': 'El evento principal comenzará el 1 de octubre a las 9:00 AM. Durante 48 horas, los equipos trabajarán en soluciones innovadoras que combinen computación cuántica con problemas del cambio climático.',
- 
+            'timeline.hackathon.title': 'Hackathon',
+            'timeline.hackathon.description': 'Quantum Climate Hackathon',
+            'timeline.hackathon.details': 'El evento principal comenzará el 1 de octubre a las 9:00 AM. Durante 48 horas, los equipos trabajarán en soluciones innovadoras que combinen computación cuántica con problemas del cambio climático.',
+            
     },
     en: {
         // Header
@@ -298,9 +296,7 @@ const translations = {
         'hackathon.register': 'Register Now!',
 
         // Countdown Timer
-        'events.registration': 'Registration',
-        'events.course': 'Preparatory Course',
-        'events.hackathon': 'Hackathon',
+        
 
         'timeline.registration.title': 'Registration',
         'timeline.registration.description': 'Registration deadline',

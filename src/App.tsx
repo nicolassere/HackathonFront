@@ -21,12 +21,8 @@ function App() {
                 <HackathonInfo />
                 <Requirements />
                 <Registration />
-<<<<<<< HEAD
-                <TimelineCountdown/>
-                <Partners />
-=======
->>>>>>> 9fa209bbab27ea7dcacb29e1200f612853bc1c4d
                 <BlochSphere />
+                <TimelineCountdown />
                 <Partners />
             </main>
             <Footer />
