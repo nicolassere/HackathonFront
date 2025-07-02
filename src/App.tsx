@@ -19,8 +19,8 @@ function App() {
                 <HackathonInfo />
                 <Requirements />
                 <Registration />
-                <Partners />
                 <BlochSphere />
+                <Partners />
             </main>
             <Footer />
         </div>

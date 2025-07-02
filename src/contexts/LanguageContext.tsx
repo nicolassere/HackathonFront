@@ -112,7 +112,7 @@ const translations = {
         'footer.partners': 'Colaboradores',
         'footer.contactFollow': 'Contacto y síguenos',
         'footer.followUs': 'Síguenos',
-        'footer.langSwitch': 'Versión en Español',
+        'footer.langSwitch': 'English Version',
 
         // HackathonInfo
         'hackathon.title.part1': 'Una hackathon presencial,',
@@ -236,7 +236,7 @@ const translations = {
         'footer.partners': 'Partners',
         'footer.contactFollow': 'Contact & Follow Us',
         'footer.followUs': 'Follow Us',
-        'footer.langSwitch': 'English Version',
+        'footer.langSwitch': 'Versión en Español',
 
         // HackathonInfo
         'hackathon.title.part1': 'An in-person,',
@@ -265,7 +265,12 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     const [language, setLanguage] = useState<Language>('es');
 
     const t = (key: string): string => {
-        return translations[language][key as keyof typeof translations['es']] || key;
+        const translation = translations[language][key as keyof typeof translations['es']];
+        if (!translation) {
+            console.warn(`Translation missing for key: ${key}`);
+            return key;
+        }
+        return translation;
     };
 
     return (
