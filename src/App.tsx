@@ -20,7 +20,6 @@ function App() {
                 <EventInfo />
                 <HackathonInfo />
                 <Requirements />
-                <Registration />
                 <BlochSphere />
                 <TimelineCountdown />
                 <Partners />
