@@ -179,7 +179,7 @@ const Requirements: React.FC = () => {
 
               {/* Specific Requirements */}
               <div>
-                <div className="flex items-center justify-center mb-8">
+                <div id="inscripcion" className="flex items-center justify-center mb-8">
                   <div className="flex items-center space-x-3 bg-[#467e4a] text-white px-6 py-3 rounded-2xl">
                     <CheckCircle className="w-6 h-6" />
                     <h3 className="text-2xl font-bold">{t('req.hackers.requirements.title')}</h3>
@@ -196,7 +196,7 @@ const Requirements: React.FC = () => {
                   ))}
                 </div>
               </div>
-              <div className="mt-8 text-center">
+              <div  className="mt-8 text-center">
                 <a
                   href="https://forms.gle/8NAtRCLmFr4eq6xy8"
                   target="_blank"
@@ -226,7 +226,7 @@ const Requirements: React.FC = () => {
 
               {/* Specific Requirements */}
               <div>
-                <div className="flex items-center justify-center mb-8">
+                <div id="inscripcion" className="flex items-center justify-center mb-8">
                   <div className="flex items-center space-x-3 bg-[#fd9d24] text-white px-6 py-3 rounded-2xl">
                     <CheckCircle className="w-6 h-6" />
                     <h3 className="text-2xl font-bold">{t('req.mentors.requirements.title')}</h3>

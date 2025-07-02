@@ -1,6 +1,7 @@
 import React from 'react';
 import { Calendar, MapPin, Users, Plane, Utensils, Bed } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import CountdownTimer from './CountDownTimer';
 
 const HackathonInfo = () => {
     const { t } = useLanguage();
@@ -36,7 +37,6 @@ const HackathonInfo = () => {
                         {t('hackathon.title.part1')} {t('hackathon.title.part2')}
                     </h2>
                 </div>
-
                 {/* Event Details Card */}
                 <div className="bg-white rounded-3xl shadow-xl p-8 lg:p-12 mb-12 border border-gray-200">
                     <div className="grid md:grid-cols-2 gap-8 mb-8">
@@ -101,6 +101,10 @@ const HackathonInfo = () => {
                             )}
                         </div>
                     ))}
+                </div>
+                                <div className="mb-16">
+                    <CountdownTimer 
+                    />
                 </div>
             </div>
         </section>

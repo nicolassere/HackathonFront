@@ -51,7 +51,7 @@ const Header = () => {
               {t('nav.requirements')}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
             </a>
-            <a href="#registration" className="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
+            <a href="#inscripcion" className="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
               {t('nav.registration')}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
             </a>
@@ -107,7 +107,7 @@ const Header = () => {
               <a href="#requirements" className="text-slate-700 hover:text-blue-600 transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
                 {t('nav.requirements')}
               </a>
-              <a href="#registration" className="text-slate-700 hover:text-blue-600 transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
+              <a href="#inscripcion" className="text-slate-700 hover:text-blue-600 transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
                 {t('nav.registration')}
               </a>
               <a href="#partners" className="text-slate-700 hover:text-blue-600 transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>

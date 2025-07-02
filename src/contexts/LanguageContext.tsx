@@ -132,6 +132,18 @@ const translations = {
         'hackathon.benefit3': 'Apoyo económico para transporte*',
         'hackathon.benefit3.note': '*sujeto a la disponibilidad de fondos',
         'hackathon.register': '¡Inscríbete Ahora!',
+
+         // Countdown Timer
+        'countdown.remaining': 'Faltan',
+        'countdown.for': 'para',
+        'countdown.started': '¡Ya comenzó!',
+        'countdown.days': 'd',
+        'countdown.hours': 'h',
+        'countdown.minutes': 'm',
+        'countdown.seconds': 's',
+        'countdown.registration': 'el cierre de inscripciones',
+        'countdown.course': 'el inicio del curso preparatorio',
+        'countdown.hackathon': 'el Quantum Climate Hackathon',
     },
     en: {
         // Header
@@ -256,6 +268,16 @@ const translations = {
         'hackathon.benefit3': 'Financial support for transportation*',
         'hackathon.benefit3.note': '*subject to funding availability',
         'hackathon.register': 'Register Now!',
+         'countdown.remaining': 'Only',
+        'countdown.for': 'left for',
+        'countdown.started': 'Already started!',
+        'countdown.days': 'd',
+        'countdown.hours': 'h',
+        'countdown.minutes': 'm',
+        'countdown.seconds': 's',
+        'countdown.registration': 'registration deadline',
+        'countdown.course': 'the preparatory course start',
+        'countdown.hackathon': 'the Quantum Climate Hackathon',
     }
 };
 
