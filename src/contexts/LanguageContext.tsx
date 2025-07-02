@@ -27,6 +27,15 @@ const translations = {
         'events.registration': 'Inscripciones',
         'events.course': 'Curso',
         'events.hackathon': 'Hackathon',
+           // Countdown Timer
+        
+      
+        "countdown.days": "días",
+        "countdown.hours": "hrs",
+        "countdown.minutes": "min",
+        "countdown.seconds": "seg",
+        
+
 
         // EventInfo
         'event.title.part1': 'Computación Cuántica para',
@@ -188,7 +197,15 @@ const translations = {
         'events.registration': 'Registration',
         'events.course': 'Course',
         'events.hackathon': 'Hackathon',
-
+        
+        "countdown.days": "days",
+        "countdown.hours": "hrs",
+        "countdown.minutes": "min",
+        "countdown.seconds": "sec",
+        "extra.registration": "Don't miss out, complete your registration",
+        "extra.course": "Get ready with the preparatory course!",
+        "extra.hackathon": "The main event is coming. See you soon!",
+    
         // Quantum Year Section
         'quantumYear.title': '2025 - International Year of Quantum Science and Technology',
         'quantumYear.subtitle': 'Quantum Hackathon LATAM 2025',
@@ -358,6 +375,13 @@ const translations = {
         'events.registration': 'Inscrições',
         'events.course': 'Curso',
         'events.hackathon': 'Hackathon',
+        "countdown.days": "dias",
+        "countdown.hours": "h",
+        "countdown.minutes": "min",
+        "countdown.seconds": "seg",
+        "extra.registration": "Não fique de fora, finalize sua inscrição",
+        "extra.course": "Prepare-se com tudo no curso prévio!",
+        "extra.hackathon": "O evento principal está chegando. Nos vemos em breve!",
 
         // EventInfo
         'event.title.part1': 'Computação Quântica para',

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { CountdownTimer } from './CountdownTimer';
 
 // 🖼️ Importá las imágenes correspondientes
 import timelineImage from '../../img/ImagenInicial.png';
@@ -8,7 +9,6 @@ import preselectionImage from '../../img/Imagen27_07.png';
 import courseImage from '../../img/Imagen04_08.png';
 import selectionImage from '../../img/imagen_2damedicion.png';
 import hackathonImage from '../../img/Imagen_0210.png';
-import { CountdownTimer } from './CountDownTimer';
 
 interface ColumnData {
   id: string;
@@ -16,9 +16,14 @@ interface ColumnData {
   description: string;
   detailedInfo: {
     dateRange: string;
-    requirements?: string[];
-    activities?: string[];
-    deliverables?: string[];
+    primaryInfo: {
+      title: string;
+      items: string[];
+    };
+    secondaryInfo: {
+      title: string;
+      items: string[];
+    };
     duration?: string;
     participants?: string;
   };
@@ -50,20 +55,27 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
       name: 'Inscripción',
       description: 'Período de registro para el hackathon',
       detailedInfo: {
-        dateRange: '1 - 15 de Julio, 2025',
+        dateRange: '1 - 15 Julio 2025',
         duration: '15 días',
         participants: 'Abierto a todos',
-        requirements: [
-          'Completar formulario de inscripción',
-          'Carta de motivación (máx. 500 palabras)',
-          'CV actualizado',
-          'Conocimientos básicos de programación'
-        ],
-        activities: [
-          'Registro en plataforma oficial',
-          'Verificación de documentos',
-          'Confirmación por email'
-        ]
+        primaryInfo: {
+          title: 'Requisitos',
+          items: [
+            'Completar formulario de inscripción online',
+            'Carta de motivación (máximo 500 palabras)',
+            'CV actualizado en formato PDF',
+            'Conocimientos básicos de programación'
+          ]
+        },
+        secondaryInfo: {
+          title: 'Proceso',
+          items: [
+            'Registro en plataforma oficial del evento',
+            'Verificación automática de documentos',
+            'Confirmación por email dentro de 48hs',
+            'Acceso al canal de comunicación oficial'
+          ]
+        }
       },
       startX: 15,
       endX: 32,
@@ -77,19 +89,27 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
       name: 'Preselección',
       description: 'Evaluación inicial de candidatos',
       detailedInfo: {
-        dateRange: '16 - 27 de Julio, 2025',
+        dateRange: '16 - 27 Julio 2025',
         duration: '12 días',
         participants: 'Candidatos inscritos',
-        activities: [
-          'Revisión de aplicaciones',
-          'Evaluación de perfiles técnicos',
-          'Entrevistas virtuales (opcional)',
-          'Notificación de resultados'
-        ],
-        deliverables: [
-          'Lista de preseleccionados',
-          'Feedback individual por email'
-        ]
+        primaryInfo: {
+          title: 'Evaluación',
+          items: [
+            'Revisión de aplicaciones por comité técnico',
+            'Evaluación de perfiles y experiencia',
+            'Entrevistas virtuales (casos selectos)',
+            'Análisis de compatibilidad con objetivos'
+          ]
+        },
+        secondaryInfo: {
+          title: 'Resultados',
+          items: [
+            'Notificación de resultados vía email',
+            'Lista oficial de preseleccionados',
+            'Feedback personalizado para cada candidato',
+            'Invitación al curso preparatorio'
+          ]
+        }
       },
       startX: 32,
       endX: 49,
@@ -103,25 +123,27 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
       name: 'Curso QWorld',
       description: 'Curso preparatorio de computación cuántica',
       detailedInfo: {
-        dateRange: '28 de Julio - 4 de Agosto, 2025',
+        dateRange: '28 Jul - 4 Ago 2025',
         duration: '1 semana intensiva',
         participants: 'Participantes preseleccionados',
-        requirements: [
-          'Disponibilidad de 20-25 horas semanales',
-          'Acceso a computadora con internet estable',
-          'Participación obligatoria en sesiones en vivo'
-        ],
-        activities: [
-          'Fundamentos de computación cuántica',
-          'Programación con Qiskit',
-          'Algoritmos cuánticos básicos',
-          'Proyecto práctico grupal',
-          'Sesiones de mentoría'
-        ],
-        deliverables: [
-          'Certificado de QWorld',
-          'Proyecto cuántico completado'
-        ]
+        primaryInfo: {
+          title: 'Contenido',
+          items: [
+            'Fundamentos de computación cuántica',
+            'Programación con Qiskit y Python',
+            'Algoritmos cuánticos fundamentales',
+            'Aplicaciones en problemas climáticos'
+          ]
+        },
+        secondaryInfo: {
+          title: 'Metodología',
+          items: [
+            'Sesiones en vivo con expertos internacionales',
+            'Laboratorios prácticos con simuladores',
+            'Proyecto grupal colaborativo',
+            'Certificación oficial de QWorld'
+          ]
+        }
       },
       startX: 49,
       endX: 66,
@@ -135,20 +157,27 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
       name: 'Selección Final',
       description: 'Proceso de selección definitiva de equipos',
       detailedInfo: {
-        dateRange: '5 de Agosto - 1 de Septiembre, 2025',
+        dateRange: '5 Ago - 1 Sep 2025',
         duration: '4 semanas',
         participants: 'Graduados del curso QWorld',
-        activities: [
-          'Evaluación del proyecto QWorld',
-          'Entrevistas técnicas individuales',
-          'Formación de equipos multidisciplinarios',
-          'Asignación de mentores especializados'
-        ],
-        deliverables: [
-          'Equipos finales confirmados',
-          'Acceso a recursos exclusivos',
-          'Kit de herramientas del hackathon'
-        ]
+        primaryInfo: {
+          title: 'Evaluación',
+          items: [
+            'Análisis del proyecto final de QWorld',
+            'Entrevistas técnicas individuales',
+            'Evaluación de habilidades colaborativas',
+            'Compatibilidad para trabajo en equipo'
+          ]
+        },
+        secondaryInfo: {
+          title: 'Formación de Equipos',
+          items: [
+            'Creación de equipos multidisciplinarios',
+            'Asignación de mentores especializados',
+            'Entrega del kit de herramientas',
+            'Acceso a recursos exclusivos del hackathon'
+          ]
+        }
       },
       startX: 66,
       endX: 81,
@@ -162,28 +191,27 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
       name: 'Hackathon',
       description: 'Evento principal: Quantum Climate Hackathon',
       detailedInfo: {
-        dateRange: '2 - 10 de Octubre, 2025',
+        dateRange: '2 - 10 Oct 2025',
         duration: '9 días intensivos',
         participants: 'Equipos seleccionados',
-        requirements: [
-          'Disponibilidad tiempo completo',
-          'Participación presencial/virtual',
-          'Presentación final obligatoria'
-        ],
-        activities: [
-          'Kick-off y presentación de desafíos',
-          'Desarrollo de soluciones cuánticas',
-          'Sesiones de mentoría diarias',
-          'Workshops técnicos especializados',
-          'Demo Day y presentaciones finales',
-          'Ceremonia de premiación'
-        ],
-        deliverables: [
-          'Prototipo funcional',
-          'Documentación técnica completa',
-          'Pitch de 10 minutos',
-          'Código fuente en repositorio'
-        ]
+        primaryInfo: {
+          title: 'Desarrollo',
+          items: [
+            'Kick-off con presentación de desafíos',
+            'Desarrollo intensivo de soluciones',
+            'Sesiones diarias de mentoría especializada',
+            'Workshops técnicos con expertos del sector'
+          ]
+        },
+        secondaryInfo: {
+          title: 'Presentación y Premiación',
+          items: [
+            'Demo Day con presentaciones finales',
+            'Pitch de 10 minutos por equipo',
+            'Evaluación por jurado internacional',
+            'Ceremonia de premiación y networking'
+          ]
+        }
       },
       startX: 83,
       endX: 97,
@@ -217,9 +245,21 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
     ? getColumnData(hoveredColumn)
     : null;
 
+  const formatDateForFolder = (dateRange: string): { month: string; dates: string } => {
+    const [startDate, endDate] = dateRange.split(' - ');
+    const startParts = startDate.trim().split(' ');
+    const endParts = endDate ? endDate.trim().split(' ') : startParts;
+    
+    const month = startParts[1] || startParts[0];
+    const dates = endDate ? `${startParts[0]}-${endParts[0]}` : startParts[0];
+    
+    return { month: month.toUpperCase(), dates };
+  };
+
   return (
     <div
-      className={`w-full min-h-screen py-16 bg-white ${className} max-[930px]:hidden`}    >
+      className={`w-full min-h-screen py-16 bg-white ${className} max-[930px]:hidden ${className}`}
+    >
       <div className="w-full max-w-none px-4 sm:px-6 lg:px-8">
         {/* Imagen dinámica */}
         <div className="relative mb-8 w-full">
@@ -231,7 +271,7 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
             <img
               src={activeColumn?.image || imageSrc}
               alt={imageAlt}
-              className="w-full h-auto rounded-3xl transition-all duration-300"
+              className="w-full h-auto rounded-3xl -2xl transition-all duration-300"
               style={{
                 minHeight: '400px',
                 maxHeight: '600px',
@@ -265,104 +305,116 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
             <div className="bg-white rounded-2xl shadow-xl p-8 border-l-4 border-opacity-80"
                  style={{ borderLeftColor: activeColumn.color.replace('bg-', '').replace('-500', '').replace('-600', '') }}>
               
-              {/* Header con fecha y duración */}
+              {/* Header con información básica */}
               <div className="flex flex-wrap items-center justify-between mb-6 pb-4 border-b border-gray-200">
                 <div>
                   <h2 className={`text-3xl font-bold ${activeColumn.textColor} mb-2`}>
                     {activeColumn.name}
                   </h2>
                   <p className="text-gray-600 text-lg">{activeColumn.description}</p>
-                </div>
-                <div className="text-right">
-                  <div className={`inline-block px-4 py-2 rounded-lg ${activeColumn.color} text-white font-semibold text-lg mb-2`}>
-                    {activeColumn.detailedInfo.dateRange}
-                  </div>
-                  <p className="text-gray-500 text-sm">
-                    Duración: {activeColumn.detailedInfo.duration}
-                  </p>
-                  <p className="text-gray-500 text-sm">
-                    {activeColumn.detailedInfo.participants}
+                  <p className="text-gray-500 text-sm mt-1">
+                    {activeColumn.detailedInfo.participants} • Duración: {activeColumn.detailedInfo.duration}
                   </p>
                 </div>
               </div>
 
-              {/* Contenido en grid */}
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Contenido en grid: 2 cuadrados + 1 carpetita con countdown */}
+              <div className="grid md:grid-cols-3 gap-6">
                 
-                {/* Requisitos */}
-                {activeColumn.detailedInfo.requirements && (
-                  <div className="bg-blue-50 rounded-xl p-6">
-                    <h3 className="font-semibold text-blue-800 mb-3 flex items-center">
-                      <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                      Requisitos
-                    </h3>
-                    <ul className="space-y-2 text-sm text-blue-700">
-                      {activeColumn.detailedInfo.requirements.map((req, index) => (
-                        <li key={index} className="flex items-start">
-                          <span className="text-blue-400 mr-2 mt-1">•</span>
-                          {req}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+                {/* Primer cuadrado */}
+                <div className="bg-blue-50 rounded-xl p-6 transform hover:scale-105 transition-transform duration-200">
+                  <h3 className="font-semibold text-blue-800 mb-4 flex items-center">
+                    <span className="w-3 h-3 bg-blue-500 rounded-full mr-3"></span>
+                    {activeColumn.detailedInfo.primaryInfo.title}
+                  </h3>
+                  <ul className="space-y-3 text-sm text-blue-700">
+                    {activeColumn.detailedInfo.primaryInfo.items.map((item, index) => (
+                      <li key={index} className="flex items-start">
+                        <span className="text-blue-400 mr-3 mt-1 text-lg">•</span>
+                        <span className="leading-relaxed">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
-                {/* Actividades */}
-                {activeColumn.detailedInfo.activities && (
-                  <div className="bg-green-50 rounded-xl p-6">
-                    <h3 className="font-semibold text-green-800 mb-3 flex items-center">
-                      <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                      Actividades
-                    </h3>
-                    <ul className="space-y-2 text-sm text-green-700">
-                      {activeColumn.detailedInfo.activities.map((activity, index) => (
-                        <li key={index} className="flex items-start">
-                          <span className="text-green-400 mr-2 mt-1">•</span>
-                          {activity}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+                {/* Segundo cuadrado */}
+                <div className="bg-green-50 rounded-xl p-6 transform hover:scale-105 transition-transform duration-200">
+                  <h3 className="font-semibold text-green-800 mb-4 flex items-center">
+                    <span className="w-3 h-3 bg-green-500 rounded-full mr-3"></span>
+                    {activeColumn.detailedInfo.secondaryInfo.title}
+                  </h3>
+                  <ul className="space-y-3 text-sm text-green-700">
+                    {activeColumn.detailedInfo.secondaryInfo.items.map((item, index) => (
+                      <li key={index} className="flex items-start">
+                        <span className="text-green-400 mr-3 mt-1 text-lg">•</span>
+                        <span className="leading-relaxed">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
-                {/* Entregables */}
-                {activeColumn.detailedInfo.deliverables && (
-                  <div className="bg-purple-50 rounded-xl p-6">
-                    <h3 className="font-semibold text-purple-800 mb-3 flex items-center">
-                      <span className="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
-                      Entregables
-                    </h3>
-                    <ul className="space-y-2 text-sm text-purple-700">
-                      {activeColumn.detailedInfo.deliverables.map((deliverable, index) => (
-                        <li key={index} className="flex items-start">
-                          <span className="text-purple-400 mr-2 mt-1">•</span>
-                          {deliverable}
-                        </li>
-                      ))}
-                    </ul>
+                {/* Carpetita de fecha con countdown integrado */}
+                <div className="relative">
+                  <div className="bg-gradient-to-br from-amber-100 to-amber-200 rounded-xl p-6 border border-amber-300 shadow-lg transform hover:scale-105 transition-all duration-300 relative overflow-hidden">
+                    {/* Efecto de carpeta doblada */}
+                    <div className="absolute top-0 right-0 w-8 h-8 bg-gradient-to-bl from-amber-300 to-amber-400 transform rotate-45 translate-x-4 -translate-y-4"></div>
+                    <div className="absolute top-2 right-2 w-6 h-6 bg-gradient-to-bl from-amber-200 to-amber-300 border-l border-b border-amber-400"></div>
+                    
+                    <div className="text-center">
+                      <div className="mb-3">
+                        <span className="inline-block w-8 h-8 bg-amber-600 rounded-full flex items-center justify-center text-white text-lg mb-2">
+                          📅
+                        </span>
+                      </div>
+                      
+                      <h3 className="font-bold text-amber-800 text-lg mb-2">
+                        Fechas Importantes
+                      </h3>
+                      
+                      <div className="bg-white/80 rounded-lg p-4 backdrop-blur-sm mb-4">
+                        <div className="text-2xl font-bold text-amber-900 mb-1">
+                          {formatDateForFolder(activeColumn.detailedInfo.dateRange).dates}
+                        </div>
+                        <div className="text-sm font-semibold text-amber-700 uppercase tracking-wider">
+                          {formatDateForFolder(activeColumn.detailedInfo.dateRange).month}
+                        </div>
+                        <div className="text-xs text-amber-600 mt-2 font-medium">
+                          {activeColumn.detailedInfo.duration}
+                        </div>
+                      </div>
+
+                      {/* Countdown Timer integrado */}
+                      <div className="bg-white/90 rounded-lg p-3 backdrop-blur-sm">
+                        <CountdownTimer
+                          eventType={activeColumn.id as any}
+                          targetDate={activeColumn.targetDate}
+                          className="w-full"
+                        />
+                      </div>
+                      
+                      <div className="mt-3 text-xs text-amber-700 font-medium">
+                        {activeColumn.detailedInfo.participants}
+                      </div>
+                    </div>
                   </div>
-                )}
+                </div>
+
               </div>
             </div>
-          </div>
-        )}
-
-        {/* Timer */}
-        {activeColumn && (
-          <div className="w-full max-w-5xl mx-auto">
-            <CountdownTimer
-              eventType={activeColumn.id as any}
-              targetDate={activeColumn.targetDate}
-              className="w-full"
-            />
           </div>
         )}
 
         {/* Instrucción cuando no hay hover */}
         {!activeColumn && (
           <div className="text-center py-8">
-            <p className="text-gray-500 text-lg">
-              📅 Pasa el cursor sobre la imagen para ver los detalles de cada fase
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
+              <span className="text-2xl">👆</span>
+            </div>
+            <p className="text-gray-500 text-lg font-medium">
+              Pasa el cursor sobre la imagen para explorar cada fase
+            </p>
+            <p className="text-gray-400 text-sm mt-2">
+              Descubre requisitos, actividades y fechas importantes
             </p>
           </div>
         )}
