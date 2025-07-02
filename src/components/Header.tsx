@@ -100,12 +100,12 @@ const Header = () => {
                 <button
                   onClick={() => setLanguage('pt')}
                   className={`flex items-center justify-center space-x-1 w-12 h-8 rounded-lg transition-all ${
-                  language === 'en'
+                  language === 'pt'
                     ? 'bg-[#f0e6c8] text-[#a2832f] shadow-sm'
                     : 'text-slate-600 hover:text-[#a2832f]'
                 }`}
               >
-                <img src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/1f1ec-1f1e7.png" alt="PT" className="h-5 w-5"/>
+                <img src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/1f1f5-1f1f9.png" alt="PT" className="h-5 w-5"/>
                 <span className="text-sm font-medium">PT</span>
               </button>
             </div>
