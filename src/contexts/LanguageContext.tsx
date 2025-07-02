@@ -17,6 +17,17 @@ const translations = {
         'nav.registration': 'Registro',
         'nav.partners': 'Colaboradores',
 
+        // Countdown
+        'countdown.remaining': 'Tiempo restante',
+        'countdown.for': 'para',
+        'countdown.started': '¡Ya comenzó!',
+        'countdown.registration': 'el cierre de inscripciones',
+        'countdown.course': 'el inicio del curso preparatorio',
+        'countdown.hackathon': 'el Quantum Climate Hackathon',
+        'events.registration': 'Inscripciones',
+        'events.course': 'Curso',
+        'events.hackathon': 'Hackathon',
+
         // EventInfo
         'event.title.part1': 'Computación Cuántica para',
         'event.title.part2': 'Acción Climática',
@@ -112,7 +123,7 @@ const translations = {
         'footer.partners': 'Colaboradores',
         'footer.contactFollow': 'Contacto y síguenos',
         'footer.followUs': 'Síguenos',
-        'footer.langSwitch': 'Versión en Español',
+        'footer.langSwitch': 'English Version',
 
         // HackathonInfo
         'hackathon.title.part1': 'Una hackathon presencial,',
@@ -158,6 +169,17 @@ const translations = {
         'nav.requirements': 'Requirements',
         'nav.registration': 'Registration',
         'nav.partners': 'Partners',
+
+        // Countdown
+        'countdown.remaining': 'Time remaining',
+        'countdown.for': 'until',
+        'countdown.started': 'Started!',
+        'countdown.registration': 'registration closes',
+        'countdown.course': 'the preparation course begins',
+        'countdown.hackathon': 'the Quantum Climate Hackathon',
+        'events.registration': 'Registration',
+        'events.course': 'Course',
+        'events.hackathon': 'Hackathon',
 
         // EventInfo
         'event.title.part1': 'Quantum Computing for',
@@ -254,7 +276,7 @@ const translations = {
         'footer.partners': 'Partners',
         'footer.contactFollow': 'Contact & Follow Us',
         'footer.followUs': 'Follow Us',
-        'footer.langSwitch': 'English Version',
+        'footer.langSwitch': 'Versión en Español',
 
         // HackathonInfo
         'hackathon.title.part1': 'An in-person,',
@@ -301,7 +323,12 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     const [language, setLanguage] = useState<Language>('es');
 
     const t = (key: string): string => {
-        return translations[language][key as keyof typeof translations['es']] || key;
+        const translation = translations[language][key as keyof typeof translations['es']];
+        if (!translation) {
+            console.warn(`Translation missing for key: ${key}`);
+            return key;
+        }
+        return translation;
     };
 
     return (
