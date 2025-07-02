@@ -89,7 +89,7 @@ const QuantumYearSection = () => {
                                 <div className="flex items-center justify-center mb-4 h-16">
                                     <a href="https://quantum2025.org" target="_blank" rel="noopener noreferrer">
                                         <img
-                                            src="https://quantum2025.org/wp-content/uploads/2024/12/IYQST-horiz-rgb.png"
+                                            src="img/Partners/Quantum2025.png"
                                             alt="UNESCO 2025"
                                             className="max-h-full max-w-full object-contain"
                                         />
@@ -102,7 +102,7 @@ const QuantumYearSection = () => {
                                 <div className="flex items-center justify-center mb-4 h-16">
                                     <a href="https://open-quantum-institute.cern/" target="_blank" rel="noopener noreferrer">
                                         <img
-                                            src="https://hackathon.nyuad.nyu.edu/wp-content/uploads/2025/02/OQI-Logo-2.png"
+                                            src="img/Partners/OQI_Logo_2024_d.png"
                                             alt="Open Quantum Institute"
                                             className="max-h-full max-w-full object-contain"
                                         />

@@ -8,19 +8,19 @@ const Partners: React.FC = () => {
       name: "Open Quantum Institute",
       description: "CERN's initiative advancing quantum technology for humanity",
       url: "https://open-quantum-institute.cern/",
-      logo: "https://hackathon.nyuad.nyu.edu/wp-content/uploads/2025/02/OQI-Logo-2.png"
+      logo: "img/Partners/OQI_Logo_2024_d.png"
     },
     {
       name: "Quantum 2025",
       description: "Leading quantum computing conference",
       url: "https://quantum2025.org/es/",
-      logo: "https://quantum2025.org/wp-content/uploads/2024/12/IYQST-horiz-rgb.png"
+      logo: "img/Partners/Quantum2025.png"
     },
     {
       name: "IEEE Region 9",
       description: "IEEE Latin America and Caribbean",
       url: "https://r9.ieee.org/",
-      logo: "https://r9.ieee.org/wp-content/uploads/2022/04/20-DCI-335-Region9ALT_Identifier_RGB_Color-Horizontal.png"
+      logo: "img/Partners/IeeeR9.png"
     }
   ];
 
@@ -35,7 +35,7 @@ const Partners: React.FC = () => {
       name: "RIPAISAC",
       description: "Latin American Network for High Performance Computing",
       url: "https://www.ripaisc.net/",
-      logo: "https://media.licdn.com/dms/image/sync/v2/D4D27AQHA7f1pjl_03A/articleshare-shrink_800/articleshare-shrink_800/0/1742373478918?e=2147483647&v=beta&t=bQNRl6jwvZNLgcwRpM7caDelgHedZw4QRtJvK-GZPxA"
+      logo: "img/Partners/Ripaisc.png"
     },
   ];
 
