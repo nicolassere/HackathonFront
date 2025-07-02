@@ -1,41 +1,67 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 
-
 const QuantumYearSection = () => {
     const { t } = useLanguage();
 
-    // Array de fotos de Uruguay
+    // Array de fotos de Uruguay - una para cada letra de MONTEVIDEO
     const uruguayPhotos = [
         {
-            src: 'https://cdn-italiani-media.italiani.it/site-montevideo/sites/84/2020/04/Rambla-de-Montevideo-Parque-Rodo.jpg',
-            alt: 'Montevideo',
+            src: 'https://www.peñarol.org/imgnoticias/202501/W723_H488/26970.jpeg',
+            alt: 'Montevideo - M',
             caption: 'Montevideo'
         },
         {
-            src: 'https://www.peñarol.org/imgnoticias/202101/22314.jpeg',
-            alt: 'Campeon del Siglo',
-            caption: 'Campeón del Siglo'
+            src: 'https://www.geaconsultores.com/wp-content/uploads/2018/01/CAP.jpg',
+            alt: 'Montevideo - O',
+            caption: 'Rambla'
         },
         {
-            src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-HzBZF32jm2GlG0iIQbLbMYQRAlyrFptSSQ&s',
-            alt: 'Rio Negro',
-            caption: 'Río Negro'
+            src: 'https://a.espncdn.com/photo/2024/0515/r1333421_1296x729_16-9.jpg',
+            alt: 'Montevideo - N',
+            caption: 'Ciudad Vieja'
         },
         {
-            src: 'https://www.awahotel.com/assets/cache/uploads/entorno/1920x1080/punta-del-este-uruguay-awa-boutique-design-hotel-1724749818.jpeg',
-            alt: 'Cabo Polonio',
-            caption: 'Cabo Polonio'
+            src: 'https://media.carasycaretas.com.uy/p/222531da77930975e51f1b85a0250f62/adjuntos/328/imagenes/000/101/0000101916/dan_2794jpg.jpg',
+            alt: 'Montevideo - T',
+            caption: 'Teatro Solís'
         },
         {
-            src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqAEhICC1_AKgQG2jSmQfK8ciKcgkXnY37GA&s',
-            alt: 'UM',
-            caption: 'UM'
+            src: 'https://www.peñarol.org/imgnoticias/202501/W723_H488/26970.jpeg',
+            alt: 'Montevideo - E',
+            caption: 'Estadio Centenario'
+        },
+        {
+            src: 'https://www.peñarol.org/imgnoticias/202501/W723_H488/26970.jpeg',
+            alt: 'Montevideo - V',
+            caption: 'Puerto'
+        },
+        {
+            src: 'https://www.peñarol.org/imgnoticias/202501/W723_H488/26970.jpeg',
+            alt: 'Montevideo - I',
+            caption: 'Palacio Legislativo'
+        },
+        {
+            src: 'https://www.peñarol.org/imgnoticias/202501/W723_H488/26970.jpeg',
+            alt: 'Montevideo - D',
+            caption: 'Mercado del Puerto'
+        },
+        {
+            src: 'https://www.peñarol.org/imgnoticias/202501/W723_H488/26970.jpeg',
+            alt: 'Montevideo - E',
+            caption: 'Parque Rodó'
+        },
+        {
+            src: 'https://www.peñarol.org/imgnoticias/202501/W723_H488/26970.jpeg',
+            alt: 'Montevideo - O',
+            caption: 'Plaza Independencia'
         }
     ];
 
     const [currentPhoto, setCurrentPhoto] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
+
+    const montevideoLetters = 'MONTEVIDEO'.split('');
 
     // Cambio automático de fotos cada 4 segundos
     useEffect(() => {
@@ -59,7 +85,7 @@ const QuantumYearSection = () => {
                 {/* UNESCO/Quantum Year Header */}
                 <div className="text-center mb-12">
                     <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4 leading-tight">
-                     {t('quantumYear.title')}
+                        {t('quantumYear.title')}
                     </h2>
                     <div className="w-24 h-1 bg-gradient-to-r from-amber-400 to-orange-400 mx-auto mb-8"></div>
                 </div>
@@ -98,7 +124,6 @@ const QuantumYearSection = () => {
                                 </div>
                             </div>
 
-
                             <div className="bg-white/80 rounded-2xl p-6 border border-blue-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                                 <div className="flex items-center justify-center mb-4 h-16">
                                     <a href="https://open-quantum-institute.cern/" target="_blank" rel="noopener noreferrer">
@@ -122,25 +147,16 @@ const QuantumYearSection = () => {
                                     </a>
                                 </div>
                             </div>
-
                         </div>
                     </div>
 
-                    {/* Right side - Uruguay Image Placeholder */}
-                    <div className="space-y-6">
-                        {/* Main Image Container */}
-                        <div className="relative group">
-                            <div className="bg-white/90 rounded-3xl p-6 border border-amber-200 shadow-xl">
-                                <h3 className="text-xl font-bold text-slate-900 mb-4 text-center">
-                                    {t('quantumYear.photoTitle')}
-                                </h3>
-
-                                <p className="text-center text-slate-600 mb-4 text-sm">
-                                    {t('quantumYear.photoDescription')}
-                                </p>
-
-                                {/* Image Carousel */}
-                                <div className="relative aspect-video rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-green-100 via-blue-100 to-green-200">
+                    {/* Right side - Circular Images with MONTEVIDEO */}
+                    <div className="flex flex-col items-center space-y-8">
+                        {/* Circular Image Container */}
+                        <div className="relative">
+                            <div className="w-80 h-80 relative">
+                                {/* Image Carousel - Circular */}
+                                <div className="relative w-full h-full rounded-full overflow-hidden shadow-2xl bg-gradient-to-br from-green-100 via-blue-100 to-green-200 border-4 border-white">
                                     {isLoading && (
                                         <div className="absolute inset-0 flex items-center justify-center">
                                             <div className="text-center">
@@ -157,50 +173,49 @@ const QuantumYearSection = () => {
                                         onLoad={() => setIsLoading(false)}
                                         onError={(e) => {
                                             setIsLoading(false);
-                                            // Ocultar imagen fallida
                                             e.currentTarget.classList.add('hidden');
-                                            // Mostrar placeholder de fallback
                                             const fallback = e.currentTarget.parentNode.querySelector('.fallback-placeholder');
                                             if (fallback) fallback.classList.remove('hidden');
                                         }}
                                     />
-                                    <div className="fallback-placeholder absolute inset-0 bg-gradient-to-br from-green-100 via-blue-100 to-green-200 border-2 border-dashed border-green-300 flex flex-col items-center justify-center text-center p-8 hidden">
+
+                                    <div className="fallback-placeholder absolute inset-0 bg-gradient-to-br from-green-100 via-blue-100 to-green-200 border-2 border-dashed border-green-300 flex flex-col items-center justify-center text-center p-8 hidden rounded-full">
                                         <div className="text-6xl mb-4">🏞️</div>
                                         <p className="text-slate-600 text-lg font-medium">
                                             {uruguayPhotos[currentPhoto].caption}
                                         </p>
-                                        <p className="text-slate-500 text-sm mt-2">
-                                            (Imagen no disponible)
-                                        </p>
                                     </div>
 
-                                    {/* Caption overlay */}
+                                    {/* Navigation dots - positioned around the circle */}
                                     {!isLoading && (
-                                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                                            <p className="text-white font-medium text-lg">
-                                                {uruguayPhotos[currentPhoto].caption}
-                                            </p>
-                                        </div>
-                                    )}
+                                        <div className="absolute inset-0">
+                                            {uruguayPhotos.map((_, index) => {
+                                                const angle = (index * 36) - 90; // 360/10 = 36 degrees per photo
+                                                const radius = 130; // Distance from center
+                                                const x = Math.cos(angle * Math.PI / 180) * radius;
+                                                const y = Math.sin(angle * Math.PI / 180) * radius;
 
-                                    {/* Navigation dots */}
-                                    {!isLoading && (
-                                        <div className="absolute bottom-4 right-4 flex space-x-2">
-                                            {uruguayPhotos.map((_, index) => (
-                                                <button
-                                                    key={index}
-                                                    onClick={() => {
-                                                        setCurrentPhoto(index);
-                                                        setIsLoading(true);
-                                                    }}
-                                                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                                                        index === currentPhoto
-                                                            ? 'bg-white scale-110'
-                                                            : 'bg-white/50 hover:bg-white/75'
-                                                    }`}
-                                                    aria-label={`Ver foto ${index + 1}`}
-                                                />
-                                            ))}
+                                                return (
+                                                    <button
+                                                        key={index}
+                                                        onClick={() => {
+                                                            setCurrentPhoto(index);
+                                                            setIsLoading(true);
+                                                        }}
+                                                        className={`absolute w-4 h-4 rounded-full transition-all duration-300 ${
+                                                            index === currentPhoto
+                                                                ? 'bg-green-600 scale-125 shadow-lg'
+                                                                : 'bg-white/60 hover:bg-white/80 shadow-md'
+                                                        }`}
+                                                        style={{
+                                                            left: `calc(50% + ${x}px)`,
+                                                            top: `calc(50% + ${y}px)`,
+                                                            transform: 'translate(-50%, -50%)'
+                                                        }}
+                                                        aria-label={`Ver foto ${index + 1}`}
+                                                    />
+                                                );
+                                            })}
                                         </div>
                                     )}
 
@@ -214,8 +229,8 @@ const QuantumYearSection = () => {
                                                     );
                                                     setIsLoading(true);
                                                 }}
-                                                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100"
-                                                aria-label=""
+                                                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all duration-300 opacity-0 hover:opacity-100"
+                                                aria-label="Foto anterior"
                                             >
                                                 ←
                                             </button>
@@ -225,7 +240,7 @@ const QuantumYearSection = () => {
                                                     setCurrentPhoto((prev) => (prev + 1) % uruguayPhotos.length);
                                                     setIsLoading(true);
                                                 }}
-                                                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100"
+                                                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all duration-300 opacity-0 hover:opacity-100"
                                                 aria-label="Foto siguiente"
                                             >
                                                 →
@@ -236,7 +251,34 @@ const QuantumYearSection = () => {
                             </div>
                         </div>
 
-                        {/* Additional Info Card */}
+                        {/* MONTEVIDEO Letters */}
+                        <div className="flex space-x-3 text-4xl font-bold">
+                            {montevideoLetters.map((letter, index) => {
+                                const isActive = currentPhoto === index;
+                                return (
+                                    <span
+                                        key={index}
+                                        className={`transition-all duration-500 ${
+                                            isActive
+                                                ? 'text-green-600 scale-125 text-5xl'
+                                                : 'text-slate-400'
+                                        }`}
+                                        style={{
+                                            textShadow: isActive ? '0 4px 6px rgba(0,0,0,0.1)' : 'none'
+                                        }}
+                                    >
+                                        {letter}
+                                    </span>
+                                );
+                            })}
+                        </div>
+
+                        {/* Caption */}
+                        <div className="text-center">
+                            <p className="text-xl font-medium text-slate-700">
+                                {uruguayPhotos[currentPhoto].caption}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
