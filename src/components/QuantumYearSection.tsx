@@ -1,384 +1,428 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
+import { CountdownTimer } from './CountdownTimer';
 
-const QuantumYearSection = () => {
-    // Array de fotos de Uruguay
-    const uruguayPhotos = [
-        {
-            src: 'https://cdn-italiani-media.italiani.it/site-montevideo/sites/84/2020/04/Rambla-de-Montevideo-Parque-Rodo.jpg',
-            alt: 'Montevideo',
-            caption: 'Montevideo'
+// 🖼️ Importá las imágenes correspondientes
+import timelineImage from '../../img/ImagenInicial.png';
+import registrationImage from '../../img/Imagen15_07.png';
+import preselectionImage from '../../img/Imagen27_07.png';
+import courseImage from '../../img/Imagen04_08.png';
+import selectionImage from '../../img/imagen_2damedicion.png';
+import hackathonImage from '../../img/Imagen_0210.png';
+
+interface ColumnData {
+  id: string;
+  name: string;
+  description: string;
+  detailedInfo: {
+    dateRange: string;
+    primaryInfo: {
+      title: string;
+      items: string[];
+    };
+    secondaryInfo: {
+      title: string;
+      items: string[];
+    };
+    duration?: string;
+    participants?: string;
+  };
+  startX: number;
+  endX: number;
+  color: string;
+  textColor: string;
+  image: string;
+  targetDate: string;
+}
+
+interface InteractiveTimelineProps {
+  className?: string;
+  imageSrc?: string;
+  imageAlt?: string;
+}
+
+const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
+  className = '',
+  imageSrc = timelineImage,
+  imageAlt = 'Timeline del Hackathon',
+}) => {
+  const [hoveredColumn, setHoveredColumn] = useState<string | null>(null);
+  const { t } = useLanguage();
+
+  const columns: ColumnData[] = [
+    {
+      id: 'registration',
+      name: 'Inscripción',
+      description: 'Período de registro para el hackathon',
+      detailedInfo: {
+        dateRange: '1 - 15 Julio 2025',
+        duration: '15 días',
+        participants: 'Abierto a todos',
+        primaryInfo: {
+          title: 'Requisitos',
+          items: [
+            'Completar formulario de inscripción online',
+            'Carta de motivación (máximo 500 palabras)',
+            'CV actualizado en formato PDF',
+            'Conocimientos básicos de programación'
+          ]
         },
-        {
-            src: 'https://www.peñarol.org/imgnoticias/202101/22314.jpeg',
-            alt: 'Campeon del Siglo',
-            caption: 'Campeón del Siglo'
-        },
-        {
-            src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-HzBZF32jm2GlG0iIQbLbMYQRAlyrFptSSQ&s',
-            alt: 'Rio Negro',
-            caption: 'Río Negro'
-        },
-        {
-            src: 'https://www.awahotel.com/assets/cache/uploads/entorno/1920x1080/punta-del-este-uruguay-awa-boutique-design-hotel-1724749818.jpeg',
-            alt: 'Cabo Polonio',
-            caption: 'Cabo Polonio'
-        },
-        {
-            src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqAEhICC1_AKgQG2jSmQfK8ciKcgkXnY37GA&s',
-            alt: 'Salto',
-            caption: 'Salto'
+        secondaryInfo: {
+          title: 'Proceso',
+          items: [
+            'Registro en plataforma oficial del evento',
+            'Verificación automática de documentos',
+            'Confirmación por email dentro de 48hs',
+            'Acceso al canal de comunicación oficial'
+          ]
         }
-    ];
+      },
+      startX: 15,
+      endX: 32,
+      color: 'bg-cyan-500',
+      textColor: 'text-cyan-700',
+      image: registrationImage,
+      targetDate: '2025-07-15T23:59:59',
+    },
+    {
+      id: 'preselection',
+      name: 'Preselección',
+      description: 'Evaluación inicial de candidatos',
+      detailedInfo: {
+        dateRange: '16 - 27 Julio 2025',
+        duration: '12 días',
+        participants: 'Candidatos inscritos',
+        primaryInfo: {
+          title: 'Evaluación',
+          items: [
+            'Revisión de aplicaciones por comité técnico',
+            'Evaluación de perfiles y experiencia',
+            'Entrevistas virtuales (casos selectos)',
+            'Análisis de compatibilidad con objetivos'
+          ]
+        },
+        secondaryInfo: {
+          title: 'Resultados',
+          items: [
+            'Notificación de resultados vía email',
+            'Lista oficial de preseleccionados',
+            'Feedback personalizado para cada candidato',
+            'Invitación al curso preparatorio'
+          ]
+        }
+      },
+      startX: 32,
+      endX: 49,
+      color: 'bg-cyan-500',
+      textColor: 'text-cyan-700',
+      image: preselectionImage,
+      targetDate: '2025-07-27T23:59:59',
+    },
+    {
+      id: 'course',
+      name: 'Curso QWorld',
+      description: 'Curso preparatorio de computación cuántica',
+      detailedInfo: {
+        dateRange: '28 Jul - 4 Ago 2025',
+        duration: '1 semana intensiva',
+        participants: 'Participantes preseleccionados',
+        primaryInfo: {
+          title: 'Contenido',
+          items: [
+            'Fundamentos de computación cuántica',
+            'Programación con Qiskit y Python',
+            'Algoritmos cuánticos fundamentales',
+            'Aplicaciones en problemas climáticos'
+          ]
+        },
+        secondaryInfo: {
+          title: 'Metodología',
+          items: [
+            'Sesiones en vivo con expertos internacionales',
+            'Laboratorios prácticos con simuladores',
+            'Proyecto grupal colaborativo',
+            'Certificación oficial de QWorld'
+          ]
+        }
+      },
+      startX: 49,
+      endX: 66,
+      color: 'bg-green-500',
+      textColor: 'text-green-700',
+      image: courseImage,
+      targetDate: '2025-08-04T09:00:00',
+    },
+    {
+      id: 'selection',
+      name: 'Selección Final',
+      description: 'Proceso de selección definitiva de equipos',
+      detailedInfo: {
+        dateRange: '5 Ago - 1 Sep 2025',
+        duration: '4 semanas',
+        participants: 'Graduados del curso QWorld',
+        primaryInfo: {
+          title: 'Evaluación',
+          items: [
+            'Análisis del proyecto final de QWorld',
+            'Entrevistas técnicas individuales',
+            'Evaluación de habilidades colaborativas',
+            'Compatibilidad para trabajo en equipo'
+          ]
+        },
+        secondaryInfo: {
+          title: 'Formación de Equipos',
+          items: [
+            'Creación de equipos multidisciplinarios',
+            'Asignación de mentores especializados',
+            'Entrega del kit de herramientas',
+            'Acceso a recursos exclusivos del hackathon'
+          ]
+        }
+      },
+      startX: 66,
+      endX: 81,
+      color: 'bg-orange-500',
+      textColor: 'text-orange-700',
+      image: selectionImage,
+      targetDate: '2025-09-01T23:59:59',
+    },
+    {
+      id: 'hackathon',
+      name: 'Hackathon',
+      description: 'Evento principal: Quantum Climate Hackathon',
+      detailedInfo: {
+        dateRange: '2 - 10 Oct 2025',
+        duration: '9 días intensivos',
+        participants: 'Equipos seleccionados',
+        primaryInfo: {
+          title: 'Desarrollo',
+          items: [
+            'Kick-off con presentación de desafíos',
+            'Desarrollo intensivo de soluciones',
+            'Sesiones diarias de mentoría especializada',
+            'Workshops técnicos con expertos del sector'
+          ]
+        },
+        secondaryInfo: {
+          title: 'Presentación y Premiación',
+          items: [
+            'Demo Day con presentaciones finales',
+            'Pitch de 10 minutos por equipo',
+            'Evaluación por jurado internacional',
+            'Ceremonia de premiación y networking'
+          ]
+        }
+      },
+      startX: 83,
+      endX: 97,
+      color: 'bg-orange-600',
+      textColor: 'text-orange-700',
+      image: hackathonImage,
+      targetDate: '2025-10-01T09:00:00',
+    },
+  ];
 
-    const [currentPhoto, setCurrentPhoto] = useState(0);
-    const [imagesLoaded, setImagesLoaded] = useState({});
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const percentage = (x / rect.width) * 100;
 
-<<<<<<< HEAD
-=======
-    const montevideoLetters = 'MONTEVIDEO'.split('');
-
-    // Precargar todas las imágenes al montar el componente
-    useEffect(() => {
-        uruguayPhotos.forEach((photo, index) => {
-            const img = new Image();
-            img.onload = () => {
-                setImagesLoaded(prev => ({ ...prev, [index]: true }));
-            };
-            img.src = photo.src;
-        });
-    }, []);
-
->>>>>>> a4fd95b3f02c02571861194024695d702c098b6a
-    // Cambio automático de fotos cada 4 segundos
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentPhoto((prev) => (prev + 1) % uruguayPhotos.length);
-        }, 4000);
-
-        return () => clearInterval(interval);
-    }, []);
-
-    return (
-        <section className="py-16 bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 relative overflow-hidden">
-            {/* Background decorative elements */}
-            <div className="absolute inset-0 opacity-5">
-                <div className="absolute top-20 left-10 w-32 h-32 rounded-full bg-amber-400"></div>
-                <div className="absolute bottom-20 right-10 w-24 h-24 rounded-full bg-orange-400"></div>
-                <div className="absolute top-40 right-1/4 w-16 h-16 rounded-full bg-yellow-400"></div>
-            </div>
-
-            <div className="max-w-7xl mx-auto px-4 relative">
-                {/* UNESCO/Quantum Year Header */}
-                <div className="text-center mb-12">
-                    <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4 leading-tight">
-                        2025 - Año Internacional de la Ciencia y Tecnología Cuántica
-                    </h2>
-                    <div className="w-24 h-1 bg-gradient-to-r from-amber-400 to-orange-400 mx-auto mb-8"></div>
-                </div>
-
-                {/* Main Content Grid */}
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                    {/* Left side - Text Content */}
-                    <div className="space-y-8">
-                        {/* Main Description Card */}
-                        <div className="bg-white/90 rounded-3xl p-8 border border-amber-200 shadow-xl">
-                            <div className="flex items-center space-x-3 mb-6">
-                                <div className="w-12 h-12 rounded-xl flex items-center justify-center overflow-hidden">
-                                    <img
-                                        src="img/logo_um/img.png"
-                                        alt="Universidad de Montevideo"
-                                        className="w-full h-full object-contain"
-                                    />
-                                </div>
-                                <h3 className="text-2xl font-bold text-slate-900">
-                                    Quantum Hackathon LATAM 2025
-                                </h3>
-                            </div>
-
-                            <p className="text-lg text-slate-700 leading-relaxed">
-                                <strong className="text-green-600">Quantum Hackathon LATAM 2025</strong> es una iniciativa de la
-                                Universidad de Montevideo, organizada en colaboración con el Open Quantum Institute (CERN),
-                                como parte de las actividades para el Año Internacional de la Ciencia y Tecnología Cuántica,
-                                declarado por UNESCO para 2025.
-                            </p>
-                        </div>
-
-                        {/* Organizations Highlights */}
-                        <div className="grid md:grid-cols-3 gap-4">
-                            <div className="bg-white/80 rounded-2xl p-6 border border-amber-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                                <div className="flex items-center justify-center mb-4 h-16">
-                                    <a href="https://quantum2025.org" target="_blank" rel="noopener noreferrer">
-                                        <img
-                                            src="https://quantum2025.org/wp-content/uploads/2024/12/IYQST-horiz-rgb.png"
-                                            alt="UNESCO 2025"
-                                            className="max-h-full max-w-full object-contain"
-                                        />
-                                    </a>
-                                </div>
-                            </div>
-
-
-                            <div className="bg-white/80 rounded-2xl p-6 border border-blue-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                                <div className="flex items-center justify-center mb-4 h-16">
-                                    <a href="https://open-quantum-institute.cern/" target="_blank" rel="noopener noreferrer">
-                                        <img
-                                            src="https://hackathon.nyuad.nyu.edu/wp-content/uploads/2025/02/OQI-Logo-2.png"
-                                            alt="Open Quantum Institute"
-                                            className="max-h-full max-w-full object-contain"
-                                        />
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div className="bg-white/80 rounded-2xl p-6 border border-green-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                                <div className="flex items-center justify-center mb-4 h-16">
-                                    <a href="https://www.um.edu.uy" target="_blank" rel="noopener noreferrer">
-                                        <img
-                                            src="https://www.um.edu.uy/themes/custom/um/images/logo.png"
-                                            alt="Universidad de Montevideo"
-                                            className="max-h-full max-w-full object-contain"
-                                        />
-                                    </a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-<<<<<<< HEAD
-                    {/* Right side - Uruguay Image Placeholder */}
-                    <div className="space-y-6">
-                        {/* Main Image Container */}
-                        <div className="relative group">
-                            <div className="bg-white/90 rounded-3xl p-6 border border-amber-200 shadow-xl">
-                                <h3 className="text-xl font-bold text-slate-900 mb-4 text-center">
-                                    🇺🇾 Hermosos paisajes de Uruguay
-                                </h3>
-
-                                <p className="text-center text-slate-600 mb-4 text-sm">
-                                    Descubre los lugares más emblemáticos de nuestro país anfitrión
-                                </p>
-
-                                {/* Image Carousel */}
-                                <div className="relative aspect-video rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-green-100 via-blue-100 to-green-200">
-                                    {isLoading && (
-                                        <div className="absolute inset-0 flex items-center justify-center">
-=======
-                    {/* Right side - Circular Images with MONTEVIDEO */}
-                    <div className="flex flex-col items-center space-y-8">
-                        {/* Circular Image Container */}
-                        <div className="relative">
-                            <div className="w-80 h-80 relative">
-                                {/* Image Carousel - Circular */}
-                                <div className="relative w-full h-full rounded-full overflow-hidden shadow-2xl bg-gradient-to-br from-green-100 via-blue-100 to-green-200 border-4 border-white">
-                                    {/* Loader inicial mientras cargan las primeras imágenes */}
-                                    {!Object.keys(imagesLoaded).length && (
-                                        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-green-100 via-blue-100 to-green-200">
->>>>>>> a4fd95b3f02c02571861194024695d702c098b6a
-                                            <div className="text-center">
-                                                <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
-                                                <p className="text-slate-600 text-sm">Cargando fotos...</p>
-                                            </div>
-                                        </div>
-                                    )}
-
-<<<<<<< HEAD
-                                    <img
-                                        src={uruguayPhotos[currentPhoto].src}
-                                        alt={uruguayPhotos[currentPhoto].alt}
-                                        className={`w-full h-full object-cover transition-opacity duration-1000 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
-                                        onLoad={() => setIsLoading(false)}
-                                        onError={(e) => {
-                                            setIsLoading(false);
-                                            // Ocultar imagen fallida
-                                            e.currentTarget.classList.add('hidden');
-                                            // Mostrar placeholder de fallback
-                                            const fallback = e.currentTarget.parentNode.querySelector('.fallback-placeholder');
-                                            if (fallback) fallback.classList.remove('hidden');
-                                        }}
-                                    />
-                                    <div className="fallback-placeholder absolute inset-0 bg-gradient-to-br from-green-100 via-blue-100 to-green-200 border-2 border-dashed border-green-300 flex flex-col items-center justify-center text-center p-8 hidden">
-                                        <div className="text-6xl mb-4">🏞️</div>
-                                        <p className="text-slate-600 text-lg font-medium">
-                                            {uruguayPhotos[currentPhoto].caption}
-                                        </p>
-                                        <p className="text-slate-500 text-sm mt-2">
-                                            (Imagen no disponible)
-                                        </p>
-                                    </div>
-
-                                    {/* Caption overlay */}
-                                    {!isLoading && (
-                                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                                            <p className="text-white font-medium text-lg">
-                                                {uruguayPhotos[currentPhoto].caption}
-                                            </p>
-                                        </div>
-                                    )}
-
-                                    {/* Navigation dots */}
-                                    {!isLoading && (
-                                        <div className="absolute bottom-4 right-4 flex space-x-2">
-                                            {uruguayPhotos.map((_, index) => (
-                                                <button
-                                                    key={index}
-                                                    onClick={() => {
-                                                        setCurrentPhoto(index);
-                                                        setIsLoading(true);
-                                                    }}
-                                                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                                                        index === currentPhoto
-                                                            ? 'bg-white scale-110'
-                                                            : 'bg-white/50 hover:bg-white/75'
-                                                    }`}
-                                                    aria-label={`Ver foto ${index + 1}`}
-                                                />
-                                            ))}
-                                        </div>
-                                    )}
-
-                                    {/* Previous/Next buttons */}
-                                    {!isLoading && (
-                                        <>
-                                            <button
-                                                onClick={() => {
-                                                    setCurrentPhoto((prev) =>
-                                                        prev === 0 ? uruguayPhotos.length - 1 : prev - 1
-                                                    );
-                                                    setIsLoading(true);
-                                                }}
-                                                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100"
-                                                aria-label="Foto anterior"
-                                            >
-                                                ←
-                                            </button>
-
-                                            <button
-                                                onClick={() => {
-                                                    setCurrentPhoto((prev) => (prev + 1) % uruguayPhotos.length);
-                                                    setIsLoading(true);
-                                                }}
-                                                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100"
-                                                aria-label="Foto siguiente"
-                                            >
-                                                →
-                                            </button>
-                                        </>
-                                    )}
-=======
-                                    {/* Todas las imágenes pre-renderizadas */}
-                                    {uruguayPhotos.map((photo, index) => (
-                                        <img
-                                            key={index}
-                                            src={photo.src}
-                                            alt={photo.alt}
-                                            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-                                                currentPhoto === index ? 'opacity-100' : 'opacity-0'
-                                            }`}
-                                            onError={(e) => {
-                                                e.currentTarget.classList.add('hidden');
-                                            }}
-                                        />
-                                    ))}
-
-                                    {/* Fallback para imagen específica que no carga */}
-                                    {!imagesLoaded[currentPhoto] && Object.keys(imagesLoaded).length > 0 && (
-                                        <div className="absolute inset-0 bg-gradient-to-br from-green-100 via-blue-100 to-green-200 flex flex-col items-center justify-center text-center p-8">
-                                            <div className="text-6xl mb-4">🏞️</div>
-                                            <p className="text-slate-600 text-lg font-medium">
-                                                {uruguayPhotos[currentPhoto].caption}
-                                            </p>
-                                        </div>
-                                    )}
-
-                                    {/* Navigation dots - positioned around the circle */}
-                                    <div className="absolute inset-0">
-                                        {uruguayPhotos.map((_, index) => {
-                                            const angle = (index * 36) - 90; // 360/10 = 36 degrees per photo
-                                            const radius = 130; // Distance from center
-                                            const x = Math.cos(angle * Math.PI / 180) * radius;
-                                            const y = Math.sin(angle * Math.PI / 180) * radius;
-
-                                            return (
-                                                <button
-                                                    key={index}
-                                                    onClick={() => setCurrentPhoto(index)}
-                                                    className={`absolute w-4 h-4 rounded-full transition-all duration-300 ${
-                                                        index === currentPhoto
-                                                            ? 'bg-green-600 scale-125 shadow-lg'
-                                                            : 'bg-white/60 hover:bg-white/80 shadow-md'
-                                                    }`}
-                                                    style={{
-                                                        left: `calc(50% + ${x}px)`,
-                                                        top: `calc(50% + ${y}px)`,
-                                                        transform: 'translate(-50%, -50%)'
-                                                    }}
-                                                    aria-label={`Ver foto ${index + 1}`}
-                                                />
-                                            );
-                                        })}
-                                    </div>
-
-                                    {/* Previous/Next buttons */}
-                                    <button
-                                        onClick={() => setCurrentPhoto((prev) => prev === 0 ? uruguayPhotos.length - 1 : prev - 1)}
-                                        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all duration-300 opacity-0 hover:opacity-100"
-                                        aria-label="Foto anterior"
-                                    >
-                                        ←
-                                    </button>
-
-                                    <button
-                                        onClick={() => setCurrentPhoto((prev) => (prev + 1) % uruguayPhotos.length)}
-                                        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all duration-300 opacity-0 hover:opacity-100"
-                                        aria-label="Foto siguiente"
-                                    >
-                                        →
-                                    </button>
->>>>>>> a4fd95b3f02c02571861194024695d702c098b6a
-                                </div>
-                            </div>
-                        </div>
-
-<<<<<<< HEAD
-                        {/* Additional Info Card */}
-=======
-                        {/* MONTEVIDEO Letters - Con altura fija para evitar saltos */}
-                        <div className="h-16 flex items-center justify-center">
-                            <div className="flex space-x-3 text-4xl font-bold">
-                                {montevideoLetters.map((letter, index) => {
-                                    const isActive = currentPhoto === index;
-                                    return (
-                                        <button
-                                            key={index}
-                                            onClick={() => setCurrentPhoto(index)}
-                                            className={`relative transition-all duration-500 cursor-pointer hover:text-green-500 ${
-                                                isActive ? 'text-green-600' : 'text-slate-400'
-                                            }`}
-                                            style={{
-                                                transform: isActive ? 'scale(1.25)' : 'scale(1)',
-                                                textShadow: isActive ? '0 4px 6px rgba(0,0,0,0.1)' : 'none'
-                                            }}
-                                        >
-                                            {letter}
-                                        </button>
-                                    );
-                                })}
-                            </div>
-                        </div>
-
-                        {/* Caption - Con altura fija */}
-                        <div className="h-8 flex items-center justify-center">
-                            <p className="text-xl font-medium text-slate-700">
-                                {uruguayPhotos[currentPhoto].caption}
-                            </p>
-                        </div>
->>>>>>> a4fd95b3f02c02571861194024695d702c098b6a
-                    </div>
-                </div>
-            </div>
-        </section>
+    const column = columns.find(
+      (col) => percentage >= col.startX && percentage < col.endX
     );
+
+    setHoveredColumn(column ? column.id : null);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredColumn(null);
+  };
+
+  const getColumnData = (columnId: string): ColumnData | undefined =>
+    columns.find((col) => col.id === columnId);
+
+  const activeColumn = hoveredColumn
+    ? getColumnData(hoveredColumn)
+    : null;
+
+  const formatDateForFolder = (dateRange: string): { month: string; dates: string } => {
+    const [startDate, endDate] = dateRange.split(' - ');
+    const startParts = startDate.trim().split(' ');
+    const endParts = endDate ? endDate.trim().split(' ') : startParts;
+    
+    const month = startParts[1] || startParts[0];
+    const dates = endDate ? `${startParts[0]}-${endParts[0]}` : startParts[0];
+    
+    return { month: month.toUpperCase(), dates };
+  };
+
+  return (
+    <div
+      className={`w-full min-h-screen py-16 bg-gradient-to-br from-slate-50 to-gray-100 ${className}`}
+    >
+      <div className="w-full max-w-none px-4 sm:px-6 lg:px-8">
+        {/* Imagen dinámica */}
+        <div className="relative mb-8 w-full">
+          <div
+            className="relative cursor-pointer group w-full"
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+          >
+            <img
+              src={activeColumn?.image || imageSrc}
+              alt={imageAlt}
+              className="w-full h-auto rounded-3xl shadow-2xl transition-all duration-300"
+              style={{
+                minHeight: '400px',
+                maxHeight: '600px',
+                objectFit: 'cover',
+              }}
+            />
+
+            {/* Etiquetas de fase */}
+            {columns.map((column) => {
+              const centerX = Math.min((column.startX + column.endX) / 2, 98);
+              return (
+                <div
+                  key={column.id}
+                  className={`absolute -top-5 transform -translate-x-1/2 px-4 py-2 rounded-full text-sm font-bold shadow-lg z-10 whitespace-nowrap max-w-xs text-center transition-all duration-300 ${
+                    hoveredColumn === column.id
+                      ? `${column.color} text-white opacity-100 scale-110`
+                      : 'opacity-30 bg-white text-slate-600 hover:opacity-60'
+                  }`}
+                  style={{ left: `${centerX}%` }}
+                >
+                  {column.name}
+                </div>
+              );    
+            })}
+          </div>
+        </div>
+
+        {/* Panel de información detallada */}
+        {activeColumn && (
+          <div className="w-full max-w-6xl mx-auto mb-8">
+            <div className="bg-white rounded-2xl shadow-xl p-8 border-l-4 border-opacity-80"
+                 style={{ borderLeftColor: activeColumn.color.replace('bg-', '').replace('-500', '').replace('-600', '') }}>
+              
+              {/* Header con información básica */}
+              <div className="flex flex-wrap items-center justify-between mb-6 pb-4 border-b border-gray-200">
+                <div>
+                  <h2 className={`text-3xl font-bold ${activeColumn.textColor} mb-2`}>
+                    {activeColumn.name}
+                  </h2>
+                  <p className="text-gray-600 text-lg">{activeColumn.description}</p>
+                  <p className="text-gray-500 text-sm mt-1">
+                    {activeColumn.detailedInfo.participants} • Duración: {activeColumn.detailedInfo.duration}
+                  </p>
+                </div>
+              </div>
+
+              {/* Contenido en grid: 2 cuadrados + 1 carpetita */}
+              <div className="grid md:grid-cols-3 gap-6">
+                
+                {/* Primer cuadrado */}
+                <div className="bg-blue-50 rounded-xl p-6 transform hover:scale-105 transition-transform duration-200">
+                  <h3 className="font-semibold text-blue-800 mb-4 flex items-center">
+                    <span className="w-3 h-3 bg-blue-500 rounded-full mr-3"></span>
+                    {activeColumn.detailedInfo.primaryInfo.title}
+                  </h3>
+                  <ul className="space-y-3 text-sm text-blue-700">
+                    {activeColumn.detailedInfo.primaryInfo.items.map((item, index) => (
+                      <li key={index} className="flex items-start">
+                        <span className="text-blue-400 mr-3 mt-1 text-lg">•</span>
+                        <span className="leading-relaxed">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Segundo cuadrado */}
+                <div className="bg-green-50 rounded-xl p-6 transform hover:scale-105 transition-transform duration-200">
+                  <h3 className="font-semibold text-green-800 mb-4 flex items-center">
+                    <span className="w-3 h-3 bg-green-500 rounded-full mr-3"></span>
+                    {activeColumn.detailedInfo.secondaryInfo.title}
+                  </h3>
+                  <ul className="space-y-3 text-sm text-green-700">
+                    {activeColumn.detailedInfo.secondaryInfo.items.map((item, index) => (
+                      <li key={index} className="flex items-start">
+                        <span className="text-green-400 mr-3 mt-1 text-lg">•</span>
+                        <span className="leading-relaxed">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Carpetita de fecha */}
+                <div className="relative">
+                  <div className="bg-gradient-to-br from-amber-100 to-amber-200 rounded-xl p-6 border border-amber-300 shadow-lg transform hover:scale-105 transition-all duration-300 relative overflow-hidden">
+                    {/* Efecto de carpeta doblada */}
+                    <div className="absolute top-0 right-0 w-8 h-8 bg-gradient-to-bl from-amber-300 to-amber-400 transform rotate-45 translate-x-4 -translate-y-4"></div>
+                    <div className="absolute top-2 right-2 w-6 h-6 bg-gradient-to-bl from-amber-200 to-amber-300 border-l border-b border-amber-400"></div>
+                    
+                    <div className="text-center">
+                      <div className="mb-3">
+                        <span className="inline-block w-8 h-8 bg-amber-600 rounded-full flex items-center justify-center text-white text-lg mb-2">
+                          📅
+                        </span>
+                      </div>
+                      
+                      <h3 className="font-bold text-amber-800 text-lg mb-2">
+                        Fechas Importantes
+                      </h3>
+                      
+                      <div className="bg-white/80 rounded-lg p-4 backdrop-blur-sm">
+                        <div className="text-2xl font-bold text-amber-900 mb-1">
+                          {formatDateForFolder(activeColumn.detailedInfo.dateRange).dates}
+                        </div>
+                        <div className="text-sm font-semibold text-amber-700 uppercase tracking-wider">
+                          {formatDateForFolder(activeColumn.detailedInfo.dateRange).month}
+                        </div>
+                        <div className="text-xs text-amber-600 mt-2 font-medium">
+                          {activeColumn.detailedInfo.duration}
+                        </div>
+                      </div>
+                      
+                      <div className="mt-3 text-xs text-amber-700 font-medium">
+                        {activeColumn.detailedInfo.participants}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Timer */}
+        {activeColumn && (
+          <div className="w-full max-w-5xl mx-auto">
+            <CountdownTimer
+              eventType={activeColumn.id as any}
+              targetDate={activeColumn.targetDate}
+              className="w-full"
+            />
+          </div>
+        )}
+
+        {/* Instrucción cuando no hay hover */}
+        {!activeColumn && (
+          <div className="text-center py-8">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
+              <span className="text-2xl">👆</span>
+            </div>
+            <p className="text-gray-500 text-lg font-medium">
+              Pasa el cursor sobre la imagen para explorar cada fase
+            </p>
+            <p className="text-gray-400 text-sm mt-2">
+              Descubre requisitos, actividades y fechas importantes
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };
 
-export default QuantumYearSection;
+export default InteractiveTimeline;
