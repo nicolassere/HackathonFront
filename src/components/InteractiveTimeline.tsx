@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useLanguage } from '../contexts/LanguageContext';
 import { CountdownTimer } from './CountdownTimer';
 
 // 🖼️ Importá las imágenes correspondientes
@@ -9,6 +8,7 @@ import preselectionImage from '../../img/Imagen27_07.png';
 import courseImage from '../../img/Imagen04_08.png';
 import selectionImage from '../../img/imagen_2damedicion.png';
 import hackathonImage from '../../img/Imagen_0210.png';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface ColumnData {
   id: string;
@@ -47,33 +47,34 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
   imageAlt = 'Timeline del Hackathon',
 }) => {
   const [hoveredColumn, setHoveredColumn] = useState<string | null>(null);
+  const [pinnedColumn, setPinnedColumn] = useState<string | null>(null);
   const { t } = useLanguage();
 
   const columns: ColumnData[] = [
     {
       id: 'registration',
-      name: 'Inscripción',
-      description: 'Período de registro para el hackathon',
+      name: t('timeline.registration.name'),
+      description: t('timeline.registration.description'),
       detailedInfo: {
         dateRange: '1 - 15 Julio 2025',
-        duration: '15 días',
-        participants: 'Abierto a todos',
+        duration: t('timeline.registration.duration'),
+        participants: t('timeline.registration.participants'),
         primaryInfo: {
-          title: 'Requisitos',
+          title: t('timeline.registration.primaryInfo.title'),
           items: [
-            'Completar formulario de inscripción online',
-            'Carta de motivación (máximo 500 palabras)',
-            'CV actualizado en formato PDF',
-            'Conocimientos básicos de programación'
+            t('timeline.registration.primaryInfo.items.0'),
+            t('timeline.registration.primaryInfo.items.1'),
+            t('timeline.registration.primaryInfo.items.2'),
+            t('timeline.registration.primaryInfo.items.3')
           ]
         },
         secondaryInfo: {
-          title: 'Proceso',
+          title: t('timeline.registration.secondaryInfo.title'),
           items: [
-            'Registro en plataforma oficial del evento',
-            'Verificación automática de documentos',
-            'Confirmación por email dentro de 48hs',
-            'Acceso al canal de comunicación oficial'
+            t('timeline.registration.secondaryInfo.items.0'),
+            t('timeline.registration.secondaryInfo.items.1'),
+            t('timeline.registration.secondaryInfo.items.2'),
+            t('timeline.registration.secondaryInfo.items.3')
           ]
         }
       },
@@ -86,28 +87,28 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
     },
     {
       id: 'preselection',
-      name: 'Preselección',
-      description: 'Evaluación inicial de candidatos',
+      name: t('timeline.preselection.name'),
+      description: t('timeline.preselection.description'),
       detailedInfo: {
         dateRange: '16 - 27 Julio 2025',
-        duration: '12 días',
-        participants: 'Candidatos inscritos',
+        duration: t('timeline.preselection.duration'),
+        participants: t('timeline.preselection.participants'),
         primaryInfo: {
-          title: 'Evaluación',
+          title: t('timeline.preselection.primaryInfo.title'),
           items: [
-            'Revisión de aplicaciones por comité técnico',
-            'Evaluación de perfiles y experiencia',
-            'Entrevistas virtuales (casos selectos)',
-            'Análisis de compatibilidad con objetivos'
+            t('timeline.preselection.primaryInfo.items.0'),
+            t('timeline.preselection.primaryInfo.items.1'),
+            t('timeline.preselection.primaryInfo.items.2'),
+            t('timeline.preselection.primaryInfo.items.3')
           ]
         },
         secondaryInfo: {
-          title: 'Resultados',
+          title: t('timeline.preselection.secondaryInfo.title'),
           items: [
-            'Notificación de resultados vía email',
-            'Lista oficial de preseleccionados',
-            'Feedback personalizado para cada candidato',
-            'Invitación al curso preparatorio'
+            t('timeline.preselection.secondaryInfo.items.0'),
+            t('timeline.preselection.secondaryInfo.items.1'),
+            t('timeline.preselection.secondaryInfo.items.2'),
+            t('timeline.preselection.secondaryInfo.items.3')
           ]
         }
       },
@@ -120,28 +121,28 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
     },
     {
       id: 'course',
-      name: 'Curso QWorld',
-      description: 'Curso preparatorio de computación cuántica',
+      name: t('timeline.course.name'),
+      description: t('timeline.course.description'),
       detailedInfo: {
         dateRange: '28 Jul - 4 Ago 2025',
-        duration: '1 semana intensiva',
-        participants: 'Participantes preseleccionados',
+        duration: t('timeline.course.duration'),
+        participants: t('timeline.course.participants'),
         primaryInfo: {
-          title: 'Contenido',
+          title: t('timeline.course.primaryInfo.title'),
           items: [
-            'Fundamentos de computación cuántica',
-            'Programación con Qiskit y Python',
-            'Algoritmos cuánticos fundamentales',
-            'Aplicaciones en problemas climáticos'
+            t('timeline.course.primaryInfo.items.0'),
+            t('timeline.course.primaryInfo.items.1'),
+            t('timeline.course.primaryInfo.items.2'),
+            t('timeline.course.primaryInfo.items.3')
           ]
         },
         secondaryInfo: {
-          title: 'Metodología',
+          title: t('timeline.course.secondaryInfo.title'),
           items: [
-            'Sesiones en vivo con expertos internacionales',
-            'Laboratorios prácticos con simuladores',
-            'Proyecto grupal colaborativo',
-            'Certificación oficial de QWorld'
+            t('timeline.course.secondaryInfo.items.0'),
+            t('timeline.course.secondaryInfo.items.1'),
+            t('timeline.course.secondaryInfo.items.2'),
+            t('timeline.course.secondaryInfo.items.3')
           ]
         }
       },
@@ -154,28 +155,28 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
     },
     {
       id: 'selection',
-      name: 'Selección Final',
-      description: 'Proceso de selección definitiva de equipos',
+      name: t('timeline.selection.name'),
+      description: t('timeline.selection.description'),
       detailedInfo: {
         dateRange: '5 Ago - 1 Sep 2025',
-        duration: '4 semanas',
-        participants: 'Graduados del curso QWorld',
+        duration: t('timeline.selection.duration'),
+        participants: t('timeline.selection.participants'),
         primaryInfo: {
-          title: 'Evaluación',
+          title: t('timeline.selection.primaryInfo.title'),
           items: [
-            'Análisis del proyecto final de QWorld',
-            'Entrevistas técnicas individuales',
-            'Evaluación de habilidades colaborativas',
-            'Compatibilidad para trabajo en equipo'
+            t('timeline.selection.primaryInfo.items.0'),
+            t('timeline.selection.primaryInfo.items.1'),
+            t('timeline.selection.primaryInfo.items.2'),
+            t('timeline.selection.primaryInfo.items.3')
           ]
         },
         secondaryInfo: {
-          title: 'Formación de Equipos',
+          title: t('timeline.selection.secondaryInfo.title'),
           items: [
-            'Creación de equipos multidisciplinarios',
-            'Asignación de mentores especializados',
-            'Entrega del kit de herramientas',
-            'Acceso a recursos exclusivos del hackathon'
+            t('timeline.selection.secondaryInfo.items.0'),
+            t('timeline.selection.secondaryInfo.items.1'),
+            t('timeline.selection.secondaryInfo.items.2'),
+            t('timeline.selection.secondaryInfo.items.3')
           ]
         }
       },
@@ -188,28 +189,28 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
     },
     {
       id: 'hackathon',
-      name: 'Hackathon',
-      description: 'Evento principal: Quantum Climate Hackathon',
+      name: t('timeline.hackathon.name'),
+      description: t('timeline.hackathon.description'),
       detailedInfo: {
         dateRange: '2 - 10 Oct 2025',
-        duration: '9 días intensivos',
-        participants: 'Equipos seleccionados',
+        duration: t('timeline.hackathon.duration'),
+        participants: t('timeline.hackathon.participants'),
         primaryInfo: {
-          title: 'Desarrollo',
+          title: t('timeline.hackathon.primaryInfo.title'),
           items: [
-            'Kick-off con presentación de desafíos',
-            'Desarrollo intensivo de soluciones',
-            'Sesiones diarias de mentoría especializada',
-            'Workshops técnicos con expertos del sector'
+            t('timeline.hackathon.primaryInfo.items.0'),
+            t('timeline.hackathon.primaryInfo.items.1'),
+            t('timeline.hackathon.primaryInfo.items.2'),
+            t('timeline.hackathon.primaryInfo.items.3')
           ]
         },
         secondaryInfo: {
-          title: 'Presentación y Premiación',
+          title: t('timeline.hackathon.secondaryInfo.title'),
           items: [
-            'Demo Day con presentaciones finales',
-            'Pitch de 10 minutos por equipo',
-            'Evaluación por jurado internacional',
-            'Ceremonia de premiación y networking'
+            t('timeline.hackathon.secondaryInfo.items.0'),
+            t('timeline.hackathon.secondaryInfo.items.1'),
+            t('timeline.hackathon.secondaryInfo.items.2'),
+            t('timeline.hackathon.secondaryInfo.items.3')
           ]
         }
       },
@@ -231,11 +232,43 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
       (col) => percentage >= col.startX && percentage < col.endX
     );
 
-    setHoveredColumn(column ? column.id : null);
+    // Solo cambiar el hover si no hay columna fijada
+    if (!pinnedColumn) {
+      setHoveredColumn(column ? column.id : null);
+    }
   };
 
   const handleMouseLeave = () => {
-    setHoveredColumn(null);
+    // Solo limpiar el hover si no hay columna fijada
+    if (!pinnedColumn) {
+      setHoveredColumn(null);
+    }
+  };
+
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const percentage = (x / rect.width) * 100;
+
+    const column = columns.find(
+      (col) => percentage >= col.startX && percentage < col.endX
+    );
+
+    if (column) {
+      // Si ya está fijada la misma columna, desfija
+      if (pinnedColumn === column.id) {
+        setPinnedColumn(null);
+        setHoveredColumn(null);
+      } else {
+        // Fija la nueva columna
+        setPinnedColumn(column.id);
+        setHoveredColumn(column.id);
+      }
+    } else {
+      // Si hace clic fuera de cualquier columna, desfija
+      setPinnedColumn(null);
+      setHoveredColumn(null);
+    }
   };
 
   const getColumnData = (columnId: string): ColumnData | undefined =>
@@ -245,16 +278,8 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
     ? getColumnData(hoveredColumn)
     : null;
 
-  const formatDateForFolder = (dateRange: string): { month: string; dates: string } => {
-    const [startDate, endDate] = dateRange.split(' - ');
-    const startParts = startDate.trim().split(' ');
-    const endParts = endDate ? endDate.trim().split(' ') : startParts;
-    
-    const month = startParts[1] || startParts[0];
-    const dates = endDate ? `${startParts[0]}-${endParts[0]}` : startParts[0];
-    
-    return { month: month.toUpperCase(), dates };
-  };
+  // Mostrar información si hay columna activa (hover o fijada)
+  const showInfo = activeColumn || pinnedColumn;
 
   return (
     <div
@@ -267,6 +292,7 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
             className="relative cursor-pointer group w-full"
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
+            onClick={handleClick}
           >
             <img
               src={activeColumn?.image || imageSrc}
@@ -279,20 +305,31 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
               }}
             />
 
-            {/* Etiquetas de fase */}
+            {/* Etiquetas de fase con fechas */}
             {columns.map((column) => {
               const centerX = Math.min((column.startX + column.endX) / 2, 98);
+              const isActive = hoveredColumn === column.id;
+              const isPinned = pinnedColumn === column.id;
+              
               return (
                 <div
                   key={column.id}
                   className={`absolute -top-5 transform -translate-x-1/2 px-4 py-2 rounded-full text-sm font-bold shadow-lg z-10 whitespace-nowrap max-w-xs text-center transition-all duration-300 ${
-                    hoveredColumn === column.id
-                      ? `${column.color} text-white opacity-100 scale-110`
+                    isActive || isPinned
+                      ? `${column.color} text-white opacity-100 scale-110 ${isPinned ? 'ring-2 ring-white' : ''}`
                       : 'opacity-30 bg-white text-slate-600 hover:opacity-60'
                   }`}
                   style={{ left: `${centerX}%` }}
                 >
-                  {column.name}
+                  <div className="text-xs font-semibold mb-1">
+                    {column.detailedInfo.dateRange}
+                  </div>
+                  <div>
+                    {column.name}
+                  </div>
+                  {isPinned && (
+                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full border-2 border-white"></div>
+                  )}
                 </div>
               );    
             })}
@@ -300,34 +337,53 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
         </div>
 
         {/* Panel de información detallada */}
-        {activeColumn && (
+        {showInfo && activeColumn && (
           <div className="w-full max-w-6xl mx-auto mb-8">
             <div className="bg-white rounded-2xl shadow-xl p-8 border-l-4 border-opacity-80"
                  style={{ borderLeftColor: activeColumn.color.replace('bg-', '').replace('-500', '').replace('-600', '') }}>
               
               {/* Header con información básica */}
               <div className="flex flex-wrap items-center justify-between mb-6 pb-4 border-b border-gray-200">
-                <div>
-                  <h2 className={`text-3xl font-bold ${activeColumn.textColor} mb-2`}>
-                    {activeColumn.name}
-                  </h2>
+                <div className="flex-grow">
+                  <div className="flex items-center gap-3 mb-2">
+                    <h2 className={`text-3xl font-bold ${activeColumn.textColor}`}>
+                      {activeColumn.name}
+                    </h2>
+                    {pinnedColumn === activeColumn.id && (
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                        <span className="text-sm text-yellow-600 font-medium">Fijado</span>
+                      </div>
+                    )}
+                  </div>
                   <p className="text-gray-600 text-lg">{activeColumn.description}</p>
                   <p className="text-gray-500 text-sm mt-1">
-                    {activeColumn.detailedInfo.participants} • Duración: {activeColumn.detailedInfo.duration}
+                    {activeColumn.detailedInfo.dateRange} • {activeColumn.detailedInfo.participants} • {t('timeline.duration')}: {activeColumn.detailedInfo.duration}
                   </p>
                 </div>
+                {pinnedColumn === activeColumn.id && (
+                  <button
+                    onClick={() => {
+                      setPinnedColumn(null);
+                      setHoveredColumn(null);
+                    }}
+                    className="ml-4 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-600 transition-colors duration-200"
+                  >
+                    Desfijár
+                  </button>
+                )}
               </div>
 
-              {/* Contenido en grid: 2 cuadrados + 1 carpetita con countdown */}
-              <div className="grid md:grid-cols-3 gap-6">
+              {/* Contenido en grid: 2 cuadrados con más espacio */}
+              <div className="grid md:grid-cols-2 gap-8">
                 
-                {/* Primer cuadrado */}
-                <div className="bg-blue-50 rounded-xl p-6 transform hover:scale-105 transition-transform duration-200">
-                  <h3 className="font-semibold text-blue-800 mb-4 flex items-center">
-                    <span className="w-3 h-3 bg-blue-500 rounded-full mr-3"></span>
+                {/* Primer cuadrado - Información primaria */}
+                <div className="bg-blue-50 rounded-xl p-8 transform hover:scale-105 transition-transform duration-200">
+                  <h3 className="font-semibold text-blue-800 mb-6 flex items-center text-lg">
+                    <span className="w-4 h-4 bg-blue-500 rounded-full mr-3"></span>
                     {activeColumn.detailedInfo.primaryInfo.title}
                   </h3>
-                  <ul className="space-y-3 text-sm text-blue-700">
+                  <ul className="space-y-4 text-blue-700">
                     {activeColumn.detailedInfo.primaryInfo.items.map((item, index) => (
                       <li key={index} className="flex items-start">
                         <span className="text-blue-400 mr-3 mt-1 text-lg">•</span>
@@ -337,65 +393,19 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
                   </ul>
                 </div>
 
-                {/* Segundo cuadrado */}
-                <div className="bg-green-50 rounded-xl p-6 transform hover:scale-105 transition-transform duration-200">
-                  <h3 className="font-semibold text-green-800 mb-4 flex items-center">
-                    <span className="w-3 h-3 bg-green-500 rounded-full mr-3"></span>
-                    {activeColumn.detailedInfo.secondaryInfo.title}
+                {/* Segundo cuadrado - Countdown Timer */}
+                <div className="bg-green-50 rounded-xl p-8 transform hover:scale-105 transition-transform duration-200">
+                  <h3 className="font-semibold text-green-800 mb-6 flex items-center text-lg">
+                    <span className="w-4 h-4 bg-green-500 rounded-full mr-3"></span>
+                    {t('timeline.timeRemaining') || 'Tiempo Restante'}
                   </h3>
-                  <ul className="space-y-3 text-sm text-green-700">
-                    {activeColumn.detailedInfo.secondaryInfo.items.map((item, index) => (
-                      <li key={index} className="flex items-start">
-                        <span className="text-green-400 mr-3 mt-1 text-lg">•</span>
-                        <span className="leading-relaxed">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Carpetita de fecha con countdown integrado */}
-                <div className="relative">
-                  <div className="bg-gradient-to-br from-amber-100 to-amber-200 rounded-xl p-6 border border-amber-300 shadow-lg transform hover:scale-105 transition-all duration-300 relative overflow-hidden">
-                    {/* Efecto de carpeta doblada */}
-                    <div className="absolute top-0 right-0 w-8 h-8 bg-gradient-to-bl from-amber-300 to-amber-400 transform rotate-45 translate-x-4 -translate-y-4"></div>
-                    <div className="absolute top-2 right-2 w-6 h-6 bg-gradient-to-bl from-amber-200 to-amber-300 border-l border-b border-amber-400"></div>
-                    
-                    <div className="text-center">
-                      <div className="mb-3">
-                        <span className="inline-block w-8 h-8 bg-amber-600 rounded-full flex items-center justify-center text-white text-lg mb-2">
-                          📅
-                        </span>
-                      </div>
-                      
-                      <h3 className="font-bold text-amber-800 text-lg mb-2">
-                        Fechas Importantes
-                      </h3>
-                      
-                      <div className="bg-white/80 rounded-lg p-4 backdrop-blur-sm mb-4">
-                        <div className="text-2xl font-bold text-amber-900 mb-1">
-                          {formatDateForFolder(activeColumn.detailedInfo.dateRange).dates}
-                        </div>
-                        <div className="text-sm font-semibold text-amber-700 uppercase tracking-wider">
-                          {formatDateForFolder(activeColumn.detailedInfo.dateRange).month}
-                        </div>
-                        <div className="text-xs text-amber-600 mt-2 font-medium">
-                          {activeColumn.detailedInfo.duration}
-                        </div>
-                      </div>
-
-                      {/* Countdown Timer integrado */}
-                      <div className="bg-white/90 rounded-lg p-3 backdrop-blur-sm">
-                        <CountdownTimer
-                          eventType={activeColumn.id as any}
-                          targetDate={activeColumn.targetDate}
-                          className="w-full"
-                        />
-                      </div>
-                      
-                      <div className="mt-3 text-xs text-amber-700 font-medium">
-                        {activeColumn.detailedInfo.participants}
-                      </div>
-                    </div>
+                  
+                  <div className="bg-white/80 rounded-lg p-6 backdrop-blur-sm">
+                    <CountdownTimer
+                      eventType={activeColumn.id as any}
+                      targetDate={activeColumn.targetDate}
+                      className="w-full"
+                    />
                   </div>
                 </div>
 
@@ -404,17 +414,20 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
           </div>
         )}
 
-        {/* Instrucción cuando no hay hover */}
-        {!activeColumn && (
+        {/* Instrucción cuando no hay hover ni fijado */}
+        {!showInfo && (
           <div className="text-center py-8">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
               <span className="text-2xl">👆</span>
             </div>
             <p className="text-gray-500 text-lg font-medium">
-              Pasa el cursor sobre la imagen para explorar cada fase
+              {t('timeline.hoverInstruction')}
             </p>
             <p className="text-gray-400 text-sm mt-2">
-              Descubre requisitos, actividades y fechas importantes
+              {t('timeline.hoverDescription')}
+            </p>
+            <p className="text-gray-400 text-xs mt-2">
+              Haz clic para fijar la información
             </p>
           </div>
         )}
