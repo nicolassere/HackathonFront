@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 
-type EventType = 'registration' | 'course' | 'hackathon' | 'preselection' | 'selection' ;
+export type EventType = 'registration' | 'course' | 'hackathon' | 'preselection' | 'selection' ;
 
 interface CountdownTimerProps {
   eventType?: EventType;

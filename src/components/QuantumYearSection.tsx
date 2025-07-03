@@ -1,60 +1,64 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 
+
+
 const QuantumYearSection = () => {
     const { t } = useLanguage();
 
     // Array de fotos de Uruguay - una para cada letra de MONTEVIDEO
     const uruguayPhotos = [
-        {
-            src: 'https://www.peñarol.org/imgnoticias/202501/W723_H488/26970.jpeg',
-            alt: 'Montevideo - M',
-            caption: 'Montevideo'
-        },
-        {
-            src: 'https://www.geaconsultores.com/wp-content/uploads/2018/01/CAP.jpg',
-            alt: 'Montevideo - O',
-            caption: 'Rambla'
-        },
-        {
-            src: 'https://a.espncdn.com/photo/2024/0515/r1333421_1296x729_16-9.jpg',
-            alt: 'Montevideo - N',
-            caption: 'Ciudad Vieja'
-        },
-        {
-            src: 'https://media.carasycaretas.com.uy/p/222531da77930975e51f1b85a0250f62/adjuntos/328/imagenes/000/101/0000101916/dan_2794jpg.jpg',
-            alt: 'Montevideo - T',
-            caption: 'Teatro Solís'
-        },
-        {
-            src: 'https://www.peñarol.org/imgnoticias/202501/W723_H488/26970.jpeg',
-            alt: 'Montevideo - E',
-            caption: 'Estadio Centenario'
-        },
-        {
-            src: 'https://www.peñarol.org/imgnoticias/202501/W723_H488/26970.jpeg',
-            alt: 'Montevideo - V',
-            caption: 'Puerto'
-        },
-        {
-            src: 'https://www.peñarol.org/imgnoticias/202501/W723_H488/26970.jpeg',
-            alt: 'Montevideo - I',
-            caption: 'Palacio Legislativo'
-        },
-        {
-            src: 'https://www.peñarol.org/imgnoticias/202501/W723_H488/26970.jpeg',
-            alt: 'Montevideo - D',
-            caption: 'Mercado del Puerto'
-        },
-        {
-            src: 'https://www.peñarol.org/imgnoticias/202501/W723_H488/26970.jpeg',
-            alt: 'Montevideo - E',
-            caption: 'Parque Rodó'
-        },
-        {
-            src: 'https://www.peñarol.org/imgnoticias/202501/W723_H488/26970.jpeg',
+                {
+            src: '../../img/imagen2.jpg',
             alt: 'Montevideo - O',
             caption: 'Plaza Independencia'
+        },
+        {
+            src: '../../img/imagen1.jpg',
+            alt: 'Montevideo - M',
+            caption: 'Punta Colorada'
+        },
+
+        {
+            src: '../../img/FIUM.jpg',
+            alt: 'Montevideo - N',
+            caption: 'FIUM'
+        },
+
+        {
+            src: '../../img/imagen5.jpeg',
+            alt: 'Montevideo - E',
+            caption: 'Palacio Salvo'
+        },
+        {
+            src: '../../img/imagen7.jpeg',
+            alt: 'Montevideo - V',
+            caption: 'Puerta de la Ciudadela'
+        },
+        {
+            src: '../../img/imagen8.jpeg',
+            alt: 'Montevideo - I',
+            caption: 'Plaza Independencia'
+        },
+        {
+            src: '../../img/imagen9.jpeg',
+            alt: 'Montevideo - D',
+            caption: 'Rambla de Montevideo'
+        },
+        {
+            src: '../../img/imagen4.jpg',
+            alt: 'Montevideo - T',
+            caption: 'FIUM'
+        },
+        {
+            src: '../../img/puertobuceo.jpeg',
+            alt: 'Montevideo - E',
+            caption: 'Puerto del Buceo'
+        },
+        {
+            src: '../../img/imagen11.jpeg',
+            alt: 'Montevideo - O',
+            caption: 'Punta del Este'
         }
     ];
 
@@ -84,13 +88,7 @@ const QuantumYearSection = () => {
     }, []);
 
     return (
-        <section className="py-16 bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 relative overflow-hidden">
-            {/* Background decorative elements */}
-            <div className="absolute inset-0 opacity-5">
-                <div className="absolute top-20 left-10 w-32 h-32 rounded-full bg-amber-400"></div>
-                <div className="absolute bottom-20 right-10 w-24 h-24 rounded-full bg-orange-400"></div>
-                <div className="absolute top-40 right-1/4 w-16 h-16 rounded-full bg-yellow-400"></div>
-            </div>
+        <section className="py-16 bg-gradient-to-br from-amber-50 to-white-50  relative overflow-hidden">
 
             <div className="max-w-7xl mx-auto px-4 relative">
                 {/* UNESCO/Quantum Year Header */}

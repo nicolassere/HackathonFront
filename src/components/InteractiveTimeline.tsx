@@ -24,7 +24,6 @@ interface ColumnData {
       title: string;
       items: string[];
     };
-    duration?: string;
     participants?: string;
   };
   startX: number;
@@ -57,30 +56,29 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
       description: t('timeline.registration.description'),
       detailedInfo: {
         dateRange: '1 - 15 Julio 2025',
-        duration: t('timeline.registration.duration'),
         participants: t('timeline.registration.participants'),
         primaryInfo: {
           title: t('timeline.registration.primaryInfo.title'),
           items: [
             t('timeline.registration.primaryInfo.items.0'),
-            t('timeline.registration.primaryInfo.items.1'),
-            t('timeline.registration.primaryInfo.items.2'),
-            t('timeline.registration.primaryInfo.items.3')
+            t('timeline.registration.primaryInfo.items.3'),
+            t('timeline.registration.primaryInfo.items.1')
+
           ]
         },
         secondaryInfo: {
           title: t('timeline.registration.secondaryInfo.title'),
           items: [
             t('timeline.registration.secondaryInfo.items.0'),
+            t('timeline.registration.secondaryInfo.items.3'),
             t('timeline.registration.secondaryInfo.items.1'),
-            t('timeline.registration.secondaryInfo.items.2'),
-            t('timeline.registration.secondaryInfo.items.3')
+
           ]
         }
       },
       startX: 15,
       endX: 32,
-      color: 'bg-cyan-500',
+      color: 'bg-[#27bfe6]',
       textColor: 'text-cyan-700',
       image: registrationImage,
       targetDate: '2025-07-15T23:59:59',
@@ -90,16 +88,13 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
       name: t('timeline.preselection.name'),
       description: t('timeline.preselection.description'),
       detailedInfo: {
-        dateRange: '16 - 27 Julio 2025',
-        duration: t('timeline.preselection.duration'),
+        dateRange: '27 Julio 2025',
         participants: t('timeline.preselection.participants'),
         primaryInfo: {
           title: t('timeline.preselection.primaryInfo.title'),
           items: [
             t('timeline.preselection.primaryInfo.items.0'),
             t('timeline.preselection.primaryInfo.items.1'),
-            t('timeline.preselection.primaryInfo.items.2'),
-            t('timeline.preselection.primaryInfo.items.3')
           ]
         },
         secondaryInfo: {
@@ -114,7 +109,7 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
       },
       startX: 32,
       endX: 49,
-      color: 'bg-cyan-500',
+      color: 'bg-[#27bfe6]',
       textColor: 'text-cyan-700',
       image: preselectionImage,
       targetDate: '2025-07-27T23:59:59',
@@ -124,16 +119,14 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
       name: t('timeline.course.name'),
       description: t('timeline.course.description'),
       detailedInfo: {
-        dateRange: '28 Jul - 4 Ago 2025',
-        duration: t('timeline.course.duration'),
-        participants: t('timeline.course.participants'),
+        dateRange: '04 - 13 Ago 2025',
+       participants: t('timeline.course.participants'),
         primaryInfo: {
           title: t('timeline.course.primaryInfo.title'),
           items: [
             t('timeline.course.primaryInfo.items.0'),
             t('timeline.course.primaryInfo.items.1'),
             t('timeline.course.primaryInfo.items.2'),
-            t('timeline.course.primaryInfo.items.3')
           ]
         },
         secondaryInfo: {
@@ -148,8 +141,8 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
       },
       startX: 49,
       endX: 66,
-      color: 'bg-green-500',
-      textColor: 'text-green-700',
+      color: 'bg-[#467e4a]',
+      textColor: 'text-[#467e4a]',
       image: courseImage,
       targetDate: '2025-08-04T09:00:00',
     },
@@ -158,15 +151,14 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
       name: t('timeline.selection.name'),
       description: t('timeline.selection.description'),
       detailedInfo: {
-        dateRange: '5 Ago - 1 Sep 2025',
-        duration: t('timeline.selection.duration'),
+        dateRange: '27 Ago  2025',
         participants: t('timeline.selection.participants'),
         primaryInfo: {
           title: t('timeline.selection.primaryInfo.title'),
           items: [
-            t('timeline.selection.primaryInfo.items.0'),
-            t('timeline.selection.primaryInfo.items.1'),
-            t('timeline.selection.primaryInfo.items.2'),
+            t('timeline.preselection.primaryInfo.items.0'),
+            t('timeline.preselection.primaryInfo.items.1'),
+
             t('timeline.selection.primaryInfo.items.3')
           ]
         },
@@ -182,18 +174,17 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
       },
       startX: 66,
       endX: 81,
-      color: 'bg-orange-500',
-      textColor: 'text-orange-700',
+      color: 'bg-[#467e4a]',
+      textColor: 'text-[#467e4a]',
       image: selectionImage,
-      targetDate: '2025-09-01T23:59:59',
+      targetDate: '2025-08-27T23:59:59',
     },
     {
       id: 'hackathon',
       name: t('timeline.hackathon.name'),
       description: t('timeline.hackathon.description'),
       detailedInfo: {
-        dateRange: '2 - 10 Oct 2025',
-        duration: t('timeline.hackathon.duration'),
+        dateRange: '1 - 3 Oct 2025',
         participants: t('timeline.hackathon.participants'),
         primaryInfo: {
           title: t('timeline.hackathon.primaryInfo.title'),
@@ -216,8 +207,8 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
       },
       startX: 83,
       endX: 97,
-      color: 'bg-orange-600',
-      textColor: 'text-orange-700',
+      color: 'bg-[#fd9d24]',
+      textColor: 'text-[#fd9d24]',
       image: hackathonImage,
       targetDate: '2025-10-01T09:00:00',
     },
@@ -321,9 +312,10 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
                   }`}
                   style={{ left: `${centerX}%` }}
                 >
-                  <div className="text-xs font-semibold mb-1">
-                    {column.detailedInfo.dateRange}
-                  </div>
+                  <div className="text-xs mb-1">
+                  <span className="font-bold">{column.detailedInfo.dateRange}</span>
+                </div>
+
                   <div>
                     {column.name}
                   </div>
@@ -351,14 +343,12 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
                     </h2>
                     {pinnedColumn === activeColumn.id && (
                       <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                        <span className="text-sm text-yellow-600 font-medium">Fijado</span>
                       </div>
                     )}
                   </div>
                   <p className="text-gray-600 text-lg">{activeColumn.description}</p>
                   <p className="text-gray-500 text-sm mt-1">
-                    {activeColumn.detailedInfo.dateRange} • {activeColumn.detailedInfo.participants} • {t('timeline.duration')}: {activeColumn.detailedInfo.duration}
+                    {activeColumn.detailedInfo.dateRange} • {activeColumn.detailedInfo.participants} 
                   </p>
                 </div>
                 {pinnedColumn === activeColumn.id && (
@@ -369,7 +359,7 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
                     }}
                     className="ml-4 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-600 transition-colors duration-200"
                   >
-                    Desfijár
+                    {t('timeline.unpin') || 'Desfijar'}
                   </button>
                 )}
               </div>

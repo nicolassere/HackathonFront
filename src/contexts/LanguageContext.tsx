@@ -193,7 +193,7 @@ const translations = {
         'timeline.registration.participants': 'Abierto a todos',
         'timeline.registration.primaryInfo.title': 'Requisitos',
         'timeline.registration.primaryInfo.items.0': 'Completar formulario de inscripción online',
-        'timeline.registration.primaryInfo.items.1': 'Carta de motivación (máximo 500 palabras)',
+        'timeline.registration.primaryInfo.items.1': 'Requisitos adicionales para mentores',
         'timeline.registration.primaryInfo.items.2': 'CV actualizado en formato PDF',
         'timeline.registration.primaryInfo.items.3': 'Conocimientos básicos de programación',
         'timeline.registration.secondaryInfo.title': 'Proceso',
@@ -218,6 +218,8 @@ const translations = {
         'timeline.preselection.secondaryInfo.items.1': 'Lista oficial de preseleccionados',
         'timeline.preselection.secondaryInfo.items.2': 'Retroalimentación personalizada para cada candidato',
         'timeline.preselection.secondaryInfo.items.3': 'Invitación al curso preparatorio',
+        'timeline.unpin' : 'Desfijar',
+
 
         // Fase del Curso QWorld
         'timeline.course.name': 'Curso QWorld',
@@ -245,7 +247,7 @@ const translations = {
         'timeline.selection.primaryInfo.items.0': 'Análisis del proyecto final de QWorld',
         'timeline.selection.primaryInfo.items.1': 'Entrevistas técnicas individuales',
         'timeline.selection.primaryInfo.items.2': 'Evaluación de habilidades colaborativas',
-        'timeline.selection.primaryInfo.items.3': 'Compatibilidad para el trabajo en equipo',
+        'timeline.selection.primaryInfo.items.3': 'Resultado del curso de QWorld',
         'timeline.selection.secondaryInfo.title': 'Formación de Equipos',
         'timeline.selection.secondaryInfo.items.0': 'Creación de equipos multidisciplinarios',
         'timeline.selection.secondaryInfo.items.1': 'Asignación de mentores especializados',
@@ -260,8 +262,8 @@ const translations = {
         'timeline.hackathon.primaryInfo.title': 'Desarrollo',
         'timeline.hackathon.primaryInfo.items.0': 'Kick-off con presentación del desafío',
         'timeline.hackathon.primaryInfo.items.1': 'Desarrollo intensivo de soluciones',
-        'timeline.hackathon.primaryInfo.items.2': 'Sesiones diarias con mentores especializados',
-        'timeline.hackathon.primaryInfo.items.3': 'Talleres técnicos con expertos del sector',
+        'timeline.hackathon.primaryInfo.items.2': 'Trabajo en equipo para la solución de problemas',
+        'timeline.hackathon.primaryInfo.items.3': 'Presentación final ante el jurado',
         'timeline.hackathon.secondaryInfo.title': 'Presentación y Premiación',
         'timeline.hackathon.secondaryInfo.items.0': 'Demo Day con presentaciones finales',
         'timeline.hackathon.secondaryInfo.items.1': 'Pitch de 10 minutos por equipo',
@@ -270,6 +272,21 @@ const translations = {
 
         'countdown.t': 'para la selección',
         'countdown.preselection': 'para la preselección',
+
+        //OSD 
+        'osd.title1': 'Conectando con los',
+        'osd.title2': 'Objetivos de Desarrollo Sostenible',
+        'osd.description': 'Explora cómo la tecnología y la innovación pueden contribuir a un futuro más justo y sostenible.',
+
+        'osd1.title': 'Agua limpia y saneamiento',
+        'osd1.description': 'Garantizar la disponibilidad de agua limpia y el acceso a servicios de saneamiento para todas las personas, protegiendo así la salud y el medioambiente.',
+
+        'osd2.title': 'Ciudades y comunidades sostenibles',
+        'osd2.description': 'Promover comunidades inclusivas, seguras, resilientes y sostenibles mediante la planificación urbana inteligente y la innovación social.',
+
+        'osd3.title': 'Acción por el clima',
+        'osd3.description': 'Tomar medidas urgentes para combatir el cambio climático y sus impactos, fomentando la conciencia y la acción global.',
+
 
 
 
@@ -462,7 +479,7 @@ const translations = {
         'timeline.registration.participants': 'Open to everyone',
         'timeline.registration.primaryInfo.title': 'Requirements',
         'timeline.registration.primaryInfo.items.0': 'Complete online registration form',
-        'timeline.registration.primaryInfo.items.1': 'Motivation letter (maximum 500 words)',
+        'timeline.registration.primaryInfo.items.1': 'Additional requirements for mentors',
         'timeline.registration.primaryInfo.items.2': 'Updated CV in PDF format',
         'timeline.registration.primaryInfo.items.3': 'Basic programming knowledge',
         'timeline.registration.secondaryInfo.title': 'Process',
@@ -514,7 +531,7 @@ const translations = {
         'timeline.selection.primaryInfo.items.0': 'Analysis of QWorld final project',
         'timeline.selection.primaryInfo.items.1': 'Individual technical interviews',
         'timeline.selection.primaryInfo.items.2': 'Assessment of collaborative skills',
-        'timeline.selection.primaryInfo.items.3': 'Teamwork compatibility',
+        'timeline.selection.primaryInfo.items.3': 'QWorld course final score',
         'timeline.selection.secondaryInfo.title': 'Team Formation',
         'timeline.selection.secondaryInfo.items.0': 'Creation of multidisciplinary teams',
         'timeline.selection.secondaryInfo.items.1': 'Assignment of specialized mentors',
@@ -529,14 +546,31 @@ const translations = {
         'timeline.hackathon.primaryInfo.title': 'Development',
         'timeline.hackathon.primaryInfo.items.0': 'Kick-off with challenge presentation',
         'timeline.hackathon.primaryInfo.items.1': 'Intensive solution development',
-        'timeline.hackathon.primaryInfo.items.2': 'Daily sessions with specialized mentors',
-        'timeline.hackathon.primaryInfo.items.3': 'Technical workshops with industry experts',
+        'timeline.hackathon.primaryInfo.items.2': 'Teamwork for problem-solving',
+        'timeline.hackathon.primaryInfo.items.3': 'Final presentation and pitch in front of the jury',
         'timeline.hackathon.secondaryInfo.title': 'Presentation and Awards',
         'timeline.hackathon.secondaryInfo.items.0': 'Demo Day with final presentations',
         'timeline.hackathon.secondaryInfo.items.1': '10-minute pitch per team',
         'timeline.hackathon.secondaryInfo.items.2': 'Evaluation by international jury',
         'timeline.hackathon.secondaryInfo.items.3': 'Awards ceremony and networking',
         'countdown.preselection': 'for the pre-selection',
+
+        'timeline.unpin' : 'Unpin',
+
+        // OSD Section
+        'osd.title1': 'Connecting with the',
+        'osd.title2': 'Sustainable Development Goals',
+        'osd.description': 'Explore how technology and innovation can contribute to a fairer and more sustainable future.',
+
+        'osd1.title': 'Clean Water and Sanitation',
+        'osd1.description': 'Ensure access to clean water and sanitation for all, protecting both human health and the environment.',
+
+        'osd2.title': 'Sustainable Cities and Communities',
+        'osd2.description': 'Promote inclusive, safe, resilient, and sustainable communities through smart urban planning and social innovation.',
+
+        'osd3.title': 'Climate Action',
+        'osd3.description': 'Take urgent action to combat climate change and its impacts by raising awareness and encouraging global cooperation.',
+
 
 
    
@@ -552,6 +586,8 @@ const translations = {
 
         'countdown.preselection': 'para a pré-seleção',
         'countdown.selection': 'para a seleção',
+        'timeline.unpin' : 'Desafixar',
+
 
 
         // Quantum Year Section
@@ -728,7 +764,7 @@ const translations = {
         'timeline.registration.participants': 'Aberto para todos',
         'timeline.registration.primaryInfo.title': 'Requisitos',
         'timeline.registration.primaryInfo.items.0': 'Completar formulário de inscrição online',
-        'timeline.registration.primaryInfo.items.1': 'Carta de motivação (máximo 500 palavras)',
+        'timeline.registration.primaryInfo.items.1': 'Requisitos adicionais para mentores',
         'timeline.registration.primaryInfo.items.2': 'CV atualizado em formato PDF',
         'timeline.registration.primaryInfo.items.3': 'Conhecimentos básicos de programação',
         'timeline.registration.secondaryInfo.title': 'Processo',
@@ -777,12 +813,12 @@ const translations = {
         'timeline.selection.primaryInfo.items.0': 'Análise do projeto final da QWorld',
         'timeline.selection.primaryInfo.items.1': 'Entrevistas técnicas individuais',
         'timeline.selection.primaryInfo.items.2': 'Avaliação de habilidades colaborativas',
-        'timeline.selection.primaryInfo.items.3': 'Compatibilidade para trabalho em equipe',
+        'timeline.selection.primaryInfo.items.3': 'Resultado do curso da QWorld',
         'timeline.selection.secondaryInfo.title': 'Formação de Equipes',
         'timeline.selection.secondaryInfo.items.0': 'Criação de equipes multidisciplinares',
         'timeline.selection.secondaryInfo.items.1': 'Atribuição de mentores especializados',
         'timeline.selection.secondaryInfo.items.2': 'Entrega do kit de ferramentas',
-        'timeline.selection.secondaryInfo.items.3': 'Acesso a recursos exclusivos do hackathon',
+        'timeline.selection.secondaryInfo.items.3': 'Resultado do curso do QWorld',
 
         // Fase de Hackathon
         'timeline.hackathon.name': 'Hackathon',
@@ -791,13 +827,27 @@ const translations = {
         'timeline.hackathon.primaryInfo.title': 'Desenvolvimento',
         'timeline.hackathon.primaryInfo.items.0': 'Kick-off com apresentação de desafios',
         'timeline.hackathon.primaryInfo.items.1': 'Desenvolvimento intensivo de soluções',
-        'timeline.hackathon.primaryInfo.items.2': 'Sessões diárias de mentoria especializada',
-        'timeline.hackathon.primaryInfo.items.3': 'Workshops técnicos com especialistas do setor',
+        'timeline.hackathon.primaryInfo.items.2': 'Trabalho em equipe para a solução de problemas',
+        'timeline.hackathon.primaryInfo.items.3': 'Apresentaçõ final diante da banca avaliadora',
         'timeline.hackathon.secondaryInfo.title': 'Apresentação e Premiação',
         'timeline.hackathon.secondaryInfo.items.0': 'Demo Day com apresentações finais',
         'timeline.hackathon.secondaryInfo.items.1': 'Pitch de 10 minutos por equipe',
         'timeline.hackathon.secondaryInfo.items.2': 'Avaliação por júri internacional',
         'timeline.hackathon.secondaryInfo.items.3': 'Cerimônia de premiação e networking',
+
+        'osd.title1': 'Conectando com os',
+        'osd.title2': 'Objetivos de Desenvolvimento Sustentável',
+        'osd.description': 'Explore como a tecnologia e a inovação podem contribuir para um futuro mais justo e sustentável.',
+
+        'osd1.title': 'Água limpa e saneamento',
+        'osd1.description': 'Garantir o acesso à água limpa e ao saneamento para todos, protegendo a saúde humana e o meio ambiente.',
+
+        'osd2.title': 'Cidades e comunidades sustentáveis',
+        'osd2.description': 'Promover comunidades inclusivas, seguras, resilientes e sustentáveis por meio de planejamento urbano inteligente e inovação social.',
+
+        'osd3.title': 'Ação contra a mudança global do clima',
+        'osd3.description': 'Tomar medidas urgentes para combater as mudanças climáticas e seus impactos, promovendo a conscientização e a cooperação global.',
+
 
   // Títulos adicionales que estaban sueltos
 }     

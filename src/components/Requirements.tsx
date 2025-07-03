@@ -198,7 +198,7 @@ const Requirements: React.FC = () => {
               </div>
               <div  className="mt-8 text-center">
                 <a
-                  href="https://forms.gle/8NAtRCLmFr4eq6xy8"
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSeTQzCOxIHScFL8arMqdDzz1LBpRwMWKRygc10YskX5_RbIAA/viewform?pli=1"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center bg-gradient-to-r from-[#5a8f5e] to-[#3a673b] text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105"
