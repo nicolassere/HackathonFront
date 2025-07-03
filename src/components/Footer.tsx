@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, MapPin, Globe, Calendar, Instagram, Linkedin } from 'lucide-react';
+import { Mail, MapPin, Globe, Calendar, Instagram, Linkedin} from 'lucide-react';
 import { useLanguage } from "../contexts/LanguageContext";
 
 const Footer: React.FC = () => {
@@ -154,6 +154,24 @@ const Footer: React.FC = () => {
                 >
                   <Linkedin className="w-5 h-5 text-slate-300 group-hover:text-white transition-colors" />
                 </a>
+                <a
+                  href="https://www.tiktok.com/@universidaddemontevideo" // actualizá el link si tenés uno oficial
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group bg-slate-800 hover:bg-black p-3 rounded-xl transition-all duration-300 transform hover:scale-110"
+                  aria-label="Follow us on TikTok"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-8 h-8 text-slate-300 group-hover:text-white transition-colors"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M16 8.25v1.403a5.25 5.25 0 1 1-5.25-5.25h.75v2.25h-.75a3 3 0 1 0 3 3V0h2.25a4.5 4.5 0 0 0 4.5 4.5v2.25a6.75 6.75 0 0 1-4.5-1.5z" />
+                  </svg>
+                </a>
+
+        
               </div>
             </div>
           </div>
@@ -162,11 +180,8 @@ const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="border-t border-slate-700 mt-12 pt-8 text-center text-slate-400">
           <p>
-            {t('footer.rights')} |{" "}
+            {t('footer.rights')} 
             <span className="ml-1">
-              <a href="/quantum_hackathon/EN" className="hover:text-blue-400 transition-colors">
-                {t('footer.langSwitch')}
-              </a>
             </span>
           </p>
         </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 
-type EventType = 'registration' | 'course' | 'hackathon';
+type EventType = 'registration' | 'course' | 'hackathon' | 'preselection' | 'selection' ;
 
 interface CountdownTimerProps {
   eventType?: EventType;
@@ -61,6 +61,10 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
         return t('countdown.course') || 'el inicio del curso preparatorio';
       case 'hackathon':
         return t('countdown.hackathon') || 'el Quantum Climate Hackathon';
+      case 'preselection':
+        return t('countdown.preselection') || 'el cierre de la preselección';
+      case 'selection':
+        return t('countdown.t') || 'el cierre de la selección';
       default:
         return eventName || 'el evento';
     }
@@ -179,7 +183,9 @@ interface EventCountdownSelectorProps {
 const EventCountdownSelector: React.FC<EventCountdownSelectorProps> = ({ 
   events = [
     { type: 'registration', date: '2025-07-15T23:59:59' },
+    { type: 'preselection', date:  '2025-07-27T23:59:59' },
     { type: 'course', date: '2025-08-04T09:00:00' },
+    { type: 'selection', date: '2025-08-29T23:59:59' },
     { type: 'hackathon', date: '2025-10-01T09:00:00' }
   ],
   className = ""
@@ -187,18 +193,24 @@ const EventCountdownSelector: React.FC<EventCountdownSelectorProps> = ({
   const [selectedEvent, setSelectedEvent] = useState<EventType>(events[0]?.type || 'hackathon');
   const { t } = useLanguage();
 
-  const getEventLabel = (eventType: EventType): string => {
-    switch(eventType) {
-      case 'registration':
-        return t('events.registration') || 'Inscripciones';
-      case 'course':
-        return t('events.course') || 'Curso Preparatorio';
-      case 'hackathon':
-        return t('events.hackathon') || 'Hackathon';
-      default:
-        return eventType;
-    }
-  };
+
+const getEventLabel = (eventType: EventType): string => {
+  switch(eventType) {
+    case 'registration':
+      return t('events.registration') || 'Inscripciones';
+        case 'preselection':
+      return t('eventstpreseleccion') || 'Preselección';
+    case 'course':
+      return t('events.course') || 'Curso Preparatorio';
+    case 'selection':
+      return t('events.t') || 'Selección';
+    case 'hackathon':
+      return t('events.hackathon') || 'Hackathon';
+    default:
+      return eventType;
+  }
+};
+
 
   const getEventIcon = (eventType: EventType): string => {
     switch(eventType) {
@@ -222,8 +234,12 @@ const EventCountdownSelector: React.FC<EventCountdownSelectorProps> = ({
     switch (eventType) {
       case 'registration':
         return t('extra.registration') || 'No te quedes afuera, completá tu inscripción';
-      case 'course':
+      case 'preselection':
+      return t('extra.preseleccion')
+      case 'course': 
         return t('extra.course') || '¡Prepárate con todo en el curso previo!';
+      case 'selection':
+        return t('extra.selection') || 'La selección de candidatos está por comenzar';
       case 'hackathon':
         return t('extra.hackathon') || 'El evento principal se acerca. ¡Nos vemos pronto!';
       default:
