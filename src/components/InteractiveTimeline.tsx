@@ -417,7 +417,7 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
               {t('timeline.hoverDescription')}
             </p>
             <p className="text-gray-400 text-xs mt-2">
-              Haz clic para fijar la información
+              {t('timeline.clickToPin')}
             </p>
           </div>
         )}

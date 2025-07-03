@@ -41,7 +41,7 @@ const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a href="#registration" className="hover:text-blue-400 transition-colors">
+                <a href="#inscripcion" className="hover:text-blue-400 transition-colors">
                   {t('footer.registration')}
                 </a>
               </li>
@@ -137,7 +137,7 @@ const Footer: React.FC = () => {
               <h5 className="text-sm font-semibold text-slate-400 mb-3 uppercase tracking-wide">{t('footer.followUs')}</h5>
               <div className="flex space-x-4">
                 <a
-                  href="https://www.instagram.com/universidaddemontevideo/"
+                  href="https://www.instagram.com/quantumhackatonlatam/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group bg-slate-800 hover:bg-gradient-to-br hover:from-pink-500 hover:to-purple-600 p-3 rounded-xl transition-all duration-300 transform hover:scale-110"
@@ -152,10 +152,10 @@ const Footer: React.FC = () => {
                   className="group bg-slate-800 hover:bg-blue-600 p-3 rounded-xl transition-all duration-300 transform hover:scale-110"
                   aria-label="Follow us on LinkedIn"
                 >
-                  <Linkedin className="w-5 h-5 text-slate-300 group-hover:text-white transition-colors" />
+                  <Linkedin className="w-6 h-6 text-slate-300 group-hover:text-white transition-colors" />
                 </a>
                 <a
-                  href="https://www.tiktok.com/@universidaddemontevideo" // actualizá el link si tenés uno oficial
+                  href="https://www.tiktok.com/@universidaddemontevideo"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group bg-slate-800 hover:bg-black p-3 rounded-xl transition-all duration-300 transform hover:scale-110"
@@ -163,15 +163,13 @@ const Footer: React.FC = () => {
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="w-8 h-8 text-slate-300 group-hover:text-white transition-colors"
+                    className="w-5 h-5 text-slate-300 group-hover:text-white transition-colors"
                     fill="currentColor"
-                    viewBox="0 0 24 24"
+                    viewBox="0 0 16 16"
                   >
-                    <path d="M16 8.25v1.403a5.25 5.25 0 1 1-5.25-5.25h.75v2.25h-.75a3 3 0 1 0 3 3V0h2.25a4.5 4.5 0 0 0 4.5 4.5v2.25a6.75 6.75 0 0 1-4.5-1.5z" />
+                    <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3z"/>
                   </svg>
                 </a>
-
-        
               </div>
             </div>
           </div>

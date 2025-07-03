@@ -219,6 +219,7 @@ const translations = {
         'timeline.preselection.secondaryInfo.items.2': 'Retroalimentación personalizada para cada candidato',
         'timeline.preselection.secondaryInfo.items.3': 'Invitación al curso preparatorio',
         'timeline.unpin' : 'Desfijar',
+        'timeline.clickToPin': 'Haz clic para fijar la información',
 
 
         // Fase del Curso QWorld
@@ -332,6 +333,7 @@ const translations = {
         'quantumYear.photoDescription': 'Discover the most iconic places in our host country',
         'quantumYear.loading': 'Loading photos...',
         'quantumYear.imageUnavailable': 'Image not available',
+        
 
         // EventInfo
         'event.title.part1': 'Quantum Computing for',
@@ -556,6 +558,7 @@ const translations = {
         'countdown.preselection': 'for the pre-selection',
 
         'timeline.unpin' : 'Unpin',
+        'timeline.clickToPin': 'Click to pin the information',
 
         // OSD Section
         'osd.title1': 'Connecting with the',
@@ -834,6 +837,8 @@ const translations = {
         'timeline.hackathon.secondaryInfo.items.1': 'Pitch de 10 minutos por equipe',
         'timeline.hackathon.secondaryInfo.items.2': 'Avaliação por júri internacional',
         'timeline.hackathon.secondaryInfo.items.3': 'Cerimônia de premiação e networking',
+        'timeline.clickToPin': 'Clique aqui para fixar as informações',
+
 
         'osd.title1': 'Conectando com os',
         'osd.title2': 'Objetivos de Desenvolvimento Sustentável',
