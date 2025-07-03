@@ -108,7 +108,7 @@ const QuantumYearSection = () => {
                             <div className="flex items-center space-x-3 mb-6">
                                 <div className="w-12 h-12 rounded-xl flex items-center justify-center overflow-hidden">
                                     <img
-                                        src="img/logo_um/img.png"
+                                        src="img/logo_um/logo.png"
                                         alt="Universidad de Montevideo"
                                         className="w-full h-full object-contain"
                                     />
