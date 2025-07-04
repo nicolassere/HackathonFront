@@ -8,7 +8,7 @@ const Partners: React.FC = () => {
       name: "Open Quantum Institute",
       description: "CERN's initiative advancing quantum technology for humanity",
       url: "https://open-quantum-institute.cern/",
-      logo: "img/Partners/OQI_Logo_2024_d.png"
+      logo: ".../assets/OQI_Logo_2024_d.png"
     },
     {
       name: "Quantum 2025",
