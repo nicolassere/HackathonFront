@@ -1,5 +1,10 @@
 import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
+import oqiLogo from '../../img/Partners/OQI_Logo_2024_d.png';
+import quantum2025Logo from '../../img/Partners/Quantum2025.png';
+import ieeeR9Logo from '../../img/Partners/IeeeR9.png';
+import cleiLogo from '../../img/CLEI2025.png';
+import ripaiscLogo from '../../img/Partners/Ripaisc.png';
 
 const Partners: React.FC = () => {
   const { t } = useLanguage();
@@ -8,19 +13,19 @@ const Partners: React.FC = () => {
       name: "Open Quantum Institute",
       description: "CERN's initiative advancing quantum technology for humanity",
       url: "https://open-quantum-institute.cern/",
-      logo: ".../assets/OQI_Logo_2024_d.png"
+      logo: oqiLogo
     },
     {
       name: "Quantum 2025",
       description: "Leading quantum computing conference",
       url: "https://quantum2025.org/es/",
-      logo: "img/Partners/Quantum2025.png"
+      logo: quantum2025Logo
     },
     {
       name: "IEEE Region 9",
       description: "IEEE Latin America and Caribbean",
       url: "https://r9.ieee.org/",
-      logo: "img/Partners/IeeeR9.png"
+      logo: ieeeR9Logo
     }
   ];
 
@@ -29,13 +34,13 @@ const Partners: React.FC = () => {
       name: "CLEI",
       description: "Latin American Center for Informatics Studies",
       url: "https://clei.org/",
-      logo: "img/CLEI2025.png"
+      logo: cleiLogo
     },
     {
       name: "RIPAISAC",
       description: "Latin American Network for High Performance Computing",
       url: "https://www.ripaisc.net/",
-      logo: "img/Partners/Ripaisc.png"
+      logo: ripaiscLogo
     },
   ];
 

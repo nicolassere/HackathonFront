@@ -1,13 +1,15 @@
 import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext'; // Ajustá esto según tu estructura
+import banner_en from '../../img/Banner_en.png';
+import banner_es from '../../img/Banner_es.png';
 
 const Hero = () => {
   const { language } = useLanguage(); // Suponiendo que retorna 'en', 'es', etc.
 
   const bannerByLanguage = {
-    en: 'img/Banner_en.png',
-    es: 'img/Banner_es.png',
-    pt: 'img/Banner_es.png',
+    en: banner_en,
+    es: banner_es,
+    pt: banner_es,
   };
 
   const bannerSrc = bannerByLanguage[language] || 'img/Banner_en.png'; // Fallback
