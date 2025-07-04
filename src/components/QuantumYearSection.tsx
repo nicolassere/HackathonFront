@@ -11,6 +11,11 @@ import image11 from '../../img/imagen11.jpeg';
 import puertobuceo from '../../img/puertobuceo.jpeg';
 import FIUM from '../../img/FIUM.jpg';
 
+import oqiLogo from '../../img/Partners/OQI_Logo_2024_d.png'
+import quantum2025Logo from '../../img/Partners/Quantum2025.png';
+
+import logoUM from '../../img/logo_um/logo.png';
+
 
 
 
@@ -119,7 +124,7 @@ const QuantumYearSection = () => {
                             <div className="flex items-center space-x-3 mb-6">
                                 <div className="w-12 h-12 rounded-xl flex items-center justify-center overflow-hidden">
                                     <img
-                                        src="img/logo_um/logo.png"
+                                        src={logoUM}
                                         alt="Universidad de Montevideo"
                                         className="w-full h-full object-contain"
                                     />
@@ -140,8 +145,8 @@ const QuantumYearSection = () => {
                                 <div className="flex items-center justify-center mb-4 h-16">
                                     <a href="https://quantum2025.org" target="_blank" rel="noopener noreferrer">
                                         <img
-                                            src="img/Partners/Quantum2025.png"
-                                            alt="UNESCO 2025"
+                                            src={quantum2025Logo}
+                                            alt="UNESCO Quantum 2025"
                                             className="max-h-full max-w-full object-contain"
                                         />
                                     </a>
@@ -152,7 +157,7 @@ const QuantumYearSection = () => {
                                 <div className="flex items-center justify-center mb-4 h-16">
                                     <a href="https://open-quantum-institute.cern/" target="_blank" rel="noopener noreferrer">
                                         <img
-                                            src="img/Partners/OQI_Logo_2024_d.png"
+                                            src={oqiLogo}
                                             alt="Open Quantum Institute"
                                             className="max-h-full max-w-full object-contain"
                                         />
