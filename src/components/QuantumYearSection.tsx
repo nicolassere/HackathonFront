@@ -1,5 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
+import image2 from '../../img/imagen2.jpg';
+import image1 from '../../img/imagen1.jpg';
+import image5 from '../../img/imagen5.jpeg';
+import image7 from '../../img/imagen7.jpeg';
+import image8 from '../../img/imagen8.jpeg';
+import image9 from '../../img/imagen9.jpeg';
+import image4 from '../../img/imagen4.jpg';
+import image11 from '../../img/imagen11.jpeg';
+import puertobuceo from '../../img/puertobuceo.jpeg';
+import FIUM from '../../img/FIUM.jpg';
+
 
 
 
@@ -9,54 +20,54 @@ const QuantumYearSection = () => {
     // Array de fotos de Uruguay - una para cada letra de MONTEVIDEO
     const uruguayPhotos = [
                 {
-            src: '../../img/imagen2.jpg',
+            src: image2,
             alt: 'Montevideo - O',
             caption: 'Plaza Independencia'
         },
         {
-            src: '../../img/imagen1.jpg',
+            src: image1,
             alt: 'Montevideo - M',
             caption: 'Punta Colorada'
         },
 
         {
-            src: '../../img/FIUM.jpg',
+            src: FIUM,
             alt: 'Montevideo - N',
             caption: 'FIUM'
         },
 
         {
-            src: '../../img/imagen5.jpeg',
+            src: image5,
             alt: 'Montevideo - E',
             caption: 'Palacio Salvo'
         },
         {
-            src: '../../img/imagen7.jpeg',
+            src: image7,
             alt: 'Montevideo - V',
             caption: 'Puerta de la Ciudadela'
         },
         {
-            src: '../../img/imagen8.jpeg',
+            src: image8,
             alt: 'Montevideo - I',
             caption: 'Plaza Independencia'
         },
         {
-            src: '../../img/imagen9.jpeg',
+            src: image9,
             alt: 'Montevideo - D',
             caption: 'Rambla de Montevideo'
         },
         {
-            src: '../../img/imagen4.jpg',
+            src: image4,
             alt: 'Montevideo - T',
             caption: 'FIUM'
         },
         {
-            src: '../../img/puertobuceo.jpeg',
+            src: puertobuceo,
             alt: 'Montevideo - E',
             caption: 'Puerto del Buceo'
         },
         {
-            src: '../../img/imagen11.jpeg',
+            src: image11,
             alt: 'Montevideo - O',
             caption: 'Punta del Este'
         }
