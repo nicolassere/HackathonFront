@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
-
 import { useLanguage } from '../contexts/LanguageContext';
-import LogoUM from '/img/logo_um/logo.png';
-import ImgO1 from '/img/imagen2.jpg';
-import ImgM from '/img/imagen1.jpg';
-import ImgN from '/img/FIUM.jpg';
-import ImgE1 from '/img/imagen5.jpeg';
-import ImgV from '/img/imagen7.jpeg';
-import ImgI from '/img/imagen8.jpeg';
-import ImgD from '/img/imagen9.jpeg';
-import ImgT from '/img/imagen4.jpg';
-import ImgE2 from '/img/puertobuceo.jpeg';
-import ImgO2 from '/img/imagen11.jpeg';
+import image2 from '../../img/imagen2.jpg';
+import image1 from '../../img/imagen1.jpg';
+import image5 from '../../img/imagen5.jpeg';
+import image7 from '../../img/imagen7.jpeg';
+import image8 from '../../img/imagen8.jpeg';
+import image9 from '../../img/imagen9.jpeg';
+import image4 from '../../img/imagen4.jpg';
+import image11 from '../../img/imagen11.jpeg';
+import puertobuceo from '../../img/puertobuceo.jpeg';
+import FIUM from '../../img/FIUM.jpg';
+
 
 
 
@@ -20,53 +19,55 @@ const QuantumYearSection = () => {
 
     // Array de fotos de Uruguay - una para cada letra de MONTEVIDEO
     const uruguayPhotos = [
-        {
-            src: ImgO1,
+                {
+            src: image2,
             alt: 'Montevideo - O',
             caption: 'Plaza Independencia'
         },
         {
-            src: ImgM,
+            src: image1,
             alt: 'Montevideo - M',
             caption: 'Punta Colorada'
         },
+
         {
-            src: ImgN,
+            src: FIUM,
             alt: 'Montevideo - N',
             caption: 'FIUM'
         },
+
         {
-            src: ImgE1,
+            src: image5,
             alt: 'Montevideo - E',
             caption: 'Palacio Salvo'
         },
         {
-            src: ImgV,
+            src: image7,
             alt: 'Montevideo - V',
             caption: 'Puerta de la Ciudadela'
         },
         {
-            src: ImgI,
+            src: image8,
             alt: 'Montevideo - I',
             caption: 'Plaza Independencia'
         },
         {
-            src: ImgD,
+            src: image9,
             alt: 'Montevideo - D',
             caption: 'Rambla de Montevideo'
         },
         {
-            src: ImgT,
+            src: image4,
             alt: 'Montevideo - T',
             caption: 'FIUM'
         },
         {
-            src: ImgE2,
+            src: puertobuceo,
             alt: 'Montevideo - E',
             caption: 'Puerto del Buceo'
         },
         {
-            src: ImgO2,
+            src: image11,
             alt: 'Montevideo - O',
             caption: 'Punta del Este'
         }
@@ -118,7 +119,7 @@ const QuantumYearSection = () => {
                             <div className="flex items-center space-x-3 mb-6">
                                 <div className="w-12 h-12 rounded-xl flex items-center justify-center overflow-hidden">
                                     <img
-                                        src={LogoUM}
+                                        src="img/logo_um/logo.png"
                                         alt="Universidad de Montevideo"
                                         className="w-full h-full object-contain"
                                     />
