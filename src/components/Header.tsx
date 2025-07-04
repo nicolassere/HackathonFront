@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { useLanguage } from "../contexts/LanguageContext";
+import logo from '../../img/HackathonLogoHeader.png'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -37,7 +38,7 @@ const Header = () => {
               className="hidden sm:flex items-center space-x-2 group transition-all duration-300 hover:scale-105"
             >
               <img
-                src="img/HackathonLogoHeader.png"
+                src= {logo}
                 alt="Hackathon Logo"
                 className="h-8 w-auto transition-transform duration-300 group-hover:rotate-3"
               />
