@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { CountdownTimer } from './CountdownTimer';
 
 // 🖼️ Importá las imágenes correspondientes
@@ -47,6 +47,11 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
 }) => {
   const [hoveredColumn, setHoveredColumn] = useState<string | null>(null);
   const [pinnedColumn, setPinnedColumn] = useState<string | null>(null);
+  const [imageDimensions, setImageDimensions] = useState({ width: 0, height: 0 });
+  const [isMouseInside, setIsMouseInside] = useState(false);
+  const imageRef = useRef<HTMLImageElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const { t } = useLanguage();
 
   const columns: ColumnData[] = [
@@ -63,7 +68,6 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
             t('timeline.registration.primaryInfo.items.0'),
             t('timeline.registration.primaryInfo.items.3'),
             t('timeline.registration.primaryInfo.items.1')
-
           ]
         },
         secondaryInfo: {
@@ -72,7 +76,6 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
             t('timeline.registration.secondaryInfo.items.0'),
             t('timeline.registration.secondaryInfo.items.3'),
             t('timeline.registration.secondaryInfo.items.1'),
-
           ]
         }
       },
@@ -158,7 +161,6 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
           items: [
             t('timeline.preselection.primaryInfo.items.0'),
             t('timeline.preselection.primaryInfo.items.1'),
-
             t('timeline.selection.primaryInfo.items.3')
           ]
         },
@@ -205,8 +207,8 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
           ]
         }
       },
-      startX: 83,
-      endX: 97,
+      startX: 81,
+      endX: 95,
       color: 'bg-[#fd9d24]',
       textColor: 'text-[#fd9d24]',
       image: hackathonImage,
@@ -214,25 +216,112 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
     },
   ];
 
+  // Update image dimensions when image loads or window resizes
+  useEffect(() => {
+    const updateImageDimensions = () => {
+      if (imageRef.current) {
+        const rect = imageRef.current.getBoundingClientRect();
+        setImageDimensions({
+          width: rect.width,
+          height: rect.height
+        });
+      }
+    };
+
+    const handleResize = () => {
+      updateImageDimensions();
+    };
+
+    const handleImageLoad = () => {
+      updateImageDimensions();
+    };
+
+    if (imageRef.current) {
+      imageRef.current.addEventListener('load', handleImageLoad);
+    }
+
+    window.addEventListener('resize', handleResize);
+    
+    // Initial measurement
+    updateImageDimensions();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (imageRef.current) {
+        imageRef.current.removeEventListener('load', handleImageLoad);
+      }
+    };
+  }, []);
+
+  // Calculate responsive button sizing based on image dimensions
+  const getButtonStyles = () => {
+    const baseSize = Math.min(imageDimensions.width, imageDimensions.height);
+    
+    return {
+      fontSize: Math.max(12, Math.min(18, imageDimensions.width * 0.012)) + 'px',
+      padding: `${Math.max(8, Math.min(14, imageDimensions.height * 0.02))}px ${Math.max(12, Math.min(20, imageDimensions.width * 0.02))}px`,
+      minWidth: Math.max(120, imageDimensions.width * 0.08) + 'px',
+    };
+  };
+
+  // Calculate responsive indicator sizing
+  const getIndicatorStyles = () => {
+    const baseSize = Math.min(imageDimensions.width, imageDimensions.height);
+    const size = Math.max(14, Math.min(22, baseSize * 0.025));
+    
+    return {
+      width: size + 'px',
+      height: size + 'px',
+    };
+  };
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isMouseInside || pinnedColumn) return;
+
+    // Clear any existing timeout
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    // Check if mouse is within the image bounds
+    const isWithinBounds = x >= 0 && x <= rect.width && y >= 0 && y <= rect.height;
+    
+    if (!isWithinBounds) {
+      setHoveredColumn(null);
+      return;
+    }
+
     const percentage = (x / rect.width) * 100;
 
     const column = columns.find(
       (col) => percentage >= col.startX && percentage < col.endX
     );
 
-    // Solo cambiar el hover si no hay columna fijada
-    if (!pinnedColumn) {
-      setHoveredColumn(column ? column.id : null);
-    }
+    // Respuesta inmediata, sin delay
+    setHoveredColumn(column ? column.id : null);
+  };
+
+  const handleMouseEnter = () => {
+    setIsMouseInside(true);
   };
 
   const handleMouseLeave = () => {
-    // Solo limpiar el hover si no hay columna fijada
+    setIsMouseInside(false);
+    
+    // Clear any pending timeout
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+    
+    // Solo delay muy corto para evitar flickering
     if (!pinnedColumn) {
-      setHoveredColumn(null);
+      hoverTimeoutRef.current = setTimeout(() => {
+        setHoveredColumn(null);
+      }, 50);
     }
   };
 
@@ -246,17 +335,14 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
     );
 
     if (column) {
-      // Si ya está fijada la misma columna, desfija
       if (pinnedColumn === column.id) {
         setPinnedColumn(null);
         setHoveredColumn(null);
       } else {
-        // Fija la nueva columna
         setPinnedColumn(column.id);
         setHoveredColumn(column.id);
       }
     } else {
-      // Si hace clic fuera de cualquier columna, desfija
       setPinnedColumn(null);
       setHoveredColumn(null);
     }
@@ -269,67 +355,191 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
     ? getColumnData(hoveredColumn)
     : null;
 
-  // Mostrar información si hay columna activa (hover o fijada)
   const showInfo = activeColumn || pinnedColumn;
 
   return (
     <div
-      className={`w-full min-h-screen py-16 bg-white ${className} max-[930px]:hidden ${className}`}
+      className={`w-full py-8 bg-white ${className} max-[930px]:hidden`}
     >
-      <div className="w-full max-w-none px-4 sm:px-6 lg:px-8">
-        {/* Imagen dinámica */}
-        <div className="relative mb-8 w-full">
-          <div
-            className="relative cursor-pointer group w-full"
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            onClick={handleClick}
-          >
-            <img
-              src={activeColumn?.image || imageSrc}
-              alt={imageAlt}
-              className="w-full h-auto rounded-3xl -2xl transition-all duration-300"
-              style={{
-                minHeight: '400px',
-                maxHeight: '600px',
-                objectFit: 'cover',
-              }}
-            />
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Contenedor principal con imagen y hover lateral */}
+        <div className="relative mb-8 w-full flex gap-6">
+          {/* Imagen con botones de fechas superpuestos */}
+          <div className="flex-grow">
+            <div
+              ref={containerRef}
+              className="relative cursor-pointer group w-full"
+              onMouseMove={handleMouseMove}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              onClick={handleClick}
+            >
+              <img
+                ref={imageRef}
+                src={activeColumn?.image || imageSrc}
+                alt={imageAlt}
+                className="w-full h-auto rounded-3xl shadow-2xl transition-all duration-300"
+                style={{
+                  minHeight: '60vh',
+                  maxHeight: '70vh',
+                  objectFit: 'cover',
+                  width: '100%',
+                }}
+                onLoad={() => {
+                  if (imageRef.current) {
+                    const rect = imageRef.current.getBoundingClientRect();
+                    setImageDimensions({
+                      width: rect.width,
+                      height: rect.height
+                    });
+                  }
+                }}
+              />
 
-            {/* Etiquetas de fase con fechas */}
-            {columns.map((column) => {
-              const centerX = Math.min((column.startX + column.endX) / 2, 98);
-              const isActive = hoveredColumn === column.id;
-              const isPinned = pinnedColumn === column.id;
-              
-              return (
-                <div
-                  key={column.id}
-                  className={`absolute -top-5 transform -translate-x-1/2 px-4 py-2 rounded-full text-sm font-bold shadow-lg z-10 whitespace-nowrap max-w-xs text-center transition-all duration-300 ${
-                    isActive || isPinned
-                      ? `${column.color} text-white opacity-100 scale-110 ${isPinned ? 'ring-2 ring-white' : ''}`
-                      : 'opacity-30 bg-white text-slate-600 hover:opacity-60'
-                  }`}
-                  style={{ left: `${centerX}%` }}
-                >
-                  <div className="text-xs mb-1">
-                  <span className="font-bold">{column.detailedInfo.dateRange}</span>
-                </div>
+              {/* Botones de fechas superpuestos - posicionados por porcentaje */}
+              <div className="absolute inset-0 pointer-events-none">
+                {columns.map((column) => {
+                  const isActive = hoveredColumn === column.id;
+                  const isPinned = pinnedColumn === column.id;
+                  const buttonStyles = getButtonStyles();
+                  
+                  // Calculate center position of this column
+                  const centerX = (column.startX + column.endX) / 2;
+                  
+                  return (
+                    <div
+                      key={column.id}
+                      className="absolute pointer-events-auto"
+                      style={{
+                        left: `${centerX}%`,
+                        top: `${imageDimensions.height * 0.05}px`,
+                        transform: 'translateX(-50%)',
+                      }}
+                    >
+                      <div
+                        className={`relative rounded-full font-semibold shadow-lg transition-all duration-200 cursor-pointer backdrop-blur-sm ${
+                          isActive || isPinned
+                            ? `${column.color} text-white scale-105 ${isPinned ? 'ring-2 ring-yellow-400' : ''}`
+                            : 'bg-gray-800/90 text-white hover:bg-gray-700/90 hover:scale-102 hover:shadow-xl'
+                        }`}
+                        style={{
+                          ...buttonStyles,
+                          minWidth: 'fit-content'
+                        }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (pinnedColumn === column.id) {
+                            setPinnedColumn(null);
+                            setHoveredColumn(null);
+                          } else {
+                            setPinnedColumn(column.id);
+                            setHoveredColumn(column.id);
+                          }
+                        }}
+                      >
+                        <span className="font-bold whitespace-nowrap">
+                          {column.detailedInfo.dateRange}
+                        </span>
+                        {isPinned && (
+                          <div 
+                            className="absolute -top-1 -right-1 bg-yellow-400 rounded-full border-2 border-white"
+                            style={{
+                              width: Math.max(12, imageDimensions.width * 0.015) + 'px',
+                              height: Math.max(12, imageDimensions.width * 0.015) + 'px'
+                            }}
+                          ></div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
 
-                  <div>
-                    {column.name}
+              {/* Indicadores de posición en la imagen - SIEMPRE VISIBLES */}
+              {columns.map((column) => {
+                const centerX = Math.min((column.startX + column.endX) / 2, 92);
+                const isActive = hoveredColumn === column.id;
+                const isPinned = pinnedColumn === column.id;
+                const indicatorStyles = getIndicatorStyles();
+                
+                return (
+                  <div
+                    key={column.id}
+                    className={`absolute transform -translate-x-1/2 transition-all duration-200 ${
+                      isActive || isPinned
+                        ? 'scale-110 opacity-100'
+                        : 'scale-90 opacity-60'
+                    }`}
+                    style={{ 
+                      left: `${centerX}%`,
+                      bottom: imageDimensions.height * 0.05,
+                    }}
+                  >
+                    <div 
+                      className={`rounded-full ${column.color} shadow-lg border-2 border-white ${isPinned ? 'ring-2 ring-yellow-400' : ''}`}
+                      style={indicatorStyles}
+                    ></div>
                   </div>
-                  {isPinned && (
-                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full border-2 border-white"></div>
-                  )}
-                </div>
-              );    
-            })}
+                );
+              })}
+            </div>
           </div>
+
+          {/* Panel lateral para hover - SIN CONTADOR */}
+          {hoveredColumn && !pinnedColumn && activeColumn && (
+            <div className="w-80 flex-shrink-0">
+              <div className="bg-white rounded-2xl shadow-xl p-6 border-l-4 border-opacity-80 sticky top-4"
+                   style={{ borderLeftColor: activeColumn.color.replace('bg-', '').replace('-500', '').replace('-600', '') }}>
+                
+                {/* Header */}
+                <div className="mb-4">
+                  <h3 className={`text-xl font-bold ${activeColumn.textColor} mb-2`}>
+                    {activeColumn.name}
+                  </h3>
+                  <p className="text-gray-600 text-sm">{activeColumn.description}</p>
+                  <p className="text-gray-500 text-xs mt-1">
+                    {activeColumn.detailedInfo.dateRange} • {activeColumn.detailedInfo.participants} 
+                  </p>
+                </div>
+
+                {/* Información primaria condensada */}
+                <div className="bg-blue-50 rounded-lg p-4 mb-6">
+                  <h4 className="font-semibold text-blue-800 mb-3 text-sm">
+                    {activeColumn.detailedInfo.primaryInfo.title}
+                  </h4>
+                  <ul className="space-y-2 text-blue-700 text-sm">
+                    {activeColumn.detailedInfo.primaryInfo.items.slice(0, 3).map((item, index) => (
+                      <li key={index} className="flex items-start">
+                        <span className="text-blue-400 mr-2 text-xs">•</span>
+                        <span className="leading-relaxed">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Botón para fijar - más prominente */}
+                <div className="text-center">
+                  <button
+                    onClick={() => {
+                      setPinnedColumn(activeColumn.id);
+                      setHoveredColumn(activeColumn.id);
+                    }}
+                    className="w-full py-3 px-4 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-xl font-semibold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+                  >
+                    📌 Clic para fijar
+                  </button>
+                  <p className="text-gray-400 text-xs mt-2">
+                    Ver información completa y contador
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
-        {/* Panel de información detallada */}
-        {showInfo && activeColumn && (
+        {/* Panel de información detallada (solo cuando está fijado) */}
+        {pinnedColumn && activeColumn && (
           <div className="w-full max-w-6xl mx-auto mb-8">
             <div className="bg-white rounded-2xl shadow-xl p-8 border-l-4 border-opacity-80"
                  style={{ borderLeftColor: activeColumn.color.replace('bg-', '').replace('-500', '').replace('-600', '') }}>
@@ -341,27 +551,25 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
                     <h2 className={`text-3xl font-bold ${activeColumn.textColor}`}>
                       {activeColumn.name}
                     </h2>
-                    {pinnedColumn === activeColumn.id && (
-                      <div className="flex items-center gap-2">
-                      </div>
-                    )}
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                      <span className="text-sm text-gray-500">Fijado</span>
+                    </div>
                   </div>
                   <p className="text-gray-600 text-lg">{activeColumn.description}</p>
                   <p className="text-gray-500 text-sm mt-1">
                     {activeColumn.detailedInfo.dateRange} • {activeColumn.detailedInfo.participants} 
                   </p>
                 </div>
-                {pinnedColumn === activeColumn.id && (
-                  <button
-                    onClick={() => {
-                      setPinnedColumn(null);
-                      setHoveredColumn(null);
-                    }}
-                    className="ml-4 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-600 transition-colors duration-200"
-                  >
-                    {t('timeline.unpin') || 'Desfijar'}
-                  </button>
-                )}
+                <button
+                  onClick={() => {
+                    setPinnedColumn(null);
+                    setHoveredColumn(null);
+                  }}
+                  className="ml-4 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-600 transition-colors duration-200"
+                >
+                  {t('timeline.unpin') || 'Desfijar'}
+                </button>
               </div>
 
               {/* Contenido en grid: 2 cuadrados con más espacio */}
@@ -405,19 +613,19 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
         )}
 
         {/* Instrucción cuando no hay hover ni fijado */}
-        {!showInfo && (
+        {!hoveredColumn && !pinnedColumn && (
           <div className="text-center py-8">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
               <span className="text-2xl">👆</span>
             </div>
             <p className="text-gray-500 text-lg font-medium">
-              {t('timeline.hoverInstruction')}
+              {t('timeline.hoverInstruction') || 'Haz hover sobre la imagen o haz clic en las fechas para ver más información'}
             </p>
             <p className="text-gray-400 text-sm mt-2">
-              {t('timeline.hoverDescription')}
+              {t('timeline.hoverDescription') || 'Explora cada fase del hackathon'}
             </p>
             <p className="text-gray-400 text-xs mt-2">
-              {t('timeline.clickToPin')}
+              {t('timeline.clickToPin') || 'Haz clic para fijar la información'}
             </p>
           </div>
         )}
