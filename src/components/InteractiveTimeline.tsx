@@ -455,7 +455,7 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
             <div className="w-80 flex-shrink-0">
               <div className="bg-white rounded-2xl shadow-xl p-6 border-l-4 border-opacity-80 sticky top-4"
                    style={{ borderLeftColor: activeColumn.color.replace('bg-', '').replace('-500', '').replace('-600', '') }}>
-                
+
                 {/* Header */}
                 <div className="mb-4">
                   <h3 className={`text-xl font-bold ${activeColumn.textColor} mb-2`}>
@@ -463,7 +463,7 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
                   </h3>
                   <p className="text-gray-600 text-sm">{activeColumn.description}</p>
                   <p className="text-gray-500 text-xs mt-1">
-                    {activeColumn.detailedInfo.dateRange} • {activeColumn.detailedInfo.participants} 
+                    {activeColumn.detailedInfo.dateRange} • {activeColumn.detailedInfo.participants}
                   </p>
                 </div>
 
@@ -489,13 +489,10 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
                       setPinnedColumn(activeColumn.id);
                       setHoveredColumn(activeColumn.id);
                     }}
-                    className="w-full py-3 px-4 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-xl font-semibold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+                    className="w-full py-3 px-4 bg-white text-[#a2832f] rounded-xl font-semibold transition-all duration-200"
                   >
-                    📌 {t('timeline.pin.pin')}
+                     {t('timeline.pin.pin')}
                   </button>
-                  <p className="text-gray-400 text-xs mt-2">
-                    {t('timeline.pin.info')}
-                  </p>
                 </div>
               </div>
             </div>

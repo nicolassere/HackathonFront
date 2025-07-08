@@ -290,7 +290,7 @@ const translations = {
 
 
         //Fijados
-        'timeline.pin.pin': 'Clic para fiar',
+        'timeline.pin.pin': 'Haz clic en la fecha para fijar',
         'timeline.pin.info': 'haz click para ver la información completa, y la cuenta regresiva.'
 
 
@@ -317,7 +317,7 @@ const translations = {
         'events.registration': 'Registration',
         'events.course': 'Course',
         'events.hackathon': 'Hackathon',
-        
+
         "countdown.days": "days",
         "countdown.hours": "hrs",
         "countdown.minutes": "min",
@@ -325,7 +325,7 @@ const translations = {
         "extra.registration": "Don't miss out, complete your registration",
         "extra.course": "Get ready with the preparatory course!",
         "extra.hackathon": "The main event is coming. See you soon!",
-    
+
         // Quantum Year Section
         'quantumYear.title': '2025 - International Year of Quantum Science and Technology',
         'quantumYear.subtitle': 'Quantum Hackathon LATAM 2025',
@@ -335,7 +335,7 @@ const translations = {
         'quantumYear.photoDescription': 'Discover the most iconic places in our host country',
         'quantumYear.loading': 'Loading photos...',
         'quantumYear.imageUnavailable': 'Image not available',
-        
+
 
         // EventInfo
         'event.title.part1': 'Quantum Computing for',
@@ -454,7 +454,7 @@ const translations = {
         'hackathon.register': 'Register Now!',
 
         // Countdown Timer
-        
+
 
         'timeline.registration.title': 'Registration',
         'timeline.registration.description': 'Registration deadline',
@@ -465,7 +465,7 @@ const translations = {
         'timeline.course.details': 'The preparatory course will begin on August 4th at 9:00 AM. For 4 weeks, participants will receive training in quantum computing and its applications in climate change.',
 
         'timeline.hackathon.title': 'Hackathon',
-        'timeline.hackathon.description': 'Quantum Climate Hackathon',   
+        'timeline.hackathon.description': 'Quantum Climate Hackathon',
         'timeline.hackathon.details': 'The main event will begin on October 1st at 9:00 AM. For 48 hours, teams will work on innovative solutions that combine quantum computing with climate change problems.',
         'timeline.title': 'Hackathon Timeline',
         'timeline.subtitle': 'Explore each phase of the Quantum Climate Hackathon',
@@ -577,7 +577,7 @@ const translations = {
         'osd3.description': 'Take urgent action to combat climate change and its impacts by raising awareness and encouraging global cooperation.',
 
         //Fijados
-        'timeline.pin.pin': 'Click to pin',
+        'timeline.pin.pin': 'Click on the date to pin',
         'timeline.pin.info': 'click to see full information, and countdown.'    
 
    
@@ -857,7 +857,7 @@ const translations = {
         'osd3.title': 'Ação contra a mudança global do clima',
         'osd3.description': 'Tomar medidas urgentes para combater as mudanças climáticas e seus impactos, promovendo a conscientização e a cooperação global.',
         //Fijados
-        'timeline.pin.pin': 'Clique para fixar',
+        'timeline.pin.pin': 'Clique na data para fixar',
         'timeline.pin.info': 'clique para ver as informações completas e a contagem regressiva.'
 
   // Títulos adicionales que estaban sueltos
