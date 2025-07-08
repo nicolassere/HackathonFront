@@ -155,7 +155,7 @@ const Footer: React.FC = () => {
                   <Linkedin className="w-6 h-6 text-slate-300 group-hover:text-white transition-colors" />
                 </a>
                 <a
-                  href="https://www.tiktok.com/@universidaddemontevideo"
+                  href="https://vm.tiktok.com/ZMSbUJ3J1/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group bg-slate-800 hover:bg-black p-3 rounded-xl transition-all duration-300 transform hover:scale-110"

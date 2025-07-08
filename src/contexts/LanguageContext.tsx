@@ -289,7 +289,9 @@ const translations = {
         'osd3.description': 'Tomar medidas urgentes para combatir el cambio climático y sus impactos, fomentando la conciencia y la acción global.',
 
 
-
+        //Fijados
+        'timeline.pin.pin': 'Clic para fiar',
+        'timeline.pin.info': 'haz click para ver la información completa, y la cuenta regresiva.'
 
 
 
@@ -574,7 +576,9 @@ const translations = {
         'osd3.title': 'Climate Action',
         'osd3.description': 'Take urgent action to combat climate change and its impacts by raising awareness and encouraging global cooperation.',
 
-
+        //Fijados
+        'timeline.pin.pin': 'Click to pin',
+        'timeline.pin.info': 'click to see full information, and countdown.'    
 
    
     },
@@ -852,7 +856,9 @@ const translations = {
 
         'osd3.title': 'Ação contra a mudança global do clima',
         'osd3.description': 'Tomar medidas urgentes para combater as mudanças climáticas e seus impactos, promovendo a conscientização e a cooperação global.',
-
+        //Fijados
+        'timeline.pin.pin': 'Clique para fixar',
+        'timeline.pin.info': 'clique para ver as informações completas e a contagem regressiva.'
 
   // Títulos adicionales que estaban sueltos
 }     

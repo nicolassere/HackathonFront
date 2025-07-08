@@ -82,7 +82,7 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
       startX: 15,
       endX: 32,
       color: 'bg-[#27bfe6]',
-      textColor: 'text-cyan-700',
+      textColor: 'text-[#27bfe6]',
       image: registrationImage,
       targetDate: '2025-07-15T23:59:59',
     },
@@ -113,7 +113,7 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
       startX: 32,
       endX: 49,
       color: 'bg-[#27bfe6]',
-      textColor: 'text-cyan-700',
+      textColor: 'text-[#27bfe6]',
       image: preselectionImage,
       targetDate: '2025-07-27T23:59:59',
     },
@@ -258,20 +258,9 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
     const baseSize = Math.min(imageDimensions.width, imageDimensions.height);
     
     return {
-      fontSize: Math.max(12, Math.min(18, imageDimensions.width * 0.012)) + 'px',
-      padding: `${Math.max(8, Math.min(14, imageDimensions.height * 0.02))}px ${Math.max(12, Math.min(20, imageDimensions.width * 0.02))}px`,
-      minWidth: Math.max(120, imageDimensions.width * 0.08) + 'px',
-    };
-  };
-
-  // Calculate responsive indicator sizing
-  const getIndicatorStyles = () => {
-    const baseSize = Math.min(imageDimensions.width, imageDimensions.height);
-    const size = Math.max(14, Math.min(22, baseSize * 0.025));
-    
-    return {
-      width: size + 'px',
-      height: size + 'px',
+      fontSize: Math.max(10, Math.min(16, imageDimensions.width * 0.012)) + 'px',
+      padding: `${Math.max(6, Math.min(12, imageDimensions.height * 0.015))}px ${Math.max(10, Math.min(16, imageDimensions.width * 0.015))}px`,
+      minWidth: Math.max(100, imageDimensions.width * 0.08) + 'px',
     };
   };
 
@@ -364,12 +353,12 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Contenedor principal con imagen y hover lateral */}
-        <div className="relative mb-8 w-full flex gap-6">
+        <div className="relative mb-8 w-full flex gap-6 justify-center">
           {/* Imagen con botones de fechas superpuestos */}
-          <div className="flex-grow">
+          <div className="flex-grow flex justify-center">
             <div
               ref={containerRef}
-              className="relative cursor-pointer group w-full"
+              className="relative cursor-pointer group w-full max-w-5xl"
               onMouseMove={handleMouseMove}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
@@ -379,12 +368,11 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
                 ref={imageRef}
                 src={activeColumn?.image || imageSrc}
                 alt={imageAlt}
-                className="w-full h-auto rounded-3xl shadow-2xl transition-all duration-300"
+                className="w-full h-auto rounded-3xl shadow-2xl transition-all duration-300 mx-auto block"
                 style={{
-                  minHeight: '60vh',
+                  minHeight: '400px',
                   maxHeight: '70vh',
-                  objectFit: 'cover',
-                  width: '100%',
+                  objectFit: 'contain',
                 }}
                 onLoad={() => {
                   if (imageRef.current) {
@@ -410,22 +398,26 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
                   return (
                     <div
                       key={column.id}
-                      className="absolute pointer-events-auto"
+                      className="absolute pointer-events-auto flex justify-center items-center"
                       style={{
                         left: `${centerX}%`,
-                        top: `${imageDimensions.height * 0.05}px`,
+                        top: `${Math.max(20, imageDimensions.height * 0.05)}px`,
                         transform: 'translateX(-50%)',
+                        width: 'auto',
                       }}
                     >
                       <div
-                        className={`relative rounded-full font-semibold shadow-lg transition-all duration-200 cursor-pointer backdrop-blur-sm ${
+                        className={`relative rounded-full font-semibold shadow-lg transition-all duration-200 cursor-pointer backdrop-blur-sm text-center flex items-center justify-center ${
                           isActive || isPinned
                             ? `${column.color} text-white scale-105 ${isPinned ? 'ring-2 ring-yellow-400' : ''}`
                             : 'bg-gray-800/90 text-white hover:bg-gray-700/90 hover:scale-102 hover:shadow-xl'
                         }`}
                         style={{
                           ...buttonStyles,
-                          minWidth: 'fit-content'
+                          minWidth: 'fit-content',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center'
                         }}
                         onClick={(e) => {
                           e.stopPropagation();
@@ -438,7 +430,7 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
                           }
                         }}
                       >
-                        <span className="font-bold whitespace-nowrap">
+                        <span className="font-bold whitespace-nowrap text-center">
                           {column.detailedInfo.dateRange}
                         </span>
                         {isPinned && (
@@ -455,34 +447,6 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
                   );
                 })}
               </div>
-
-              {/* Indicadores de posición en la imagen - SIEMPRE VISIBLES */}
-              {columns.map((column) => {
-                const centerX = Math.min((column.startX + column.endX) / 2, 92);
-                const isActive = hoveredColumn === column.id;
-                const isPinned = pinnedColumn === column.id;
-                const indicatorStyles = getIndicatorStyles();
-                
-                return (
-                  <div
-                    key={column.id}
-                    className={`absolute transform -translate-x-1/2 transition-all duration-200 ${
-                      isActive || isPinned
-                        ? 'scale-110 opacity-100'
-                        : 'scale-90 opacity-60'
-                    }`}
-                    style={{ 
-                      left: `${centerX}%`,
-                      bottom: imageDimensions.height * 0.05,
-                    }}
-                  >
-                    <div 
-                      className={`rounded-full ${column.color} shadow-lg border-2 border-white ${isPinned ? 'ring-2 ring-yellow-400' : ''}`}
-                      style={indicatorStyles}
-                    ></div>
-                  </div>
-                );
-              })}
             </div>
           </div>
 
@@ -527,10 +491,10 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
                     }}
                     className="w-full py-3 px-4 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-xl font-semibold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
                   >
-                    📌 Clic para fijar
+                    📌 {t('timeline.pin.pin')}
                   </button>
                   <p className="text-gray-400 text-xs mt-2">
-                    Ver información completa y contador
+                    {t('timeline.pin.info')}
                   </p>
                 </div>
               </div>
@@ -551,10 +515,6 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
                     <h2 className={`text-3xl font-bold ${activeColumn.textColor}`}>
                       {activeColumn.name}
                     </h2>
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                      <span className="text-sm text-gray-500">Fijado</span>
-                    </div>
                   </div>
                   <p className="text-gray-600 text-lg">{activeColumn.description}</p>
                   <p className="text-gray-500 text-sm mt-1">
