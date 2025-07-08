@@ -222,49 +222,7 @@ const QuantumYearSection = () => {
                                     )}
 
                                     {/* Navigation dots - positioned around the circle */}
-                                    <div className="absolute inset-0">
-                                        {uruguayPhotos.map((_, index) => {
-                                            const angle = (index * 36) - 90; // 360/10 = 36 degrees per photo
-                                            const radius = 130; // Distance from center
-                                            const x = Math.cos(angle * Math.PI / 180) * radius;
-                                            const y = Math.sin(angle * Math.PI / 180) * radius;
 
-                                            return (
-                                                <button
-                                                    key={index}
-                                                    onClick={() => setCurrentPhoto(index)}
-                                                    className={`absolute w-4 h-4 rounded-full transition-all duration-300 ${
-                                                        index === currentPhoto
-                                                            ? 'bg-green-600 scale-125 shadow-lg'
-                                                            : 'bg-white/60 hover:bg-white/80 shadow-md'
-                                                    }`}
-                                                    style={{
-                                                        left: `calc(50% + ${x}px)`,
-                                                        top: `calc(50% + ${y}px)`,
-                                                        transform: 'translate(-50%, -50%)'
-                                                    }}
-                                                    aria-label={`Ver foto ${index + 1}`}
-                                                />
-                                            );
-                                        })}
-                                    </div>
-
-                                    {/* Previous/Next buttons */}
-                                    <button
-                                        onClick={() => setCurrentPhoto((prev) => prev === 0 ? uruguayPhotos.length - 1 : prev - 1)}
-                                        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all duration-300 opacity-0 hover:opacity-100"
-                                        aria-label="Foto anterior"
-                                    >
-                                        ←
-                                    </button>
-
-                                    <button
-                                        onClick={() => setCurrentPhoto((prev) => (prev + 1) % uruguayPhotos.length)}
-                                        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all duration-300 opacity-0 hover:opacity-100"
-                                        aria-label="Foto siguiente"
-                                    >
-                                        →
-                                    </button>
                                 </div>
                             </div>
                         </div>

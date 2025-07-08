@@ -166,7 +166,7 @@ body, html {
 
 .boton-unirse{
     color: #FFFFFF; /* Color de texto */
-    background-color: #1B998B; /* Color de fondo */
+    background-color: #075184; /* Color de fondo */
     text-decoration: none;
 }
 
@@ -255,8 +255,8 @@ body, html {
 .operador {
     width: 5rem; /* Ancho */
     margin-left: 2.5rem;
-    background-color: #1B998B;
-    --color-hover: #167a6d;
+    background-color: #075184;
+    --color-hover: #05365a;
     color: black;
     /* -webkit-text-stroke-width: 0.1rem; */
     /* -webkit-text-stroke-color: var(--color-hover); */
@@ -283,7 +283,7 @@ body, html {
 
 /* Estilos para los botones de selección de jugador (2 o 3) */
 #j2, #j3 {
-    --color-seleccionado: #1B998B; /* Color seleccionado */
+    --color-seleccionado: #075184; /* Color seleccionado */
     --hover-seleccionado: #167a6d; /* Color de hover seleccionado */
     --texto-seleccionado: #ffffff; /* Color de texto seleccionado */
     --color-normal: #eeeeee; /* Color normal */
@@ -548,7 +548,7 @@ input.checkbox {
     position: absolute;
     bottom: 1rem;
     right: 1rem;
-    background-color: #1B998B;
+    background-color: #075184;
     color: white;
     border: none;
     border-radius: 50%;
@@ -562,7 +562,7 @@ input.checkbox {
 }
 
 #reset-boton:hover {
-    background-color: #167a6d;
+    background-color: #05365a !important;
 }
 
 /* Estilo para el ícono grande (videocam) */
@@ -575,7 +575,7 @@ input.checkbox {
     position: absolute;
     bottom: 0.2rem;
     right: 0.2rem;
-    font-size: 1rem; 
+    font-size: 1rem;
     padding: 0.1rem;
 }
 
@@ -600,7 +600,7 @@ input.checkbox {
 
 #boton-eje-x, #boton-eje-y, #boton-eje-z {
     --color-seleccionado: #1B998B; /* Color seleccionado */
-    --hover-seleccionado: #167a6d; /* Color de hover seleccionado */
+    --hover-seleccionado: #05365a; /* Color de hover seleccionado */
     --texto-seleccionado: #ffffff; /* Color de texto seleccionado */
     --color-normal: #eeeeee; /* Color normal */
     --texto-normal: #000000; /* Color de texto normal */
@@ -718,49 +718,52 @@ input.checkbox {
     z-index: 1000; /* Asegura que el contenedor esté por encima de otros elementos */
 }
 
-#operador-x{
+#operador-x {
     background-color: var(--color-base);
-    --color-base: #3E91EB;
-    --color-hover: #5A6F88;
+    --color-base: #27bfe6;
+    --color-hover: #1fa0b3; /* actualizado */
 }
 
-#operador-y{
+#operador-y {
     background-color: var(--color-base);
-    --color-base: #D2EB26;
-    --color-hover: #82895A;
+    --color-base: #fd9d24;
+    --color-hover: #c7741e; /* actualizado */
 }
 
-#operador-z{
+#operador-z {
     background-color: var(--color-base);
-    --color-base: #EB3426;
-    --color-hover: #7B403C;
+    --color-base: #467e4a;
+    --color-hover: #356038; /* actualizado */
 }
 
-#operador-h{
+#operador-h {
     background-color: var(--color-base);
-    --color-base: #73F279;
-    --color-hover: #4A9B4E;
+    --color-base: #4A90E2;
+    --color-hover: #3573b8; /* actualizado */
 }
 
-#operador-s{
+#operador-s {
     background-color: var(--color-base);
-    --color-base: #F59993;
-    --color-hover: #9D635E;
+    --color-base: #E573AC;
+    --color-hover: #b15485; /* actualizado */
 }
 
-#operador-t{
+#operador-t {
     background-color: var(--color-base);
-    --color-base: #ff76ba;
-    --color-hover: #9D635E;
+    --color-base: #f3efe6;
+    --color-hover: #d1ccc1; /* actualizado */
 }
 
-#operador-medir{
+#operador-medir {
     background-color: var(--color-base);
-    --color-base: #EB3426;
-    --color-hover: #7B403C;
+    --color-base: #a2832f;
+    --color-hover: #7b6223; /* actualizado */
 }
 
-#icono-deshacer, #icono-reset, #icono-medir {
+
+
+/* Icon for medir stays unchanged */
+#icono-medir {
     font-size: 2.5rem;
 }
 
@@ -1508,4 +1511,13 @@ align-items: center;
 
 .minibarra {
     width: 1.5rem;
+}
+
+/* Botones de la base (abajo a la derecha) usan el mismo color que reset */
+#botones-ejes .boton-eje {
+    background-color: #075184;
+    color: white;
+}
+#botones-ejes .boton-eje:hover {
+    background-color: #05365a !important;
 }
