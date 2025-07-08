@@ -5,9 +5,9 @@ import { useLanguage } from '../contexts/LanguageContext';
 import banner_en from '../../img/Banner_en.png';
 import banner_es from '../../img/Banner_es.png';
 
-// Imágenes para móvil (agregar estas nuevas imágenes)
-import banner_mobile_en from '../../img/Banner_mobile_en.png';
-import banner_mobile_es from '../../img/Banner_mobile_es.png';
+// Imágenes para móvil 
+import banner_mobile_en from '../../img/banner_mobile_en.png';
+import banner_mobile_es from '../../img/banner_mobile_es.png';
 
 const Hero = () => {
   const { language } = useLanguage();
@@ -19,7 +19,7 @@ const Hero = () => {
   };
 
   const bannerMobileByLanguage = {
-    en: banner_mobile_es,
+    en: banner_mobile_en,
     es: banner_mobile_es,
     pt: banner_mobile_es,
   };
