@@ -256,7 +256,7 @@ body, html {
     width: 5rem; /* Ancho */
     margin-left: 2.5rem;
     background-color: #075184;
-    --color-hover: #167a6d;
+    --color-hover: #05365a;
     color: black;
     /* -webkit-text-stroke-width: 0.1rem; */
     /* -webkit-text-stroke-color: var(--color-hover); */
