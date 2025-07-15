@@ -62,7 +62,7 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
       name: t('timeline.registration.name'),
       description: t('timeline.registration.description'),
       detailedInfo: {
-        dateRange: '1 - 25 Julio 2025',
+        dateRange: '1 - 25 Jul 2025',
         participants: t('timeline.registration.participants'),
         primaryInfo: { title: t('timeline.registration.primaryInfo.title'), items: [t('timeline.registration.primaryInfo.items.0'), t('timeline.registration.primaryInfo.items.3'), t('timeline.registration.primaryInfo.items.1')] },
         secondaryInfo: { title: t('timeline.registration.secondaryInfo.title'), items: [t('timeline.registration.secondaryInfo.items.0'), t('timeline.registration.secondaryInfo.items.3'), t('timeline.registration.secondaryInfo.items.1')] }
@@ -74,7 +74,7 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
       name: t('timeline.preselection.name'),
       description: t('timeline.preselection.description'),
       detailedInfo: {
-        dateRange: '27 Julio 2025',
+        dateRange: '27 Jul 2025',
         participants: t('timeline.preselection.participants'),
         primaryInfo: { title: t('timeline.preselection.primaryInfo.title'), items: [t('timeline.preselection.primaryInfo.items.0'), t('timeline.preselection.primaryInfo.items.1')] },
         secondaryInfo: { title: t('timeline.preselection.secondaryInfo.title'), items: [t('timeline.preselection.secondaryInfo.items.0'), t('timeline.preselection.secondaryInfo.items.1'), t('timeline.preselection.secondaryInfo.items.2'), t('timeline.preselection.secondaryInfo.items.3')] }
@@ -208,52 +208,84 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
         <div className="relative mb-8 w-full flex items-start gap-6 justify-center">
           <div className="w-full max-w-5xl flex-shrink-0">
             <div
-              ref={containerRef}
-              className="relative cursor-pointer group w-full"
-              onMouseMove={handleMouseMove}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              onClick={(e) => {
-                  const rect = e.currentTarget.getBoundingClientRect();
-                  const x = e.clientX - rect.left;
-                  const percentage = (x / rect.width) * 100;
-                  const column = columns.find((col) => percentage >= col.startX && percentage < col.endX);
-                  if (column) {
-                      handleTimelineClick(column.id);
-                  }
+    ref={containerRef}
+    className="relative cursor-pointer group w-full"
+    onMouseMove={handleMouseMove}
+    onMouseEnter={handleMouseEnter}
+    onMouseLeave={handleMouseLeave}
+    onClick={(e) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const percentage = (x / rect.width) * 100;
+      const column = columns.find((col) => percentage >= col.startX && percentage < col.endX);
+      if (column) {
+        handleTimelineClick(column.id);
+      }
+    }}
+  >
+    <div className="relative w-full">
+      <img
+        ref={imageRef}
+        src={activeColumn?.image || imageSrc}
+        alt={imageAlt}
+        className="w-full h-auto rounded-3xl shadow-2xl block"
+        style={{
+          minHeight: '400px',
+          maxHeight: '70vh',
+          objectFit: 'cover',
+        }}
+      />
+      <div
+        className="absolute top-0 left-0 w-full h-full pointer-events-none"
+        style={{
+          width: imageDimensions.width,
+          height: imageDimensions.height,
+        }}
+      >
+        {columns.map((column) => {
+          const isActive = activeColumn?.id === column.id;
+          const isPinned = pinnedColumn === column.id;
+          const buttonStyles = getButtonStyles();
+          const centerX = (column.startX + column.endX) / 2;
+          return (
+            <div
+              key={column.id}
+              className="absolute pointer-events-auto flex justify-center items-center"
+              style={{
+                left: `${centerX}%`,
+                transform: 'translateX(-50%)',
+                top: `${Math.max(20, imageDimensions.height * 0.05)}px`,
               }}
             >
-              <img
-                ref={imageRef}
-                src={activeColumn?.image || imageSrc}
-                alt={imageAlt}
-                className="w-full h-auto rounded-3xl shadow-2xl transition-all duration-300 mx-auto block"
-                style={{ minHeight: '400px', maxHeight: '70vh', objectFit: 'cover' }}
-              />
-              <div className="absolute inset-0 pointer-events-none">
-                {columns.map((column) => {
-                  const isActive = activeColumn?.id === column.id;
-                  const isPinned = pinnedColumn === column.id;
-                  const buttonStyles = getButtonStyles();
-                  const centerX = (column.startX + column.endX) / 2;
-                  return (
-                    <div key={column.id} className="absolute pointer-events-auto flex justify-center items-center" style={{ left: `${centerX}%`, top: `${Math.max(20, imageDimensions.height * 0.05)}px`, transform: 'translateX(-50%)' }}>
-                      <div
-                        className={`relative rounded-full font-semibold shadow-lg transition-all duration-200 cursor-pointer backdrop-blur-sm text-center flex items-center justify-center ${isActive ? `${column.color} text-white scale-105 ${isPinned ? 'ring-2 ring-yellow-400' : ''}` : 'bg-gray-800/90 text-white hover:bg-gray-700/90 hover:scale-102'}`}
-                        style={{ ...buttonStyles, minWidth: 'fit-content' }}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleTimelineClick(column.id);
-                        }}
-                      >
-                        <span className="font-bold whitespace-nowrap text-center">{column.detailedInfo.dateRange}</span>
-                        {isPinned && <div className="absolute -top-1 -right-1 bg-yellow-400 rounded-full border-2 border-white" style={{ width: Math.max(12, imageDimensions.width * 0.015) + 'px', height: Math.max(12, imageDimensions.width * 0.015) + 'px' }}></div>}
-                      </div>
-                    </div>
-                  );
-                })}
+              <div
+                className={`relative rounded-full font-semibold shadow-lg transition-all duration-200 cursor-pointer backdrop-blur-sm text-center flex items-center justify-center ${
+                  isActive
+                    ? `${column.color} text-white scale-105 ${isPinned ? 'ring-2 ring-yellow-400' : ''}`
+                    : 'bg-gray-800/90 text-white hover:bg-gray-700/90 hover:scale-102'
+                }`}
+                style={{ ...buttonStyles, minWidth: 'fit-content' }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleTimelineClick(column.id);
+                }}
+              >
+                <span className="font-bold whitespace-nowrap text-center">{column.detailedInfo.dateRange}</span>
+                {isPinned && (
+                  <div
+                    className="absolute -top-1 -right-1 bg-yellow-400 rounded-full border-2 border-white"
+                    style={{
+                      width: Math.max(12, imageDimensions.width * 0.015) + 'px',
+                      height: Math.max(12, imageDimensions.width * 0.015) + 'px',
+                    }}
+                  ></div>
+                )}
               </div>
             </div>
+          );
+        })}
+      </div>
+    </div>
+  </div>
           </div>
 
           {/* MODIFICACIÓN 2: El panel lateral ahora se muestra si hay una columna activa (hover O pinned) */}

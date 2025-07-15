@@ -6,6 +6,7 @@ import ieeeR9Logo from '../../img/Partners/IeeeR9.png';
 import cleiLogo from '../../img/CLEI2025.png';
 import ripaiscLogo from '../../img/Partners/Ripaisc.png';
 import aniiLogo from '../../img/Partners/anii.png'; 
+import uruguayNaturalLogo from '../../img/Partners/UruguayNatural.png';
 
 const Partners: React.FC = () => {
   const { t } = useLanguage();
@@ -48,6 +49,12 @@ const Partners: React.FC = () => {
       description: "National Research and Innovation Agency of Uruguay",
       url: "https://www.anii.org.uy/",
       logo: aniiLogo
+    },
+    {
+      name : "Uruguay Natural",
+      description: "Brand of Uruguay promoting tourism and investment",
+      url: "https://www.gub.uy/ministerio-turismo/",
+      logo : uruguayNaturalLogo
     }
   ];
 
