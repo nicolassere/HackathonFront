@@ -27,6 +27,12 @@ const translations = {
         'events.registration': 'Inscripciones',
         'events.course': 'Curso',
         'events.hackathon': 'Hackathon',
+
+        // Extension de inscripcion:
+         "timeline.extension.title": "🗓️ ¡Extensión de Inscripción!",
+        "timeline.extension.message1": "Hemos extendido el plazo hasta el 25 de julio para que puedas anotarte.",
+        "timeline.extension.message2": "para que puedas anotarte.",
+        "timeline.extension.message3": "Aprovechá esta oportunidad y sumate al Hackathon.",
            // Countdown Timer
         
       
@@ -306,6 +312,12 @@ const translations = {
         'nav.requirements': 'Requirements',
         'nav.registration': 'Registration',
         'nav.partners': 'Partners',
+
+        // Extension de inscripcion:
+        "timeline.extension.title": "🗓️ Registration Extended!",
+        "timeline.extension.message1": "We have extended the deadline until july 25th so you can register.",
+        "timeline.extension.message2": "so you can register.",
+        "timeline.extension.message3": "Take this opportunity and join the Hackathon.",
 
         // Countdown
         'countdown.remaining': 'Time remaining',
@@ -627,6 +639,12 @@ const translations = {
         "extra.registration": "Não fique de fora, finalize sua inscrição",
         "extra.course": "Prepare-se com tudo no curso prévio!",
         "extra.hackathon": "O evento principal está chegando. Nos vemos em breve!",
+
+        // Extension de inscrição:
+        "timeline.extension.title": "🗓️ Inscrições prorrogadas!",
+        "timeline.extension.message1": "Estendemos o prazo até 25 de julho para que você possa se inscrever. ",
+        "timeline.extension.message2": "para que você possa se inscrever.",
+        "timeline.extension.message3": "Aproveite esta oportunidade e participe do Hackathon.",
 
         // EventInfo
         'event.title.part1': 'Computação Quântica para',

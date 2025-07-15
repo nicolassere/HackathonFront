@@ -259,13 +259,37 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
           {/* MODIFICACIÓN 2: El panel lateral ahora se muestra si hay una columna activa (hover O pinned) */}
           {activeColumn && (
             <div className="w-96 flex-shrink-0" style={{ height: imageDimensions.height > 0 ? `${imageDimensions.height}px` : 'auto' }}>
-                <div className="bg-white rounded-2xl shadow-xl border-l-4 h-full flex flex-col p-6" style={{ borderLeftColor: activeColumn.color.replace(/bg-\[|\]/g, '') }}>
-                  <div className="flex-grow overflow-y-auto pr-2">
-                    {activeColumn.id === 'default' ? (
-                      <div className="text-center text-gray-500 mt-10 px-4">
-                        <h3 className="text-lg font-semibold mb-2">{t('timeline.hoverInstruction') || 'Pasá el mouse sobre la imagen o hacé clic en las fechas'}</h3>
-                        <p className="text-sm text-gray-400">{t('timeline.clickToPin') || 'Hacé clic para fijar la información de una fase'}</p>
-                      </div>
+    <div
+      className="bg-white rounded-2xl shadow-xl border-l-4 h-full flex flex-col p-6"
+      style={{ borderLeftColor: activeColumn.color.replace(/bg-\[|\]/g, '') }}
+    >
+      <div className="flex-grow overflow-y-auto pr-2">
+        {activeColumn.id === 'default' ? (
+          <>
+            <div className="text-center mt-10 px-6 py-8 bg-blue-50 border border-blue-300 rounded-2xl shadow-md max-w-md mx-auto">
+              <h3 className="text-2xl font-extrabold text-blue-700 mb-3 flex items-center justify-center gap-2">
+                {t('timeline.extension.title') || '¡Extensión de Inscripción!'}
+              </h3>
+              <p className="text-blue-800 text-lg leading-relaxed mb-4">
+                {t('timeline.extension.message1') || 'Hemos extendido el plazo hasta el 25 de Julio de 2025 para que puedas anotarte.'}
+              </p>
+              <p className="text-blue-600 text-base">
+                {t('timeline.extension.message3') || 'Aprovechá esta oportunidad y sumate al Hackathon.'}
+              </p>
+            </div>
+
+            <div className="text-gray-500 px-2 mt-6 text-center">
+              <h3 className="text-base font-semibold mb-1">
+                {t('timeline.hoverInstruction') || 'Pasá el mouse sobre la imagen o hacé clic en las fechas'}
+              </h3>
+              <p className="text-sm text-gray-400">
+                {t('timeline.clickToPin') || 'Hacé clic para fijar la información de una fase'}
+              </p>
+            </div>
+          </>
+                                  
+     
+                    
                     ) : (
                       <>
                         <div className="mb-4">
@@ -313,9 +337,11 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
                   )}
                 </div>
               </div>
+              
 
           )}
         </div>
+        
 
         {/* MODIFICACIÓN 4: El panel grande de abajo fue eliminado. */}
 
