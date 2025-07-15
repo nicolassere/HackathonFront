@@ -62,19 +62,19 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
       name: t('timeline.registration.name'),
       description: t('timeline.registration.description'),
       detailedInfo: {
-        dateRange: '1 - 25 Jul 2025',
+        dateRange: '1 - 25 Jul ',
         participants: t('timeline.registration.participants'),
         primaryInfo: { title: t('timeline.registration.primaryInfo.title'), items: [t('timeline.registration.primaryInfo.items.0'), t('timeline.registration.primaryInfo.items.3'), t('timeline.registration.primaryInfo.items.1')] },
         secondaryInfo: { title: t('timeline.registration.secondaryInfo.title'), items: [t('timeline.registration.secondaryInfo.items.0'), t('timeline.registration.secondaryInfo.items.3'), t('timeline.registration.secondaryInfo.items.1')] }
       },
-      startX: 15, endX: 32, color: 'bg-[#27bfe6]', textColor: 'text-[#27bfe6]', image: registrationImage, targetDate: '2025-07-25T23:59:59',
+      startX: 17, endX: 31, color: 'bg-[#27bfe6]', textColor: 'text-[#27bfe6]', image: registrationImage, targetDate: '2025-07-25T23:59:59',
     },
     {
       id: 'preselection',
       name: t('timeline.preselection.name'),
       description: t('timeline.preselection.description'),
       detailedInfo: {
-        dateRange: '27 Jul 2025',
+        dateRange: '27 Jul ',
         participants: t('timeline.preselection.participants'),
         primaryInfo: { title: t('timeline.preselection.primaryInfo.title'), items: [t('timeline.preselection.primaryInfo.items.0'), t('timeline.preselection.primaryInfo.items.1')] },
         secondaryInfo: { title: t('timeline.preselection.secondaryInfo.title'), items: [t('timeline.preselection.secondaryInfo.items.0'), t('timeline.preselection.secondaryInfo.items.1'), t('timeline.preselection.secondaryInfo.items.2'), t('timeline.preselection.secondaryInfo.items.3')] }
@@ -86,36 +86,36 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
       name: t('timeline.course.name'),
       description: t('timeline.course.description'),
       detailedInfo: {
-        dateRange: '04 - 13 Ago 2025',
+        dateRange: '04 - 13 Ago ',
         participants: t('timeline.course.participants'),
         primaryInfo: { title: t('timeline.course.primaryInfo.title'), items: [t('timeline.course.primaryInfo.items.0'), t('timeline.course.primaryInfo.items.1'), t('timeline.course.primaryInfo.items.2')] },
         secondaryInfo: { title: t('timeline.course.secondaryInfo.title'), items: [t('timeline.course.secondaryInfo.items.0'), t('timeline.course.secondaryInfo.items.1'), t('timeline.course.secondaryInfo.items.2'), t('timeline.course.secondaryInfo.items.3')] }
       },
-      startX: 49, endX: 66, color: 'bg-[#467e4a]', textColor: 'text-[#467e4a]', image: courseImage, targetDate: '2025-08-04T09:00:00',
+      startX: 49.5, endX: 64, color: 'bg-[#467e4a]', textColor: 'text-[#467e4a]', image: courseImage, targetDate: '2025-08-04T09:00:00',
     },
     {
       id: 'selection',
       name: t('timeline.selection.name'),
       description: t('timeline.selection.description'),
       detailedInfo: {
-        dateRange: '27 Ago 2025',
+        dateRange: '27 Ago ',
         participants: t('timeline.selection.participants'),
         primaryInfo: { title: t('timeline.selection.primaryInfo.title'), items: [t('timeline.preselection.primaryInfo.items.0'), t('timeline.preselection.primaryInfo.items.1'), t('timeline.selection.primaryInfo.items.3')] },
         secondaryInfo: { title: t('timeline.selection.secondaryInfo.title'), items: [t('timeline.selection.secondaryInfo.items.0'), t('timeline.selection.secondaryInfo.items.1'), t('timeline.selection.secondaryInfo.items.2'), t('timeline.selection.secondaryInfo.items.3')] }
       },
-      startX: 66, endX: 81, color: 'bg-[#467e4a]', textColor: 'text-[#467e4a]', image: selectionImage, targetDate: '2025-08-27T23:59:59',
+      startX: 65, endX: 81, color: 'bg-[#467e4a]', textColor: 'text-[#467e4a]', image: selectionImage, targetDate: '2025-08-27T23:59:59',
     },
     {
       id: 'hackathon',
       name: t('timeline.hackathon.name'),
       description: t('timeline.hackathon.description'),
       detailedInfo: {
-        dateRange: '1 - 3 Oct 2025',
+        dateRange: '1 - 3 Oct ',
         participants: t('timeline.hackathon.participants'),
         primaryInfo: { title: t('timeline.hackathon.primaryInfo.title'), items: [t('timeline.hackathon.primaryInfo.items.0'), t('timeline.hackathon.primaryInfo.items.1'), t('timeline.hackathon.primaryInfo.items.2'), t('timeline.hackathon.primaryInfo.items.3')] },
         secondaryInfo: { title: t('timeline.hackathon.secondaryInfo.title'), items: [t('timeline.hackathon.secondaryInfo.items.0'), t('timeline.hackathon.secondaryInfo.items.1'), t('timeline.hackathon.secondaryInfo.items.2'), t('timeline.hackathon.secondaryInfo.items.3')] }
       },
-      startX: 81, endX: 95, color: 'bg-[#fd9d24]', textColor: 'text-[#fd9d24]', image: hackathonImage, targetDate: '2025-10-01T09:00:00',
+      startX: 82, endX: 97.5, color: 'bg-[#fd9d24]', textColor: 'text-[#fd9d24]', image: hackathonImage, targetDate: '2025-10-01T09:00:00',
     },
   ];
   const defaultColumn: ColumnData = {
@@ -165,8 +165,8 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
   }, [activeColumn?.image]);
 
   const getButtonStyles = () => ({
-      fontSize: Math.max(10, Math.min(16, imageDimensions.width * 0.012)) + 'px',
-      padding: `${Math.max(6, Math.min(12, imageDimensions.height * 0.015))}px ${Math.max(10, Math.min(16, imageDimensions.width * 0.015))}px`,
+      fontSize: Math.max(10, Math.min(16, imageDimensions.width * 0.020)) + 'px',
+      padding: `${Math.max(6, Math.min(12, imageDimensions.height * 0.015))}px ${Math.max(10, Math.min(16, imageDimensions.width * 0.018))}px`,
       minWidth: Math.max(100, imageDimensions.width * 0.08) + 'px',
   });
 
