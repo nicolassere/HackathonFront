@@ -9,6 +9,8 @@ interface CountdownTimerProps {
   className?: string;
   eventName?: string;
   extraText?: string;
+  // MODIFICACIÓN: Se añade la prop 'size' para controlar el tamaño del componente
+  size?: 'full' | 'compact';
 }
 
 const CountdownTimer: React.FC<CountdownTimerProps> = ({ 
@@ -16,17 +18,11 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
   targetDate = "2025-10-01T09:00:00",
   className = "",
   eventName = "",
-  extraText = ""
+  extraText = "",
+  // MODIFICACIÓN: Se establece 'full' como valor por defecto
+  size = 'full',
 }) => {
-  
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-    isStarted: false
-  });
-
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0, isStarted: false });
   const { t } = useLanguage();
 
   useEffect(() => {
@@ -40,7 +36,6 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
         const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
         setTimeLeft({ days, hours, minutes, seconds, isStarted: false });
       } else {
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0, isStarted: true });
@@ -49,50 +44,42 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
 
     calculateTimeLeft();
     const timer = setInterval(calculateTimeLeft, 1000);
-
     return () => clearInterval(timer);
   }, [targetDate]);
 
   const getEventText = () => {
+    // ... (sin cambios aquí)
     switch(eventType) {
-      case 'registration':
-        return t('countdown.registration') || 'el cierre de inscripciones';
-      case 'course':
-        return t('countdown.course') || 'el inicio del curso preparatorio';
-      case 'hackathon':
-        return t('countdown.hackathon') || 'el Quantum Climate Hackathon';
-      case 'preselection':
-        return t('countdown.preselection') || 'el cierre de la preselección';
-      case 'selection':
-        return t('countdown.t') || 'el cierre de la selección';
-      default:
-        return eventName || 'el evento';
+      case 'registration': return t('countdown.registration') || 'el cierre de inscripciones';
+      case 'course': return t('countdown.course') || 'el inicio del curso';
+      case 'hackathon': return t('countdown.hackathon') || 'el Hackathon';
+      case 'preselection': return t('countdown.preselection') || 'la preselección';
+      case 'selection': return t('countdown.selection') || 'la selección';
+      default: return eventName || 'el evento';
     }
   };
 
   const getEventIcon = () => {
+    // ... (sin cambios aquí)
     switch(eventType) {
-      case 'registration':
-        return '📝';
-      case 'course':
-        return '📚';
-      case 'hackathon':
-        return '🚀';
-      default:
-        return '⏰';
+      case 'registration': return '📝';
+      case 'course': return '📚';
+      case 'hackathon': return '🚀';
+      default: return '⏰';
     }
   };
 
+  // MODIFICACIÓN: Vista compacta para cuando el evento ya comenzó
   if (timeLeft.isStarted) {
+    const isCompact = size === 'compact';
     return (
-      <div className={`relative overflow-hidden bg-gradient-to-br from-emerald-500 via-emerald-600 to-teal-600 rounded-2xl shadow-xl ${className}`}>
-        <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent"></div>
-        <div className="relative px-6 py-8 text-center">
-          <div className="text-4xl mb-3 animate-bounce">🎉</div>
-          <div className="text-white text-xl font-bold mb-2">
+      <div className={`relative overflow-hidden bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl shadow-lg ${className}`}>
+        <div className="relative text-center ${isCompact ? 'p-4' : 'px-6 py-8'}">
+          <div className={`${isCompact ? 'text-2xl' : 'text-4xl'} mb-2`}>🎉</div>
+          <div className={`text-white font-bold ${isCompact ? 'text-lg' : 'text-xl'}`}>
             {t('countdown.started') || '¡Ya comenzó!'}
           </div>
-          <div className="text-emerald-100 text-sm font-medium">
+          <div className={`text-emerald-100 font-medium ${isCompact ? 'text-xs' : 'text-sm'}`}>
             {getEventText()}
           </div>
         </div>
@@ -100,40 +87,49 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
     );
   }
 
-  const TimeUnit = ({ value, label }: { value: number; label: string }) => (
-    <div className="flex flex-col items-center">
-      <div className="relative">
-        <div className="bg-gradient-to-br from-slate-800 to-slate-900 text-white rounded-xl w-16 h-16 flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110">
-          <span className="text-xl font-bold font-mono">{value.toString().padStart(2, '0')}</span>
+  // MODIFICACIÓN: Se pasa la prop 'size' al componente TimeUnit
+  const TimeUnit = ({ value, label }: { value: number; label: string }) => {
+    const isCompact = size === 'compact';
+    return (
+      <div className="flex flex-col items-center">
+        <div className="relative">
+          {/* Tamaño de caja y fuente ajustados para el modo compacto */}
+          <div className={`bg-gradient-to-br from-slate-800 to-slate-900 text-white rounded-lg flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 ${isCompact ? 'w-10 h-10' : 'w-12 h-12'}`}>
+            <span className={`font-bold font-mono ${isCompact ? 'text-lg' : 'text-xl'}`}>{value.toString().padStart(2, '0')}</span>
+          </div>
+          <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg opacity-20 blur-sm"></div>
         </div>
-        <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl opacity-20 blur-sm"></div>
+        <span className="text-xs font-semibold text-slate-600 mt-2 uppercase tracking-wide">{label}</span>
       </div>
-      <span className="text-xs font-semibold text-slate-600 mt-2 uppercase tracking-wide">{label}</span>
-    </div>
-  );
+    );
+  };
+
+  const isCompact = size === 'compact';
 
   return (
-    <div className={`relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 rounded-2xl shadow-xl border border-white/20 ${className}`}>
-      {/* Decorative background pattern */}
+    // MODIFICACIÓN: Padding y bordes ajustados para el modo compacto
+    <div className={`relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 rounded-2xl shadow-lg border border-white/20 ${className}`}>
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full -translate-x-16 -translate-y-16"></div>
         <div className="absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-br from-indigo-500 to-pink-600 rounded-full translate-x-12 translate-y-12"></div>
       </div>
       
-      <div className="relative px-6 py-8">
-        {/* Header */}
-        <div className="text-center mb-6">
-          <div className="text-3xl mb-2">{getEventIcon()}</div>
-          <div className="text-slate-700 text-sm font-semibold mb-1 uppercase tracking-wider">
-            {t('countdown.remaining') || 'Tiempo restante'}
+      <div className={`relative ${isCompact ? 'p-4' : 'px-6 py-8'}`}>
+        {/* Header ajustado para el modo compacto */}
+        {!isCompact && (
+          <div className="text-center mb-6">
+            <div className="text-3xl mb-2">{getEventIcon()}</div>
+            <div className="text-slate-700 text-sm font-semibold mb-1 uppercase tracking-wider">
+              {t('countdown.remaining') || 'Tiempo restante para'}
+            </div>
+            <div className="text-slate-800 text-lg font-bold">
+              {getEventText()}
+            </div>
           </div>
-          <div className="text-slate-800 text-lg font-bold">
-            {getEventText()}
-          </div>
-        </div>
-
-        {/* Countdown Display */}
-        <div className="flex justify-center gap-4 mb-6">
+        )}
+        
+        {/* Display del contador ajustado para el modo compacto */}
+        <div className={`flex justify-center mb-4 ${isCompact ? 'gap-2 md:gap-3' : 'gap-4'}`}>
           {timeLeft.days > 0 && (
             <TimeUnit 
               value={timeLeft.days} 
@@ -154,8 +150,8 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
           />
         </div>
 
-        {/* Extra Text */}
-        {extraText && (
+        {/* El texto extra no se muestra en modo compacto para ahorrar espacio */}
+        {extraText && !isCompact && (
           <div className="text-center">
             <div className="inline-block bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg">
               {extraText}
@@ -164,12 +160,14 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
         )}
       </div>
 
-      {/* Subtle animated accent */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-pulse"></div>
+      {!isCompact && (
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-pulse"></div>
+      )}
     </div>
   );
 };
 
+// ... El resto del archivo (EventCountdownSelector) no necesita cambios ...
 interface EventData {
   type: EventType;
   date: string;
@@ -182,7 +180,7 @@ interface EventCountdownSelectorProps {
 
 const EventCountdownSelector: React.FC<EventCountdownSelectorProps> = ({ 
   events = [
-    { type: 'registration', date: '2025-07-15T23:59:59' },
+    { type: 'registration', date: '2025-07-25T23:59:59' },
     { type: 'preselection', date:  '2025-07-27T23:59:59' },
     { type: 'course', date: '2025-08-04T09:00:00' },
     { type: 'selection', date: '2025-08-29T23:59:59' },
@@ -193,35 +191,23 @@ const EventCountdownSelector: React.FC<EventCountdownSelectorProps> = ({
   const [selectedEvent, setSelectedEvent] = useState<EventType>(events[0]?.type || 'hackathon');
   const { t } = useLanguage();
 
-
-const getEventLabel = (eventType: EventType): string => {
-  switch(eventType) {
-    case 'registration':
-      return t('events.registration') || 'Inscripciones';
-        case 'preselection':
-      return t('eventstpreseleccion') || 'Preselección';
-    case 'course':
-      return t('events.course') || 'Curso Preparatorio';
-    case 'selection':
-      return t('events.t') || 'Selección';
-    case 'hackathon':
-      return t('events.hackathon') || 'Hackathon';
-    default:
-      return eventType;
-  }
-};
-
+  const getEventLabel = (eventType: EventType): string => {
+    switch(eventType) {
+      case 'registration': return t('events.registration') || 'Inscripciones';
+      case 'preselection': return t('events.preselection') || 'Preselección';
+      case 'course': return t('events.course') || 'Curso';
+      case 'selection': return t('events.selection') || 'Selección';
+      case 'hackathon': return t('events.hackathon') || 'Hackathon';
+      default: return eventType;
+    }
+  };
 
   const getEventIcon = (eventType: EventType): string => {
     switch(eventType) {
-      case 'registration':
-        return '📝';
-      case 'course':
-        return '📚';
-      case 'hackathon':
-        return '🚀';
-      default:
-        return '⏰';
+      case 'registration': return '📝';
+      case 'course': return '📚';
+      case 'hackathon': return '🚀';
+      default: return '⏰';
     }
   };
 
@@ -232,18 +218,12 @@ const getEventLabel = (eventType: EventType): string => {
 
   const getExtraText = (eventType: EventType): string => {
     switch (eventType) {
-      case 'registration':
-        return t('extra.registration') || 'No te quedes afuera, completá tu inscripción';
-      case 'preselection':
-      return t('extra.preseleccion')
-      case 'course': 
-        return t('extra.course') || '¡Prepárate con todo en el curso previo!';
-      case 'selection':
-        return t('extra.selection') || 'La selección de candidatos está por comenzar';
-      case 'hackathon':
-        return t('extra.hackathon') || 'El evento principal se acerca. ¡Nos vemos pronto!';
-      default:
-        return '';
+      case 'registration': return t('extra.registration') || 'No te quedes afuera';
+      case 'preselection': return t('extra.preselection') || 'Atento a los resultados';
+      case 'course': return t('extra.course') || '¡A prepararse con todo!';
+      case 'selection': return t('extra.selection') || 'Los finalistas serán anunciados';
+      case 'hackathon': return t('extra.hackathon') || '¡El evento principal se acerca!';
+      default: return '';
     }
   };
 
@@ -258,11 +238,10 @@ const getEventLabel = (eventType: EventType): string => {
 
   return (
     <div className={`space-y-8 ${className}`}>
-      {/* Event Selector */}
       <div className="bg-gradient-to-r from-slate-100 to-blue-100 rounded-2xl p-6 shadow-lg">
         <div className="text-center mb-4">
           <h3 className="text-lg font-bold text-slate-800 mb-2">Selecciona un evento</h3>
-          <p className="text-slate-600 text-sm">Elige el evento del que quieres ver el countdown</p>
+          <p className="text-slate-600 text-sm">Elige la fecha para la cuenta regresiva</p>
         </div>
         
         <div className="flex flex-wrap justify-center gap-3">
@@ -284,7 +263,6 @@ const getEventLabel = (eventType: EventType): string => {
         </div>
       </div>
 
-      {/* Selected Event Countdown */}
       {selectedEventData && (
         <div className="w-full max-w-lg mx-auto">
           <CountdownTimer
@@ -292,12 +270,14 @@ const getEventLabel = (eventType: EventType): string => {
             targetDate={selectedEventData.date}
             className="w-full"
             extraText={getExtraText(selectedEvent)}
+            size="full" // Aquí siempre usamos el tamaño completo
           />
         </div>
       )}
     </div>
   );
 };
+
 
 export { CountdownTimer, EventCountdownSelector };
 export default EventCountdownSelector;

@@ -29,7 +29,7 @@ const TimelineCountdown: React.FC = () => {
     {
       id: 'registration',
       type: 'registration',
-      date: '2025-07-15T23:59:59',
+      date: '2025-07-25T23:59:59',
       title: 'Cierre de Inscripciones',
       description: 'Última oportunidad para registrarse al hackathon',
       imageUrl: '../img/Imagen15_07.png'

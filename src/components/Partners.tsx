@@ -5,6 +5,7 @@ import quantum2025Logo from '../../img/Partners/Quantum2025.png';
 import ieeeR9Logo from '../../img/Partners/IeeeR9.png';
 import cleiLogo from '../../img/CLEI2025.png';
 import ripaiscLogo from '../../img/Partners/Ripaisc.png';
+import aniiLogo from '../../img/Partners/anii.png'; 
 
 const Partners: React.FC = () => {
   const { t } = useLanguage();
@@ -42,6 +43,12 @@ const Partners: React.FC = () => {
       url: "https://www.ripaisc.net/",
       logo: ripaiscLogo
     },
+    {
+      name: "ANII",
+      description: "National Research and Innovation Agency of Uruguay",
+      url: "https://www.anii.org.uy/",
+      logo: aniiLogo
+    }
   ];
 
   return (
@@ -79,7 +86,6 @@ const Partners: React.FC = () => {
                         alt={`${partner.name} logo`}
                         className="h-16 w-auto max-w-[200px] object-contain grayscale group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100"
                         onError={(e) => {
-                          // Fallback to text if image fails to load
                           const target = e.target as HTMLImageElement;
                           target.style.display = 'none';
                           const fallback = document.createElement('div');
@@ -115,7 +121,6 @@ const Partners: React.FC = () => {
                         alt={`${supporter.name} logo`}
                         className="h-16 w-auto max-w-[200px] object-contain grayscale group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100"
                         onError={(e) => {
-                          // Fallback to text if image fails to load
                           const target = e.target as HTMLImageElement;
                           target.style.display = 'none';
                           const fallback = document.createElement('div');
