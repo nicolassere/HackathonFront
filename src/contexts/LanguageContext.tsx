@@ -297,7 +297,11 @@ const translations = {
 
         //Fijados
         'timeline.pin.pin': 'Haz clic en la fecha para fijar',
-        'timeline.pin.info': 'haz click para ver la información completa, y la cuenta regresiva.'
+        'timeline.pin.info': 'haz click para ver la información completa, y la cuenta regresiva.',
+
+        //Video de Turismo
+        'video.title' : 'Descubre Uruguay',
+        'video.subtitle' : 'Ven y explora las maravillas de Uruguay, el país anfitrión del hackathon.',
 
 
 
@@ -590,7 +594,11 @@ const translations = {
 
         //Fijados
         'timeline.pin.pin': 'Click on the date to pin',
-        'timeline.pin.info': 'click to see full information, and countdown.'    
+        'timeline.pin.info': 'click to see full information, and countdown.',
+
+        // Video de Turismo
+        'video.title' : 'Discover Uruguay',
+        'video.subtitle' : 'Come and explore the wonders of Uruguay, the host country of the hackathon.',
 
    
     },
@@ -876,7 +884,12 @@ const translations = {
         'osd3.description': 'Tomar medidas urgentes para combater as mudanças climáticas e seus impactos, promovendo a conscientização e a cooperação global.',
         //Fijados
         'timeline.pin.pin': 'Clique na data para fixar',
-        'timeline.pin.info': 'clique para ver as informações completas e a contagem regressiva.'
+        'timeline.pin.info': 'clique para ver as informações completas e a contagem regressiva.',
+
+        //Video de Turismo
+        'video.title' : 'Descubra o Uruguai',
+        'video.subtitle' : 'Venha e explore as maravilhas do Uruguai, o país anfitrião do hackathon.',
+
 
   // Títulos adicionales que estaban sueltos
 }     

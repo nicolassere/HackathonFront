@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import BlochSphere from './components/BlochSphere';
 import TimelineCountdown from './components/TimelineCountdown.tsx';
 import QuantumYearSection from './components/QuantumYearSection.tsx';
+import Turism from './components/TurismVideo';
 
 function App() {
     return (
@@ -24,7 +25,9 @@ function App() {
                 <HackathonInfo />
                 <Requirements />
                 <BlochSphere />
+                <Turism/>
                 <Partners/>
+                
             </main>
             <Footer />
         </div>
