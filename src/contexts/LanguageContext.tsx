@@ -301,7 +301,7 @@ const translations = {
 
         //Video de Turismo
         'video.title' : 'Descubre Uruguay',
-        'video.subtitle' : 'Ven y explora las maravillas de Uruguay, el país anfitrión del hackathon.',
+        'video.subtitle' : 'Ven y explora las maravillas de Uruguay, el país anfitrión de la hackathon.',
 
 
 

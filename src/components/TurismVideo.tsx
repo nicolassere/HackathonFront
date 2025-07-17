@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Play, Pause, Volume2, VolumeX, Maximize2, Minimize2 } from 'lucide-react';
+import { Play, Pause, Volume2, VolumeX, Maximize2, Minimize2, RotateCcw, SkipBack, SkipForward } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import turism_es from '../../img/videos/turismo_es.mp4';
 import turism_en from '../../img/videos/turismo_en.mp4';
@@ -10,17 +10,43 @@ const Turism = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const progressBarRef = useRef<HTMLDivElement>(null);
     const volumeBarRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [isMuted, setIsMuted] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [showControls, setShowControls] = useState(true);
     const [showVolumeSlider, setShowVolumeSlider] = useState(false);
     const [progress, setProgress] = useState(0);
-    const [volume, setVolume] = useState(100);
+    const [volume, setVolume] = useState(80);
     const [isDragging, setIsDragging] = useState(false);
     const [isDraggingVolume, setIsDraggingVolume] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
+    const [isBuffering, setIsBuffering] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
+    const [previewTime, setPreviewTime] = useState(0);
+    const [showPreview, setShowPreview] = useState(false);
+    const [previewPosition, setPreviewPosition] = useState(0);
+    const [hoverTime, setHoverTime] = useState(0);
+    const previewCanvasRef = useRef<HTMLCanvasElement>(null);
+
+    // Intersection Observer para animaciones
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        if (containerRef.current) {
+            observer.observe(containerRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
 
     // Obtener el video según el idioma
     const getVideoSource = () => {
@@ -64,6 +90,22 @@ const Turism = () => {
                 videoRef.current.muted = true;
                 setIsMuted(true);
             }
+        }
+    };
+
+    const skipTime = (seconds: number) => {
+        if (videoRef.current) {
+            const newTime = Math.max(0, Math.min(duration, videoRef.current.currentTime + seconds));
+            videoRef.current.currentTime = newTime;
+            setCurrentTime(newTime);
+        }
+    };
+
+    const restart = () => {
+        if (videoRef.current) {
+            videoRef.current.currentTime = 0;
+            setCurrentTime(0);
+            setProgress(0);
         }
     };
 
@@ -113,6 +155,9 @@ const Turism = () => {
         }
     };
 
+    const handleWaiting = () => setIsBuffering(true);
+    const handleCanPlay = () => setIsBuffering(false);
+
     const getTimeFromPosition = (e: React.MouseEvent<HTMLDivElement> | MouseEvent) => {
         if (progressBarRef.current && videoRef.current) {
             const rect = progressBarRef.current.getBoundingClientRect();
@@ -131,14 +176,63 @@ const Turism = () => {
             setCurrentTime(newTime);
             const progress = (newTime / videoRef.current.duration) * 100;
             setProgress(progress);
+            
+            // Auto-play when clicking on timeline
+            if (!isPlaying) {
+                videoRef.current.play();
+                setIsPlaying(true);
+            }
         }
     };
 
+    const handleProgressMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (progressBarRef.current && videoRef.current) {
+            const rect = progressBarRef.current.getBoundingClientRect();
+            const hoverX = e.clientX - rect.left;
+            const percentage = Math.max(0, Math.min(1, hoverX / rect.width));
+            const hoverTimeValue = percentage * videoRef.current.duration;
+            
+            setHoverTime(hoverTimeValue);
+            setPreviewPosition(hoverX);
+            setShowPreview(true);
+            
+            // Generate preview frame
+            generatePreviewFrame(hoverTimeValue);
+        }
+    };
+
+    const handleProgressMouseLeave = () => {
+        if (!isDragging) {
+            setShowPreview(false);
+        }
+    };
+
+    const generatePreviewFrame = (time: number) => {
+        if (videoRef.current && previewCanvasRef.current) {
+            const canvas = previewCanvasRef.current;
+            const ctx = canvas.getContext('2d');
+            
+            if (ctx) {
+                // Create a temporary video element for preview
+                const tempVideo = document.createElement('video');
+                tempVideo.src = videoRef.current.src;
+                tempVideo.currentTime = time;
+                tempVideo.muted = true;
+                
+                tempVideo.addEventListener('seeked', () => {
+                    canvas.width = 160;
+                    canvas.height = 90;
+                    ctx.drawImage(tempVideo, 0, 0, canvas.width, canvas.height);
+                    setPreviewTime(time);
+                }, { once: true });
+            }
+        }
+    };
     const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
         setIsDragging(true);
+        setShowPreview(true);
         
-        // Pausar el video al empezar a arrastrar
         const wasPlaying = isPlaying;
         if (wasPlaying && videoRef.current) {
             videoRef.current.pause();
@@ -148,17 +242,28 @@ const Turism = () => {
         const handleMouseMove = (e: MouseEvent) => {
             if (videoRef.current) {
                 const newTime = getTimeFromPosition(e);
+                
+                // Update preview position and time during drag
+                if (progressBarRef.current) {
+                    const rect = progressBarRef.current.getBoundingClientRect();
+                    const dragX = e.clientX - rect.left;
+                    setPreviewPosition(Math.max(0, Math.min(rect.width, dragX)));
+                }
+                
                 videoRef.current.currentTime = newTime;
                 setCurrentTime(newTime);
                 const progress = (newTime / videoRef.current.duration) * 100;
                 setProgress(progress);
+                
+                // Generate preview frame while dragging
+                generatePreviewFrame(newTime);
             }
         };
 
         const handleMouseUp = () => {
             setIsDragging(false);
+            setShowPreview(false);
             
-            // Reanudar el video si estaba reproduciéndose antes
             if (wasPlaying && videoRef.current) {
                 videoRef.current.play();
                 setIsPlaying(true);
@@ -237,160 +342,280 @@ const Turism = () => {
         }
     }, [language]);
 
+    // Auto-hide controls
+    useEffect(() => {
+        let timer: NodeJS.Timeout;
+        if (showControls && isPlaying) {
+            timer = setTimeout(() => {
+                setShowControls(false);
+            }, 3000);
+        }
+        return () => clearTimeout(timer);
+    }, [showControls, isPlaying]);
+
     return (
-        <section className="py-16 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
-            <div className="max-w-6xl mx-auto px-4 relative z-10">
-                {/* Header */}
-                <div className="text-center mb-12">
-                    <h2 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#a2832f] to-[#8a6f28] mb-4">
+        <section 
+            ref={containerRef}
+            className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden"
+        >
+            {/* Elementos decorativos de fondo */}
+            <div className="absolute inset-0 overflow-hidden">
+                <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-[#a2832f]/10 to-[#8a6f28]/5 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-blue-400/10 to-indigo-400/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+            </div>
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                {/* Header mejorado */}
+                <div className={`text-center mb-16 transition-all duration-1000 ${
+                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}>
+                    <div className="inline-flex items-center justify-center mb-6">
+                        <div className="h-px bg-gradient-to-r from-transparent via-[#a2832f] to-transparent w-24"></div>
+                        <div className="mx-4 w-3 h-3 bg-[#a2832f] rounded-full"></div>
+                        <div className="h-px bg-gradient-to-r from-transparent via-[#a2832f] to-transparent w-24"></div>
+                    </div>
+                    
+                    <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#a2832f] via-[#c4a73b] to-[#8a6f28] mb-6 tracking-tight leading-tight">
                         {t('video.title') || 'Descubre Uruguay'}
                     </h2>
-                    <div className="w-24 h-1 bg-gradient-to-r from-[#a2832f] to-[#8a6f28] mx-auto mb-6"></div>
-                    <p className="text-lg text-slate-700 max-w-3xl mx-auto leading-relaxed">
+                    
+                    <div className="w-32 h-1.5 bg-gradient-to-r from-[#a2832f] to-[#8a6f28] mx-auto mb-8 rounded-full shadow-lg"></div>
+                    
+                    <p className="text-xl md:text-2xl text-slate-700 max-w-4xl mx-auto leading-relaxed font-light">
                         {t('video.subtitle') || 'Un mensaje especial del Ministerio de Turismo de Uruguay para los participantes del Quantum LATAM 2025'}
                     </p>
                 </div>
 
-                {/* Video Container */}
-                <div className="bg-white rounded-3xl shadow-2xl p-8 border border-slate-200">
-                    <div className="relative">
-                        {/* Video Player */}
-                        <div 
-                            className="relative bg-black rounded-2xl overflow-hidden shadow-lg group cursor-pointer"
-                            onMouseEnter={() => setShowControls(true)}
-                            onMouseLeave={() => setShowControls(false)}
-                            onClick={togglePlay}
-                        >
-                            <video
-                                ref={videoRef}
-                                className="w-full h-auto max-h-[600px] object-cover"
-                                onTimeUpdate={handleTimeUpdate}
-                                onLoadedMetadata={handleLoadedMetadata}
-                                onEnded={() => setIsPlaying(false)}
-                                poster="https://via.placeholder.com/800x450/1e293b/ffffff?text=Video+Institucional+Uruguay"
+                {/* Video Container mejorado */}
+                <div className={`transition-all duration-1000 delay-300 ${
+                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
+                }`}>
+                    <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-6 md:p-8 border border-white/20 hover:shadow-3xl transition-all duration-500">
+                        <div className="relative">
+                            {/* Video Player */}
+                            <div 
+                                className="relative bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl overflow-hidden shadow-2xl group cursor-pointer transform transition-all duration-300 hover:shadow-3xl"
+                                onMouseEnter={() => setShowControls(true)}
+                                onMouseLeave={() => !isDragging && !showVolumeSlider && setShowControls(false)}
+                                onClick={togglePlay}
                             >
-                                <source src={getVideoSource()} type="video/mp4" />
-                                {t('video.notSupported') || 'Tu navegador no soporta el elemento video.'}
-                            </video>
-
-                            {/* Overlay de Play cuando está pausado */}
-                            {!isPlaying && (
-                                <div className="absolute inset-0 flex items-center justify-center bg-black/30 transition-all duration-300">
-                                    <div className="bg-white/90 rounded-full p-4 shadow-xl transform hover:scale-110 transition-transform">
-                                        <Play className="w-12 h-12 text-[#a2832f] ml-1" />
-                                    </div>
-                                </div>
-                            )}
-
-                            {/* Controles del Video */}
-                            <div className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 transition-all duration-300 ${
-                                showControls ? 'opacity-100' : 'opacity-0'
-                            }`}>
-                                {/* Barra de progreso */}
-                                <div 
-                                    ref={progressBarRef}
-                                    className="w-full bg-white/20 rounded-full h-1.5 mb-4 cursor-pointer relative group/progress hover:h-2 transition-all duration-200"
-                                    onClick={handleProgressClick}
+                                <video
+                                    ref={videoRef}
+                                    className="w-full h-auto max-h-[600px] object-cover transition-all duration-300"
+                                    onTimeUpdate={handleTimeUpdate}
+                                    onLoadedMetadata={handleLoadedMetadata}
+                                    onEnded={() => setIsPlaying(false)}
+                                    onWaiting={handleWaiting}
+                                    onCanPlay={handleCanPlay}
+                                    poster="https://via.placeholder.com/800x450/1e293b/ffffff?text=Video+Institucional+Uruguay"
                                 >
-                                    <div 
-                                        className="bg-[#a2832f] h-full rounded-full transition-all duration-100 relative shadow-sm"
-                                        style={{ width: `${progress}%` }}
-                                    >
-                                        {/* Indicador de posición mejorado */}
-                                        <div 
-                                            className={`absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full shadow-lg cursor-grab transition-all duration-200 ${
-                                                isDragging ? 'scale-125 cursor-grabbing' : 'scale-100 group-hover/progress:scale-110'
-                                            }`}
-                                            onMouseDown={handleMouseDown}
-                                            style={{ 
-                                                boxShadow: isDragging ? '0 0 0 3px rgba(162, 131, 47, 0.3)' : '0 2px 4px rgba(0,0,0,0.3)' 
-                                            }}
-                                        ></div>
+                                    <source src={getVideoSource()} type="video/mp4" />
+                                    {t('video.notSupported') || 'Tu navegador no soporta el elemento video.'}
+                                </video>
+
+                                {/* Indicador de buffering */}
+                                {isBuffering && (
+                                    <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+                                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#a2832f]"></div>
                                     </div>
-                                    
-                                    {/* Línea de preview al hover */}
-                                    <div className="absolute inset-0 bg-white/10 rounded-full opacity-0 group-hover/progress:opacity-100 transition-opacity duration-200"></div>
-                                </div>
+                                )}
 
-                                {/* Controles */}
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-center space-x-4">
-                                        <button
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                togglePlay();
-                                            }}
-                                            className="text-white hover:text-[#a2832f] transition-colors p-1 rounded-full hover:bg-white/10"
-                                        >
-                                            {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6" />}
-                                        </button>
+                                {/* Overlay de Play mejorado */}
+                                {!isPlaying && !isBuffering && (
+                                    <div className="absolute inset-0 flex items-center justify-center bg-black/40 transition-all duration-500">
+                                        <div className="bg-white/95 backdrop-blur-sm rounded-full p-6 shadow-2xl transform hover:scale-110 transition-all duration-300 group-hover:shadow-3xl">
+                                            <Play className="w-16 h-16 text-[#a2832f] ml-2 drop-shadow-lg" />
+                                        </div>
+                                    </div>
+                                )}
 
-                                        {/* Control de volumen */}
+                                {/* Controles del Video mejorados */}
+                                <div className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/70 to-transparent p-6 transition-all duration-500 ${
+                                    showControls ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                                }`}>
+                                    {/* Barra de progreso mejorada */}
+                                    <div 
+                                        ref={progressBarRef}
+                                        className="w-full bg-white/20 rounded-full h-2 mb-6 cursor-pointer relative group/progress hover:h-3 transition-all duration-300"
+                                        onClick={handleProgressClick}
+                                        onMouseMove={handleProgressMouseMove}
+                                        onMouseLeave={handleProgressMouseLeave}
+                                    >
+                                        {/* Preview tooltip */}
+                                        {showPreview && (
+                                            <div 
+                                                className="absolute bottom-6 transform -translate-x-1/2 transition-all duration-200 z-50"
+                                                style={{ left: `${Math.max(80, Math.min(previewPosition, progressBarRef.current?.offsetWidth ? progressBarRef.current.offsetWidth - 80 : previewPosition))}px` }}
+                                            >
+                                                <div className="bg-black/95 backdrop-blur-sm rounded-xl p-3 shadow-2xl border border-white/10">
+                                                    {/* Preview canvas */}
+                                                    <canvas
+                                                        ref={previewCanvasRef}
+                                                        className="rounded-lg mb-2 shadow-lg"
+                                                        width={160}
+                                                        height={90}
+                                                    />
+                                                    
+                                                    {/* Preview time */}
+                                                    <div className="text-white text-xs text-center font-medium">
+                                                        {formatTime(isDragging ? currentTime : hoverTime)}
+                                                    </div>
+                                                </div>
+                                                
+                                                {/* Tooltip arrow */}
+                                                <div className="absolute top-full left-1/2 transform -translate-x-1/2">
+                                                    <div className="w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black/95"></div>
+                                                </div>
+                                            </div>
+                                        )}
+                                        
                                         <div 
-                                            className="relative flex items-center space-x-2"
-                                            onMouseEnter={() => setShowVolumeSlider(true)}
-                                            onMouseLeave={() => !isDraggingVolume && setShowVolumeSlider(false)}
+                                            className="bg-gradient-to-r from-[#a2832f] to-[#c4a73b] h-full rounded-full transition-all duration-200 relative shadow-lg"
+                                            style={{ width: `${progress}%` }}
                                         >
+                                            {/* Indicador de posición mejorado */}
+                                            <div 
+                                                className={`absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-xl cursor-grab transition-all duration-200 z-10 ${
+                                                    isDragging ? 'scale-150 cursor-grabbing ring-4 ring-[#a2832f]/30' : 'scale-100 group-hover/progress:scale-125'
+                                                }`}
+                                                onMouseDown={handleMouseDown}
+                                                style={{ 
+                                                    boxShadow: isDragging 
+                                                        ? '0 0 0 4px rgba(162, 131, 47, 0.3), 0 4px 12px rgba(0,0,0,0.3)' 
+                                                        : '0 2px 8px rgba(0,0,0,0.4)',
+                                                    background: isDragging 
+                                                        ? 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)' 
+                                                        : '#ffffff'
+                                                }}
+                                            ></div>
+                                        </div>
+                                        
+                                        {/* Hover preview line */}
+                                        {showPreview && !isDragging && (
+                                            <div 
+                                                className="absolute top-0 w-0.5 h-full bg-white/60 rounded-full transition-all duration-100"
+                                                style={{ left: `${previewPosition}px` }}
+                                            ></div>
+                                        )}
+                                        
+                                        {/* Línea de preview de fondo mejorada */}
+                                        <div className="absolute inset-0 bg-white/15 rounded-full opacity-0 group-hover/progress:opacity-100 transition-all duration-300"></div>
+                                    </div>
+
+                                    {/* Controles principales */}
+                                    <div className="flex items-center justify-between">
+                                        <div className="flex items-center space-x-4">
+                                            {/* Botón de reinicio */}
                                             <button
                                                 onClick={(e) => {
                                                     e.stopPropagation();
-                                                    toggleMute();
+                                                    restart();
                                                 }}
-                                                className="text-white hover:text-[#a2832f] transition-colors p-1 rounded-full hover:bg-white/10"
+                                                className="text-white/80 hover:text-[#a2832f] transition-all duration-200 p-2 rounded-full hover:bg-white/10 hover:scale-110 transform"
                                             >
-                                                {isMuted || volume === 0 ? <VolumeX className="w-6 h-6" /> : <Volume2 className="w-6 h-6" />}
+                                                <RotateCcw className="w-5 h-5" />
                                             </button>
 
-                                            {/* Slider de volumen */}
-                                            <div className={`absolute left-10 bottom-0 transition-all duration-200 ${
-                                                showVolumeSlider ? 'opacity-100 visible' : 'opacity-0 invisible'
-                                            }`}>
-                                                <div className="bg-black/80 rounded-lg p-3 shadow-xl">
-                                                    <div 
-                                                        ref={volumeBarRef}
-                                                        className="w-20 bg-white/20 rounded-full h-1.5 cursor-pointer relative group/volume hover:h-2 transition-all duration-200"
-                                                        onClick={handleVolumeClick}
-                                                    >
+                                            {/* Botón de retroceso */}
+                                            <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    skipTime(-10);
+                                                }}
+                                                className="text-white/80 hover:text-[#a2832f] transition-all duration-200 p-2 rounded-full hover:bg-white/10 hover:scale-110 transform"
+                                            >
+                                                <SkipBack className="w-5 h-5" />
+                                            </button>
+
+                                            {/* Botón de play/pause mejorado */}
+                                            <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    togglePlay();
+                                                }}
+                                                className="text-white hover:text-[#a2832f] transition-all duration-200 p-3 rounded-full hover:bg-white/10 hover:scale-110 transform bg-white/5"
+                                            >
+                                                {isPlaying ? <Pause className="w-7 h-7" /> : <Play className="w-7 h-7" />}
+                                            </button>
+
+                                            {/* Botón de avance */}
+                                            <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    skipTime(10);
+                                                }}
+                                                className="text-white/80 hover:text-[#a2832f] transition-all duration-200 p-2 rounded-full hover:bg-white/10 hover:scale-110 transform"
+                                            >
+                                                <SkipForward className="w-5 h-5" />
+                                            </button>
+
+                                            {/* Control de volumen mejorado */}
+                                            <div 
+                                                className="relative flex items-center space-x-3"
+                                                onMouseEnter={() => setShowVolumeSlider(true)}
+                                                onMouseLeave={() => !isDraggingVolume && setShowVolumeSlider(false)}
+                                            >
+                                                <button
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        toggleMute();
+                                                    }}
+                                                    className="text-white/80 hover:text-[#a2832f] transition-all duration-200 p-2 rounded-full hover:bg-white/10 hover:scale-110 transform"
+                                                >
+                                                    {isMuted || volume === 0 ? <VolumeX className="w-6 h-6" /> : <Volume2 className="w-6 h-6" />}
+                                                </button>
+
+                                                {/* Slider de volumen mejorado */}
+                                                <div className={`absolute left-12 bottom-0 transition-all duration-300 ${
+                                                    showVolumeSlider ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-2'
+                                                }`}>
+                                                    <div className="bg-black/90 backdrop-blur-sm rounded-xl p-4 shadow-2xl border border-white/10">
                                                         <div 
-                                                            className="bg-[#a2832f] h-full rounded-full transition-all duration-100 relative"
-                                                            style={{ width: `${volume}%` }}
+                                                            ref={volumeBarRef}
+                                                            className="w-24 bg-white/20 rounded-full h-2 cursor-pointer relative group/volume hover:h-3 transition-all duration-200"
+                                                            onClick={handleVolumeClick}
                                                         >
-                                                            {/* Indicador de volumen */}
                                                             <div 
-                                                                className={`absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full shadow-lg cursor-grab transition-all duration-200 ${
-                                                                    isDraggingVolume ? 'scale-125 cursor-grabbing' : 'scale-100 group-hover/volume:scale-110'
-                                                                }`}
-                                                                onMouseDown={handleVolumeMouseDown}
-                                                                style={{ 
-                                                                    boxShadow: isDraggingVolume ? '0 0 0 3px rgba(162, 131, 47, 0.3)' : '0 2px 4px rgba(0,0,0,0.3)' 
-                                                                }}
-                                                            ></div>
+                                                                className="bg-gradient-to-r from-[#a2832f] to-[#c4a73b] h-full rounded-full transition-all duration-200 relative shadow-lg"
+                                                                style={{ width: `${volume}%` }}
+                                                            >
+                                                                {/* Indicador de volumen */}
+                                                                <div 
+                                                                    className={`absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-xl cursor-grab transition-all duration-200 ${
+                                                                        isDraggingVolume ? 'scale-125 cursor-grabbing' : 'scale-100 group-hover/volume:scale-110'
+                                                                    }`}
+                                                                    onMouseDown={handleVolumeMouseDown}
+                                                                    style={{ 
+                                                                        boxShadow: isDraggingVolume ? '0 0 0 3px rgba(162, 131, 47, 0.3)' : '0 2px 6px rgba(0,0,0,0.4)' 
+                                                                    }}
+                                                                ></div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    
-                                                    {/* Porcentaje de volumen */}
-                                                    <div className="text-white text-xs text-center mt-1 font-medium">
-                                                        {Math.round(volume)}%
+                                                        
+                                                        {/* Porcentaje de volumen */}
+                                                        <div className="text-white text-xs text-center mt-2 font-medium">
+                                                            {Math.round(volume)}%
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            {/* Tiempo actual / Tiempo total */}
+                                            <div className="text-white text-sm font-medium bg-black/30 px-3 py-1 rounded-lg backdrop-blur-sm">
+                                                {formatTime(currentTime)} / {formatTime(duration)}
+                                            </div>
                                         </div>
 
-                                        {/* Tiempo actual / Tiempo total */}
-                                        <div className="text-white text-sm font-medium">
-                                            {formatTime(currentTime)} / {formatTime(duration)}
-                                        </div>
+                                        <button
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                toggleFullscreen();
+                                            }}
+                                            className="text-white/80 hover:text-[#a2832f] transition-all duration-200 p-2 rounded-full hover:bg-white/10 hover:scale-110 transform"
+                                        >
+                                            {isFullscreen ? <Minimize2 className="w-6 h-6" /> : <Maximize2 className="w-6 h-6" />}
+                                        </button>
                                     </div>
-
-                                    <button
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            toggleFullscreen();
-                                        }}
-                                        className="text-white hover:text-[#a2832f] transition-colors p-1 rounded-full hover:bg-white/10"
-                                    >
-                                        {isFullscreen ? <Minimize2 className="w-6 h-6" /> : <Maximize2 className="w-6 h-6" />}
-                                    </button>
                                 </div>
                             </div>
                         </div>
