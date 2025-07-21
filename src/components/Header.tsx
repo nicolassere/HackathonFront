@@ -49,6 +49,17 @@ const Header = () => {
                 <p className="text-xs text-slate-600 whitespace-nowrap">Universidad de Montevideo</p>
               </div>
             </button>
+            {/* Mobile Logo */}
+            <button
+              onClick={() => scrollToSection('hero')}
+              className="sm:hidden flex items-center space-x-2 group transition-all duration-300"
+            >
+              <img
+                src= {logo}
+                alt="Hackathon Logo"
+                className="h-8 w-auto transition-transform duration-300 group-hover:rotate-3"
+              />
+            </button>
           </div>
 
           {/* Enhanced Desktop Navigation */}
@@ -141,6 +152,55 @@ const Header = () => {
               <a href="#partners" className="text-slate-700 hover:text-[#a2832f] transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
                 {t('nav.partners')}
               </a>
+              
+              {/* Language Selector for Mobile */}
+              <div className="pt-4 border-t border-slate-200">
+                <p className="text-sm font-medium text-slate-600 mb-3">Idioma / Language</p>
+                <div className="flex items-center space-x-3">
+                  <button
+                    onClick={() => {
+                      setLanguage('es');
+                      setIsMenuOpen(false);
+                    }}
+                    className={`flex items-center justify-center space-x-2 px-3 py-2 rounded-lg transition-all ${
+                      language === 'es'
+                        ? 'bg-[#f0e6c8] text-[#a2832f] shadow-sm'
+                        : 'text-slate-600 hover:text-[#a2832f] hover:bg-slate-50'
+                    }`}
+                  >
+                    <img src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/1f1ea-1f1f8.png" alt="ES" className="h-5 w-5"/>
+                    <span className="text-sm font-medium">Español</span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setLanguage('en');
+                      setIsMenuOpen(false);
+                    }}
+                    className={`flex items-center justify-center space-x-2 px-3 py-2 rounded-lg transition-all ${
+                      language === 'en'
+                        ? 'bg-[#f0e6c8] text-[#a2832f] shadow-sm'
+                        : 'text-slate-600 hover:text-[#a2832f] hover:bg-slate-50'
+                    }`}
+                  >
+                    <img src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/1f1ec-1f1e7.png" alt="EN" className="h-5 w-5"/>
+                    <span className="text-sm font-medium">English</span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setLanguage('pt');
+                      setIsMenuOpen(false);
+                    }}
+                    className={`flex items-center justify-center space-x-2 px-3 py-2 rounded-lg transition-all ${
+                      language === 'pt'
+                        ? 'bg-[#f0e6c8] text-[#a2832f] shadow-sm'
+                        : 'text-slate-600 hover:text-[#a2832f] hover:bg-slate-50'
+                    }`}
+                  >
+                    <img src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/1f1f5-1f1f9.png" alt="PT" className="h-5 w-5"/>
+                    <span className="text-sm font-medium">Português</span>
+                  </button>
+                </div>
+              </div>
             </nav>
           </div>
         )}
