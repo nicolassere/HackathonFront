@@ -303,6 +303,10 @@ const translations = {
         'video.title' : 'Descubre Uruguay',
         'video.subtitle' : 'Ven y explora las maravillas de Uruguay, el país anfitrión de la hackathon.',
 
+        // Bloch Sphere
+        'blochSphere.title': 'Esfera de Bloch Interactiva',
+        'blochSphere.subtitle': 'Creada por Ari Feirnman',
+
 
 
     },
@@ -600,7 +604,10 @@ const translations = {
         'video.title' : 'Discover Uruguay',
         'video.subtitle' : 'Come and explore the wonders of Uruguay, the host country of the hackathon.',
 
-   
+        // Bloch Sphere
+        'blochSphere.title': 'Interactive Bloch Sphere',
+        'blochSphere.subtitle': 'Created by Ari Feirnman',
+
     },
 
     pt: {
@@ -889,6 +896,10 @@ const translations = {
         //Video de Turismo
         'video.title' : 'Descubra o Uruguai',
         'video.subtitle' : 'Venha e explore as maravilhas do Uruguai, o país anfitrião do hackathon.',
+
+        // Bloch Sphere
+        'blochSphere.title': 'Esfera de Bloch Interativa',
+        'blochSphere.subtitle': 'Criada por Ari Feirnman',
 
 
   // Títulos adicionales que estaban sueltos

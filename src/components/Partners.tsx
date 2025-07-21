@@ -7,6 +7,9 @@ import cleiLogo from '../../img/CLEI2025.png';
 import ripaiscLogo from '../../img/Partners/Ripaisc.png';
 import aniiLogo from '../../img/Partners/anii.png'; 
 import uruguayNaturalLogo from '../../img/Partners/UruguayNatural.png';
+import microsoftLogo from '../../img/Partners/microsoft.png';
+import unescoLogo from '../../img/Partners/unesco.png';
+import IEEEQuantumLogo from '../../img/Partners/IEEEQuantum.png';
 
 const Partners: React.FC = () => {
   const { t } = useLanguage();
@@ -18,16 +21,10 @@ const Partners: React.FC = () => {
       logo: oqiLogo
     },
     {
-      name: "Quantum 2025",
-      description: "Leading quantum computing conference",
-      url: "https://quantum2025.org/es/",
-      logo: quantum2025Logo
-    },
-    {
-      name: "IEEE Region 9",
-      description: "IEEE Latin America and Caribbean",
-      url: "https://r9.ieee.org/",
-      logo: ieeeR9Logo
+      name: "Microsoft",
+      description: "Global leader in technology and cloud computing",
+      url: "https://www.microsoft.com/",
+      logo: microsoftLogo
     }
   ];
 
@@ -45,6 +42,12 @@ const Partners: React.FC = () => {
       logo: ripaiscLogo
     },
     {
+      name: "Quantum 2025",
+      description: "Leading quantum computing conference",
+      url: "https://quantum2025.org/es/",
+      logo: quantum2025Logo
+    },
+    {
       name: "ANII",
       description: "National Research and Innovation Agency of Uruguay",
       url: "https://www.anii.org.uy/",
@@ -55,6 +58,25 @@ const Partners: React.FC = () => {
       description: "Brand of Uruguay promoting tourism and investment",
       url: "https://www.gub.uy/ministerio-turismo/",
       logo : uruguayNaturalLogo
+    }
+    ,
+    {
+      name: "UNESCO",
+      description: "United Nations Educational, Scientific and Cultural Organization",
+      url: "https://www.unesco.org/",
+      logo: unescoLogo
+    }, 
+    {
+      name: "IEEE Region 9",
+      description: "IEEE Latin America and Caribbean",
+      url: "https://r9.ieee.org/",
+      logo: ieeeR9Logo
+    },
+    {
+      name: "IEEE Quantum",
+      description: "IEEE's global quantum community",
+      url: "https://quantum.ieee.org/",
+      logo: IEEEQuantumLogo
     }
   ];
 

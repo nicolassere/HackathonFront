@@ -57,7 +57,7 @@ const Turism = () => {
                 return turism_pt;
             case 'es':
             default:
-                return turism_es;
+                return "/nextcloud/index.php/s/2rMQpzFgjMQoN7x/download?path=%2F&amp;files=MICE%202022%20castellano.mp4";
         }
     };
 
@@ -407,7 +407,7 @@ const Turism = () => {
                                     onEnded={() => setIsPlaying(false)}
                                     onWaiting={handleWaiting}
                                     onCanPlay={handleCanPlay}
-                                    poster="https://via.placeholder.com/800x450/1e293b/ffffff?text=Video+Institucional+Uruguay"
+                                    poster="/nextcloud/apps/files_videoplayer/img/poster.png"
                                 >
                                     <source src={getVideoSource()} type="video/mp4" />
                                     {t('video.notSupported') || 'Tu navegador no soporta el elemento video.'}
