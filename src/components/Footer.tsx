@@ -99,12 +99,22 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <a
-                  href="https://clei.org/"
+                  href="www.microsoft.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-blue-400 transition-colors"
                 >
-                  CLEI
+                  Microsoft
+                </a>
+              </li>
+                            <li>
+                <a
+                  href="www.quantum.ieee.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-blue-400 transition-colors"
+                >
+                  Quantum IEEE
                 </a>
               </li>
             </ul>

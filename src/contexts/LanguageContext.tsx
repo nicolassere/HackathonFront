@@ -305,7 +305,7 @@ const translations = {
 
         // Bloch Sphere
         'blochSphere.title': 'Esfera de Bloch Interactiva',
-        'blochSphere.subtitle': 'Creada por Ari Feirnman',
+        'blochSphere.subtitle': 'Creada por Ari Fainerman',
 
 
 
@@ -606,7 +606,7 @@ const translations = {
 
         // Bloch Sphere
         'blochSphere.title': 'Interactive Bloch Sphere',
-        'blochSphere.subtitle': 'Created by Ari Feirnman',
+        'blochSphere.subtitle': 'Created by Ari Fainerman',
 
     },
 
@@ -899,7 +899,7 @@ const translations = {
 
         // Bloch Sphere
         'blochSphere.title': 'Esfera de Bloch Interativa',
-        'blochSphere.subtitle': 'Criada por Ari Feirnman',
+        'blochSphere.subtitle': 'Criada por Ari Fainerman',
 
 
   // Títulos adicionales que estaban sueltos
