@@ -107,7 +107,7 @@ const Footer: React.FC = () => {
                   Microsoft
                 </a>
               </li>
-                            <li>
+                <li>
                 <a
                   href="www.quantum.ieee.org"
                   target="_blank"
