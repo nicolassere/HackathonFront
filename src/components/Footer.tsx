@@ -99,7 +99,7 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <a
-                  href="www.microsoft.com"
+                  href="https://www.microsoft.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-blue-400 transition-colors"
@@ -109,7 +109,7 @@ const Footer: React.FC = () => {
               </li>
                 <li>
                 <a
-                  href="www.quantum.ieee.org"
+                  href="https://www.quantum.ieee.org"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-blue-400 transition-colors"
