@@ -130,8 +130,9 @@ const translations = {
         // Partners
         'partners.title': 'Nuestros colaboradores',
         'partners.subtitle': 'Este hackathon es posible gracias a la colaboración de organizaciones líderes en computación cuántica, investigación climática y educación tecnológica.',
-        'partners.strategic': 'Auspiciantes',
-        'partners.academic': 'Apoyan',
+        'partners.sponsors': 'Auspiciantes',
+        'partners.supporters': 'Apoyan',
+        'partners.organizers': 'Organizado por',
 
         // Footer
         'footer.title': 'Hackathon LATAM 2025',
@@ -434,8 +435,9 @@ const translations = {
         // Partners
         'partners.title': 'Our Collaborators',
         'partners.subtitle': 'This hackathon is made possible through collaboration with leading organizations in quantum computing, climate research, and technology education.',
-        'partners.strategic': 'Sponsors',
-        'partners.academic': 'Supported by',
+        'partners.sponsors': 'Sponsors',
+        'partners.supporters': 'Supported by',
+        'partners.organizers': 'Organized by',
 
         // Footer
         'footer.title': 'Hackathon LATAM 2025',
@@ -738,8 +740,9 @@ const translations = {
         // Partners
         'partners.title': 'Nossos colaboradores',
         'partners.subtitle': 'Este hackathon é possível graças à colaboração de organizações líderes em computação quântica, pesquisa climática e educação tecnológica.',
-        'partners.strategic': 'Patrocinadores',
-        'partners.academic': 'Apoiam',
+        'partners.sponsors': 'Patrocinadores',
+        'partners.supporters': 'Apoiam',
+        'partners.organizers': 'Organizado por',
 
         // Footer
         'footer.title': 'Hackathon LATAM 2025',

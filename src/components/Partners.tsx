@@ -10,16 +10,36 @@ import uruguayNaturalLogo from '../../img/Partners/UruguayNatural.png';
 import microsoftLogo from '../../img/Partners/microsoft.png';
 import unescoLogo from '../../img/Partners/unesco.png';
 import IEEEQuantumLogo from '../../img/Partners/IEEEQuantum.png';
+import umLogo from '../../img/Partners/umLogo.png'; // Ajusta la ruta según corresponda
+
+interface Partner {
+  name: string;
+  description: string;
+  url: string;
+  logo: string;
+}
 
 const Partners: React.FC = () => {
   const { t } = useLanguage();
-  const partners = [
+  
+  // Sección Organizan
+  const organizers: Partner[] = [
+    {
+      name: "Universidad de Montevideo",
+      description: "Universidad de Montevideo",
+      url: "https://www.um.edu.uy/",
+      logo: umLogo
+    },
     {
       name: "Open Quantum Institute",
       description: "CERN's initiative advancing quantum technology for humanity",
       url: "https://open-quantum-institute.cern/",
       logo: oqiLogo
-    },
+    }
+  ];
+
+  // Sección Auspicia
+  const sponsors: Partner[] = [
     {
       name: "Microsoft",
       description: "Global leader in technology and cloud computing",
@@ -28,7 +48,8 @@ const Partners: React.FC = () => {
     }
   ];
 
-  const supporters = [
+  // Sección Apoyan
+  const supporters: Partner[] = [
     {
       name: "CLEI",
       description: "Latin American Center for Informatics Studies",
@@ -54,12 +75,11 @@ const Partners: React.FC = () => {
       logo: aniiLogo
     },
     {
-      name : "Uruguay Natural",
+      name: "Uruguay Natural",
       description: "Brand of Uruguay promoting tourism and investment",
       url: "https://www.gub.uy/ministerio-turismo/",
-      logo : uruguayNaturalLogo
-    }
-    ,
+      logo: uruguayNaturalLogo
+    },
     {
       name: "UNESCO",
       description: "United Nations Educational, Scientific and Cultural Organization",
@@ -80,90 +100,65 @@ const Partners: React.FC = () => {
     }
   ];
 
+  const renderPartnerSection = (partners: Partner[], sectionKey: string, gradientColors: string) => (
+    <div className="mb-20">
+      <div className="text-center mb-12">
+        <h3 className="text-3xl font-bold text-slate-900 mb-4">{t(`partners.${sectionKey}`)}</h3>
+        <div className={`w-24 h-1 bg-gradient-to-r ${gradientColors} mx-auto rounded-full`}></div>
+      </div>
+
+      <div className="flex flex-wrap justify-center items-center gap-12 max-w-5xl mx-auto">
+        {partners.map((partner, index) => (
+          <a
+            key={index}
+            href={partner.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group transition-all duration-300 transform hover:scale-110"
+            title={partner.description}
+          >
+            <img
+              src={partner.logo}
+              alt={`${partner.name} logo`}
+              className="h-16 w-auto max-w-[200px] object-contain grayscale group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+                const fallback = document.createElement('div');
+                fallback.className = 'h-16 w-32 bg-gradient-to-r from-blue-100 to-purple-100 rounded-lg flex items-center justify-center text-blue-600 font-semibold';
+                fallback.textContent = partner.name;
+                target.parentNode?.appendChild(fallback);
+              }}
+            />
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+
   return (
-      <section id="partners" className="py-24 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">
-              {t('partners.title')}
-            </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              {t('partners.subtitle')}
-            </p>
-          </div>
-
-          {/* Strategic Partners Section */}
-          <div className="mb-20">
-            <div className="text-center mb-12">
-              <h3 className="text-3xl font-bold text-slate-900 mb-4">{t('partners.strategic')}</h3>
-              <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"></div>
-            </div>
-
-            <div className="flex flex-wrap justify-center items-center gap-12 max-w-5xl mx-auto">
-              {partners.map((partner, index) => (
-                  <a
-                      key={index}
-                      href={partner.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group transition-all duration-300 transform hover:scale-110"
-                      title={partner.description}
-                  >
-                    <img
-                        src={partner.logo}
-                        alt={`${partner.name} logo`}
-                        className="h-16 w-auto max-w-[200px] object-contain grayscale group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.style.display = 'none';
-                          const fallback = document.createElement('div');
-                          fallback.className = 'h-16 w-32 bg-gradient-to-r from-blue-100 to-purple-100 rounded-lg flex items-center justify-center text-blue-600 font-semibold';
-                          fallback.textContent = partner.name;
-                          target.parentNode?.appendChild(fallback);
-                        }}
-                    />
-                  </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Academic Supporters Section */}
-          <div className="mb-16">
-            <div className="text-center mb-12">
-              <h3 className="text-3xl font-bold text-slate-900 mb-4">{t('partners.academic')}</h3>
-              <div className="w-24 h-1 bg-gradient-to-r from-green-600 to-blue-600 mx-auto rounded-full"></div>
-            </div>
-
-            <div className="flex flex-wrap justify-center items-center gap-12 max-w-5xl mx-auto">
-              {supporters.map((supporter, index) => (
-                  <a
-                      key={index}
-                      href={supporter.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group transition-all duration-300 transform hover:scale-110"
-                      title={supporter.description}
-                  >
-                    <img
-                        src={supporter.logo}
-                        alt={`${supporter.name} logo`}
-                        className="h-16 w-auto max-w-[200px] object-contain grayscale group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.style.display = 'none';
-                          const fallback = document.createElement('div');
-                          fallback.className = 'h-16 w-32 bg-gradient-to-r from-green-100 to-blue-100 rounded-lg flex items-center justify-center text-green-600 font-semibold';
-                          fallback.textContent = supporter.name;
-                          target.parentNode?.appendChild(fallback);
-                        }}
-                    />
-                  </a>
-              ))}
-            </div>
-          </div>
+    <section id="partners" className="py-24 bg-slate-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-slate-900 mb-4">
+            {t('partners.title')}
+          </h2>
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            {t('partners.subtitle')}
+          </p>
         </div>
-      </section>
+
+        {/* Organizan Section */}
+        {renderPartnerSection(organizers, 'organizers', 'from-purple-600 to-blue-600')}
+
+        {/* Auspicia Section */}
+        {renderPartnerSection(sponsors, 'sponsors', 'from-blue-600 to-green-600')}
+
+        {/* Apoyan Section */}
+        {renderPartnerSection(supporters, 'supporters', 'from-green-600 to-teal-600')}
+      </div>
+    </section>
   );
 };
 
